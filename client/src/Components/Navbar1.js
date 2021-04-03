@@ -22,7 +22,7 @@ const Navbar1 = () =>{
            <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">
           <a>
-           <img src ={logo} alt ={logo} style={{height:30, width :30}} className="mr-2 d-inline-block align-top"></img> 
+           <img src ={logo} alt ="logoImg" style={{height:30, width :30}} className="mr-2 d-inline-block align-top"></img> 
           </a>
           <i><b>Rozgaar</b></i>
           </NavbarBrand>
