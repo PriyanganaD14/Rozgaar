@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button,
 } from 'reactstrap';
 import logo from './Assets/favicon.ico';
 
@@ -19,7 +19,7 @@ const Navbar1 = () =>{
 
     return(
        <div>
-           <Navbar color="dark" dark expand="md">
+           <Navbar color="dark" dark expand="md" fixed="top">
         <NavbarBrand href="/">
           <a>
            <img src ={logo} alt ="logoImg" style={{height:30, width :30}} className="mr-2 d-inline-block align-top"></img> 
@@ -36,6 +36,7 @@ const Navbar1 = () =>{
               <NavLink href="#findjob">FIND JOB |</NavLink>
             </NavItem>
             <Button color="success"className="ml-3" type="submit">SIGN IN</Button>
+            <Button color="success"className="ml-3" type="submit">SIGN UP</Button>
           </Nav>
         </Collapse>
       </Navbar>
