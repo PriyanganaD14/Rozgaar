@@ -9,7 +9,7 @@ const CardSection = ()=>{
             <h1 className="mt-4 mb-4" style={{ textAlign: "center" }}
             >How We Work</h1>
             <Container>
-            <HowWeWork className="mb-4"/>
+            <HowWeWork/>
             </Container>
             <hr></hr>
             <Container>
