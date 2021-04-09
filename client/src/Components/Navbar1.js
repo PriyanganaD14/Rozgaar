@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -8,12 +8,11 @@ import {
   NavItem,
   NavLink,
   Button,
-} from 'reactstrap';
-import logo from './Assets/favicon.ico';
+} from "reactstrap";
+import logo from "./Assets/favicon.ico";
 
-
-const Navbar1 = () =>{
-    const [isOpen, setIsOpen] = useState(false);
+const Navbar1 = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -22,10 +21,17 @@ const Navbar1 = () =>{
            <Navbar color="dark" dark expand="md" fixed="top">
         <NavbarBrand href="/">
           <a>
-           <img src ={logo} alt ="logoImg" style={{height:30, width :30}} className="mr-2 d-inline-block align-top"></img> 
+            <img
+              src={logo}
+              alt="logoImg"
+              style={{ height: 30, width: 30 }}
+              className="mr-2 d-inline-block align-top"
+            ></img>
           </a>
-          <i><b>Rozgaar</b></i>
-          </NavbarBrand>
+          <i>
+            <b>Rozgaar</b>
+          </i>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -40,9 +46,8 @@ const Navbar1 = () =>{
           </Nav>
         </Collapse>
       </Navbar>
-       </div>
-    );
-
+    </div>
+  );
 };
 
 export default Navbar1;
