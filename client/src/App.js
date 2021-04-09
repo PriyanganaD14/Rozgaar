@@ -3,8 +3,9 @@ import Navbar1 from "./Components/Navbar1";
 import Buttons from "./Components/Buttons"
 import CardSection from "./Components/CardSection";
 import Footer from "./Components/Footer";
+import './App.css';
 
-const App = () =>{
+const App = () => {
   return (
       <div>
         <Navbar1/>
