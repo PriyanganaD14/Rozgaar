@@ -18,25 +18,25 @@ const JobCategories = ()=>{
          <div>
              <div>
               <CardDeck>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid" src={driver} style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
         <div className="font">DRIVER</div>
         </CardBody>
       </Card>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid"  src={deliveryboy} style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">DELIVERY BOY</div>
         </CardBody>
       </Card>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid"  src={fieldsales}style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">FIELD SALES</div>
         </CardBody>
       </Card>
-       <Card className="hvr col-md-3 col-sm-6 col-xs-12 ">
+       <Card className="hvr">
         <CardImg className="mid"  src={receptionist}style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">RECEPTIONIST</div>
@@ -46,25 +46,25 @@ const JobCategories = ()=>{
       </div>
       <div className="mt-4 mb-4">
               <CardDeck>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid" src={cook}style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">COOK</div>
         </CardBody>
       </Card>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid" src={maid}style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">MAID/SERVANT</div>
         </CardBody>
       </Card>
-      <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+      <Card className="hvr">
         <CardImg className="mid"  src={mason} style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">MASON</div>
         </CardBody>
       </Card>
-       <Card className="hvr col-md-3 col-sm-6 col-xs-12">
+       <Card className="hvr">
         <CardImg className="mid"  src={securityguard} style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
           <div className="font">SECURITY GUARD</div>
