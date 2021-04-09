@@ -16,9 +16,9 @@ const Navbar1 = () => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  return (
-    <div>
-      <Navbar color="dark" dark expand="md" >
+    return(
+       <div>
+           <Navbar color="dark" dark expand="md" fixed="top">
         <NavbarBrand href="/">
           <a>
             <img
@@ -41,9 +41,8 @@ const Navbar1 = () => {
             <NavItem>
               <NavLink href="#findjob">FIND JOB |</NavLink>
             </NavItem>
-            <Button color="success" className="ml-3" type="submit">
-              SIGN IN
-            </Button>
+            <Button color="success"className="ml-3" type="submit">SIGN IN</Button>
+            <Button color="success"className="ml-3" type="submit">SIGN UP</Button>
           </Nav>
         </Collapse>
       </Navbar>
