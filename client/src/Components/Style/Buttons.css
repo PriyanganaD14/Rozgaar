@@ -3,6 +3,9 @@
 text-align: center;
 } 
 
+.container-fluid {
+    margin-top: 60px;
+}
 .iwj
 {
     height:120px;
