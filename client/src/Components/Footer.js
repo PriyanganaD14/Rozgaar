@@ -7,8 +7,8 @@ import {FiTwitter} from 'react-icons/fi';
 
 const Footer = ()=>{
     return (
-     <div>
-         <footer className="bg-dark text-center text-lg-start mt-7">
+     <div className="footer">
+         <footer className="bg-dark text-center text-lg-start mt-7.">
             <h2 className=" mt-5 mb-4 text-light" style={{textAlign:'center'}}>About Us</h2>
             <div id="container" className="team">
           <button type="button" className="btn btn-outline-success mr-3"> About Rozgaar</button>
