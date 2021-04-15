@@ -58,7 +58,7 @@ const CarouselSection = (props) => {
         onExited={() => setAnimating(false)}
         key={item.img}
       >
-        <Success img={item.img} para={item.para} title={item.title} /> 
+        <Success img={item.img} para={item.para} title={item.title} />
       </CarouselItem>
     );
   });

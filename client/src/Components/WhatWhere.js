@@ -2,10 +2,10 @@ import React from "react";
 
 import { Form, FormGroup, Label, Input, Row, Button } from "reactstrap";
 const WhatWhere = () => {
-  const handleSubmit = () => {};
+  const handleSubmit = () => { };
 
   return (
-    <Form style={{padding: "20px"}}>
+    <Form style={{ padding: "20px" }}>
       <Row form>
         <div className="col-sm-12">
           <FormGroup>
@@ -21,7 +21,7 @@ const WhatWhere = () => {
         </div>
         <div className="col-md-2">
           <Button color="btn btn-outline-primary btn-sm">Find jobs</Button>
-        </div>      
+        </div>
       </Row>
     </Form>
   );

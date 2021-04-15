@@ -8,7 +8,7 @@ import './Style/Buttons.css';
 import Cards from './Cards';
 
 
-const Buttons = ()=>{
+const Buttons = () => {
     return (
         <div className="container-fluid">
             <div className="row">
@@ -22,9 +22,9 @@ const Buttons = ()=>{
                 </div>
 
                 <div className="setmiddle">
-                       <Cards/>
-                   </div>
-            <br/><br/><br/>
+                    <Cards />
+                </div>
+                <br /><br /><br />
             </div>
         </div>
     );
