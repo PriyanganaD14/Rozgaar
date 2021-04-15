@@ -1,9 +1,12 @@
 import React from 'react';
 
-import "./Style/Buttons.css";
+
 
 import CarouselSection from './CarouselSection';
 import WhatWhere from './WhatWhere';
+import './Style/Buttons.css';
+import Cards from './Cards';
+
 
 const Buttons = ()=>{
     return (
@@ -13,15 +16,15 @@ const Buttons = ()=>{
                     <div className="row justify-content-center">
                         <WhatWhere />
                     </div>
-                    <div className="row d-flex justify-content-center">
-                        <button type="submit" className="btn btn-outline-primary iwk">I Need Job</button>
-                        <button type="submit" className="btn btn-outline-primary iwk">I Need Staff</button>
-                    </div>
                 </div>
                 <div className="col-md-3">
                     <CarouselSection />
                 </div>
-            <br/><br/>
+
+                <div className="setmiddle">
+                       <Cards/>
+                   </div>
+            <br/><br/><br/>
             </div>
         </div>
     );
@@ -29,3 +32,5 @@ const Buttons = ()=>{
 
 
 export default Buttons;
+
+

@@ -18,7 +18,7 @@ const JobCategories = ()=>{
   return (
     <div>
       <Row>
-        <Col className="col-lg-3 col-md-6 col-sm-12 mb">
+        <Col className="col-lg-3 col-md-6 col-sm-12">
         <Card className="hvr mb-md-4">
         <CardImg className="mid" src={driver} style={{width:70,height:80}} alt="Card image cap" />
         <CardBody className="mid">
