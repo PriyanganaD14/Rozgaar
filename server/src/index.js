@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const {DBconnection} = require('./db/mongoDB')
+const DBconnection = require('./db/mongoDB')
 DBconnection();
 
 const userRoutes = require("./routes/user");
