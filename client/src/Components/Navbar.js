@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
-
+import {NavbarBrand} from "reactstrap"
+import logo from "./Assets/favicon.ico"
 
 class Navbar extends Component {
     state = { clicked: false }
@@ -13,7 +14,21 @@ class Navbar extends Component {
     render() {
         return(
             <nav className="NavbarItems">
-            <h1  className="navbar-logo"><i className="fab fa-react"></i>Rozgaar</h1>
+            <h1  className="navbar-logo">
+            <NavbarBrand className="fav" href="/">
+            <a href="/">
+              <img
+                src={logo}
+                alt="logoImg"
+                style={{ height: 30, width: 30 }}
+                className="mr-2 d-inline-block align-top"
+              ></img>
+            </a>
+            <i>
+              <b>Rozgaar</b>
+            </i>
+          </NavbarBrand>
+          </h1>
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>

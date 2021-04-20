@@ -20,6 +20,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.fav
+{
+    margin-left: 0px;
+    margin-top: 15px;
+}
 .shadowss
 {
     width:100%;
@@ -28,8 +33,12 @@ code {
 }
 .forms
 {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left:18%;
+}
+.ikons
+{
+    padding-left: 10px;
 }
 
 .findlogo
@@ -89,7 +98,8 @@ code {
 {
     height:432px;
     text-align: center;
-    margin-left: 35px;
+    margin-left: 30px;
+    margin-right: 30px;
     width: 300px;
     border-radius:7px;
     background-color:burlywood;
@@ -109,4 +119,23 @@ text-align: center;
 .rvws
 {
     background-color: cadetblue;
+}
+
+@media screen and (max-width: 860px)
+{
+    #setcrds
+    {
+ margin-left: 40px;
+    }
+    .rvws
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #ssec
+    {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+    
 }
