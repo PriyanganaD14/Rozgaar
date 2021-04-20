@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar1 from "./Components/Navbar1";
+import Navbar from "./Components/Navbar";
 import Buttons from "./Components/Buttons";
 import CardSection from "./Components/CardSection";
 import Footer from "./Components/Footer";
@@ -7,8 +7,8 @@ import './App.css';
 
 const App = () => {
   return (
-      <div>
-        <Navbar1/>
+      <div className="all">
+        <Navbar/>
         <Buttons/>
         <hr/>
         <CardSection/>

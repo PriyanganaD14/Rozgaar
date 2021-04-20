@@ -6,6 +6,9 @@
     "install-dep": "npm i && npm run client-install && npm run server-install"
   },
   "dependencies": {
-    "concurrently": "^6.0.0"
+    "components": "^0.1.0",
+    "concurrently": "^6.0.0",
+    "styled": "^1.0.0",
+    "typescript": "^4.2.4"
   }
 }

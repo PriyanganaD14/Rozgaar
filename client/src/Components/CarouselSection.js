@@ -12,75 +12,73 @@ import img2 from "./Assets/cook.png";
 import img3 from "./Assets/maid.png"
 import img4 from "./Assets/taxiDriver.png"
 
-const items = [
-  {
-    img: img1,
-    title: "Brick Layer",
-    para: "Some quick example text to build on the card title and make up the bulk of the card's content."
-  },
-  {
-    img: img2,
-    title: "Cook",
-    para: "Some quick example text to build on the card title and make up the bulk of the card's content. Cook"
-  },
-  {
-    img: img3,
-    title: "Maid",
-    para: "Some quick example text to build on the card title and make up the bulk of the card's content. Maid"
-  },
-  {
-    img: img4,
-    title: "Taxi Driver",
-    para: "Some quick example text to build on the card title and make up the bulk of the card's content. Taxi Driver"
-  }
-];
 
-const CarouselSection = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.img}
-      >
-        <Success img={item.img} para={item.para} title={item.title} /> 
-      </CarouselItem>
-    );
-  });
-
+const CarouselSection = ()=>{
   return (
-    <div>
-      <Grid container>
-        <Grid item xs={8}>
-          <p className="mytext">Success Stories</p>
-        </Grid>
-        <Grid item xs={2}>
-          <Button onClick={previous}>prev</Button>
-        </Grid>
-        <Grid item xs={2}>
-          <Button onClick={next}>next</Button>
-        </Grid>
-      </Grid>
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-        {slides}
-      </Carousel>
-    </div>
+    <div className="rvws">
+    <div><h4 className="rvw">Success Stories</h4></div>
+    <div id="carouselExampleIndicators" className="carousel slide slider" data-ride="carousel">
+<ol className="carousel-indicators">
+<li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+</ol>
+<div className="carousel-inner main">
+<div className="carousel-item active">
+ <div className="card-deck">
+
+<div className="card" id="setcrds">
+<img src={img1} className="card-img-top rounded-circle" id="game" alt="..."/>
+<div className="card-body">
+   <h5 className="card-title titles">Aksahy Kumar,Kolkata</h5>
+  <h5 className="card-title titles">Maths Tutor</h5>
+  <p className="card-text sjana">This card has supporting text below as a natural lead-in to additional content.</p>
+</div>
+</div>
+
+</div>
+</div>
+<div className="carousel-item">
+   <div className="card-deck">
+
+<div className="card" id="setcrds">
+<img src={img2} className="card-img-top rounded-circle" id="game" alt="..."/>
+<div className="card-body">
+  <h5 className="card-title titles">Aksahy Kumar,Kolkata</h5>
+  <h5 className="card-title titles">Maths Tutor</h5>
+  <p className="card-text sjana">This card has supporting text below as a natural lead-in to additional content.</p>
+</div>
+</div>
+
+</div>
+</div>
+<div className="carousel-item">
+   <div className="card-deck">
+
+<div className="card " id="setcrds">
+<img src={img3} className="card-img-top rounded-circle" id="game" alt="..."/>
+<div className="card-body">
+  <h5 className="card-title titles">Aksahy Kumar,Kolkata</h5>
+  <h5 className="card-title titles">Maths Tutor</h5>
+  <p className="card-text sjana">This card has supporting text below as a natural lead-in to additional content.</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+<span className="carousel-control-prev-icon" aria-hidden="true"></span>
+<span className="sr-only">Previous</span>
+</a>
+<a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+<span className="carousel-control-next-icon" aria-hidden="true"></span>
+<span className="sr-only">Next</span>
+</a>
+</div>
+</div>
   );
 };
 
 export default CarouselSection;
+
