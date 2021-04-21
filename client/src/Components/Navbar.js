@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 import {NavbarBrand} from "reactstrap"
 import logo from "./Assets/favicon.ico"
+import Dashboard from "./Dashboard";
+
+import {BrowserRouter as Router,Route,Link,Switch} from "react-router-dom"
 
 class Navbar extends Component {
     state = { clicked: false }
@@ -33,15 +35,15 @@ class Navbar extends Component {
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                <a className={item.cName} href={item.url}>
-                                {item.title}
-                                </a>
-                            </li>
-                        )
-                    })}
+                   <Router>
+                   <li><Link className="nav-links" to="/Profile">Profile</Link></li>
+                   <li><Link className="nav-links" to="/Dashboard">Dashboard</Link></li>
+                   <li><Link className="nav-links" to="/Signin">Sign In</Link></li>
+
+                   <Switch>
+                   <Route path="/Dashboard" exact component={Dashboard}/>
+                   </Switch>
+                   </Router>
                 </ul>
             </nav>
         )
