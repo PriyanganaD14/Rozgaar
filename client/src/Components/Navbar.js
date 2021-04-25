@@ -17,15 +17,15 @@ class Navbar extends Component {
         return(
             <nav className="NavbarItems">
             <h1  className="navbar-logo">
-            <NavbarBrand className="fav" href="/">
-            <a href="/">
+            <NavbarBrand as={Link} className="fav" to="/">
+            <Link to ="/">
               <img
                 src={logo}
                 alt="logoImg"
                 style={{ height: 30, width: 30 }}
                 className="mr-2 d-inline-block align-top"
               ></img>
-            </a>
+            </Link>
             <i>
               <b>Rozgaar</b>
             </i>
@@ -40,10 +40,12 @@ class Navbar extends Component {
                    <li><Link className="nav-links" to="/Dashboard">Dashboard</Link></li>
                    <li><Link className="nav-links" to="/Signin">Sign In</Link></li>
 
-                   <Switch>
-                   <Route path="/Dashboard" exact component={Dashboard}/>
-                   </Switch>
+
+                   
+                   
+                   
                    </Router>
+
                 </ul>
             </nav>
         )
