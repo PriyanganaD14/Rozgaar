@@ -5,6 +5,11 @@ const userRoutes = require("./routes/user");
 
 require('dotenv').config();
 
+// DB connection
+const {DBconnection} = require('./db/AtlasDB')
+DBconnection();
+
+
 // express way of setting body-parser for upcoming and sending data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
