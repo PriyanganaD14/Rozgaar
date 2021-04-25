@@ -139,3 +139,12 @@ text-align: center;
     }
     
 }
+
+.removeBackground{
+    background: none;
+    border: none;
+    color: white;
+}
+.removeBackground:hover{
+    color:rgb(62, 62, 128);
+}
