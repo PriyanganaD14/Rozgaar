@@ -4,15 +4,15 @@ import {
   Card, CardImg, CardBody,
   Col, Row
 } from 'reactstrap';
-import './Style/JobCategories.css';
-import driver from './Assets/taxiDriver.png';
-import deliveryboy from './Assets/deliveryBoy.png';
-import fieldsales from './Assets/fieldSales.png';
-import receptionist from './Assets/receptionist.png';
-import cook from './Assets/cook.png';
-import maid from './Assets/maid.png';
-import mason from './Assets/bricklayer.png';
-import securityguard from './Assets/securityGuard.png';
+import './styles/JobCategories.css';
+import driver from '../Assets/taxiDriver.png';
+import deliveryboy from '../Assets/deliveryBoy.png';
+import fieldsales from '../Assets/fieldSales.png';
+import receptionist from '../Assets/receptionist.png';
+import cook from '../Assets/cook.png';
+import maid from '../Assets/maid.png';
+import mason from '../Assets/bricklayer.png';
+import securityguard from '../Assets/securityGuard.png';
 
 const JobCategories = () => {
   return (

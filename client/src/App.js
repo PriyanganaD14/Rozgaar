@@ -1,19 +1,18 @@
 import React from "react";
-import Navbar from "./Components/Navbar";
-import Buttons from "./Components/Buttons";
-import CardSection from "./Components/CardSection";
-import Footer from "./Components/Footer";
-
+import Navbar from "./Components/Navbar/Navbar";
+import Buttons from "./Components/JobSearch/Buttons";
+import CardSection from "./Components/MidPage/CardSection";
+import Footer from "./Components/Footer/Footer";
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import './App.css';
-import Dashboard from "./Components/Dashboard";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 const Home =()=>(
-  <>
+  <div>
        <Buttons/>
         <hr/>
         <CardSection/>
-  </>
+  </div>
 )
 const App = () => {
   return (

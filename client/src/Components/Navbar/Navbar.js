@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './Navbar.css'
 import { Button, NavbarBrand } from "reactstrap"
-import logo from "./Assets/favicon.ico"
-import Dashboard from "./Dashboard";
+import logo from "../Assets/favicon.ico"
 import { Link } from "react-router-dom"
-import { ButtonBase, ButtonGroup } from '@material-ui/core';
 
 
 import { useState } from "react";
@@ -19,8 +17,8 @@ import { Card, Grid } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 
-import SignIn from './auth/SignIn'
-import SignUp from './auth/SignUp'
+import SignIn from '../auth/SignIn'
+import SignUp from '../auth/SignUp'
 
 const useStyles = makeStyles((theme) => ({
   root: {

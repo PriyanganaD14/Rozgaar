@@ -5,11 +5,11 @@ import {
   CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
 
-import './Style/HowWeWork.css';
-import img1 from './Assets/form.png';
-import img2 from './Assets/campaign.png';
-import img3 from './Assets/phone.png';
-import img4 from './Assets/interview.png';
+import './styles/HowWeWork.css';
+import img1 from '../Assets/form.png';
+import img2 from '../Assets/campaign.png';
+import img3 from '../Assets/phone.png';
+import img4 from '../Assets/interview.png';
 
 
 
