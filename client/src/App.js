@@ -1,11 +1,14 @@
 import React from "react";
+import './App.css';
 import Navbar from "./Components/Navbar/Navbar";
 import Buttons from "./Components/JobSearch/Buttons";
 import CardSection from "./Components/MidPage/CardSection";
 import Footer from "./Components/Footer/Footer";
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
-import './App.css';
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Profile from "./Components/Profile/Profile";
+import ProfileUpdate from "./Components/ProfileUpdate/ProfileUpdate";
+import ContactUs from "./Components/ContactUs/ContactUs";
 
 const Home =()=>(
   <div>
@@ -23,6 +26,9 @@ const App = () => {
        <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/Dashboard" component={Dashboard}/>
+        <Route exact path="/Profile" component={Profile}/>
+        <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
+        <Route export path="/ContactUs" component={ContactUs}/>
       
        </Switch>
         <Footer/>
