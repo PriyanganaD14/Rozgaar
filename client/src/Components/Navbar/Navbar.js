@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Navbar.css'
+import './Navbar.css';
 import { Button, NavbarBrand } from "reactstrap"
-import logo from "../Assets/favicon.ico"
-import { Link } from "react-router-dom"
+import logo from "../Assets/favicon.ico";
+import { Link } from "react-router-dom";
 
 
 import { useState } from "react";
