@@ -8,6 +8,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logo from '../Assets/favicon.ico'
 
+import {GoogleLogin} from 'react-google-login';
+import Icon from './icon' 
+import {useDispatch} from 'react-redux';
+import { useHistory } from  'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,12 +47,35 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
     const classes = useStyles();
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState(""); 
+    const dispatch = useDispatch();
+    const history = useHistory();
 
+      
     const { setOpen1, setOpen } = props;
     const handleSubmitSignUp = () => {
         setOpen(false);
         setOpen1(true);
+    }
+    
+    const googleSuccess = async (res) => {
+        console.log(res); 
+        const result = res?.profileObj; 
+        const token = res?.tokenId;
+
+        try{ 
+            dispatch({ type : 'AUTH' ,  data : {result, token} });
+            setOpen(false);
+            history.push('/'); 
+       
+        } catch(error){ 
+          console.log(error);
+        }
+    }
+
+    const googleFailure = (error) => {
+        console.log(error);
+        console.log("Google Sign Failed. Try Again Later.");
     }
 
     return (
@@ -105,6 +132,27 @@ export default function SignIn(props) {
                     >
                         Sign In
           </Button>
+          
+          <GoogleLogin 
+                     clientId="954976570977-d6kh972k8uk9c812bmpgqp9ublqtad4m.apps.googleusercontent.com"
+                     render={(renderProps) => (
+                         <Button 
+                          className={classes.googleButton} 
+                          color="primary"
+                          fullWidth 
+                          onClick={renderProps.onClick}
+                          disabled={renderProps.disabled}
+                          startIcon={<Icon/>} 
+                          variant="contained"
+                          >
+                            Sign in Using Google
+                          </Button>
+                     )} 
+                     onSuccess={googleSuccess} 
+                     onFailure={googleFailure} 
+                     cookiePolicy="single_host_origin"
+                    />
+
                     <Grid container justify="center" className={classes.gapBeweenButton}>
                         <Grid item xs={5}>
                             <Button >{"Forgot Password"}</Button>
