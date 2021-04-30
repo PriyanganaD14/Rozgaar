@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const CONNECTION_URI = "mongodb://localhost:27017/rozgaar";
 
@@ -14,6 +14,7 @@ const connectDB = async () => {
     console.log(err);
   }
 };
+
 
 module.exports = {
   connectDB
