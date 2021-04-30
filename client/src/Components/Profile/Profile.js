@@ -12,8 +12,8 @@ import './Profile.css';
 const Profile = () => {
     return (
         <div>
-            <div class="row ml-3 mr-3 parent">
-                <div className="col-3 lft">
+            <div class="row ml-3 mr-3">
+                <div className="col-lg-3">
                 <Card style={{backgroundColor:"bisque", border:"none"}}>
         <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
         <CardBody className="middle">
@@ -23,45 +23,45 @@ const Profile = () => {
         </CardBody>
       </Card>
                 </div>
-                <div className="col-9 rght">
+                <div className="col-lg-9">
                     <h2 style={{ textAlign: "center" }}><b><i>Rohan Roy</i></b></h2>
                     <div>
-                        <div>
+                        <div >
                             <Row className="mt-3">
-                                <Col>
-                                    <Card body>
+                                <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">User ID</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>1234</CardText>
                                     </Card>
                                 </Col>
-                                <Col>
-                                    <Card body>
+                                <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">Expected Salary</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>$18k - $25k</CardText>
                                     </Card>
                                 </Col>
-                                <Col>
-                                    <Card body>
+                                <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">Rating</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>4.9/5</CardText>
                                     </Card>
                                 </Col>
-                            </Row>
-                            <Row className="mt-4">
-                                <Col>
-                                    <Card body>
+                            
+                            
+                                <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">Current Salary</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>$14k - $16k</CardText>
                                     </Card>
                                 </Col>
-                                <Col>
-                                    <Card body>
+                                <Col className="col-lg-4 col-md-6 col--sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">Age</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>28 years</CardText>
                                     </Card>
                                 </Col>
-                                <Col>
-                                    <Card body>
+                                <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
+                                    <Card body className="sz hvr">
                                         <CardTitle tag="h5">Experience</CardTitle>
                                         <CardText style={{ textAlign: "center" }}>4 years</CardText>
                                     </Card>
@@ -70,28 +70,28 @@ const Profile = () => {
                             <h2 className="mt-4"><b><i>More Details</i></b></h2>
                             <hr />
                             <div className="row">
-                                <div className="col-3"><h4>Name : </h4></div>
-                                <div className="col-9"><p><i>Rohan Roy</i></p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Name : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>Rohan Roy</i></p></div>
                             </div>
                             <div className="row">
-                                <div className="col-3"><h4>Email id : </h4></div>
-                                <div className="col-9"><p><i>abc@gmail.com</i></p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Email id : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>abc@gmail.com</i></p></div>
                             </div>
                             <div className="row">
-                                <div className="col-3"><h4>Phone no : </h4></div>
-                                <div className="col-9"><p><i>1234567890</i></p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Phone no : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>1234567890</i></p></div>
                             </div>
                             <div className="row">
-                                <div className="col-3"><h4>Address : </h4></div>
-                                <div className="col-9"><p><i>Kolkata, PIN - 700010</i></p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Address : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>Kolkata, PIN - 700010</i></p></div>
                             </div>
                             <div className="row">
-                                <div className="col-3"><h4>Language : </h4></div>
-                                <div className="col-9"><p><i>English, Bengali, Hind</i>i</p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Language : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>English, Bengali, Hind</i>i</p></div>
                             </div>
                             <div className="row">
-                                <div className="col-3"><h4>Skill : </h4></div>
-                                <div className="col-9"><p><i>Driver</i></p></div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-6"><h4>Skill : </h4></div>
+                                <div className="col-lg-9 col-md-6 col-sm-6 col-xs-6 sz1"><p><i>Driver</i></p></div>
                             </div>
                         </div>
                     </div>

@@ -19,14 +19,17 @@ h4{
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.72), 0 1px 4px 0 rgba(0, 0, 0, 0.33);
 }
 
-/*
-
 
 /* mobile devices */
 
-@media screen and (max-width :768px) {
-    .parent{
-        display: block;
+@media screen and (max-width :575px) {
+    .sz{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .sz1{
+        margin-left: 0px;
     }
     
 }
