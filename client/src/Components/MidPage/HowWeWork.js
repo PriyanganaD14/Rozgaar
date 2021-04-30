@@ -18,8 +18,8 @@ const HowWeWork = () => {
   return (
     <div>
       <Row>
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4 mb-2">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img1} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">TELL ABOUT YOUR JOB</CardTitle>
@@ -29,8 +29,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4 mb-2">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img2} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">WE ADVERTISE YOUR JOB</CardTitle>
@@ -40,8 +40,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img3} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">CANDIDATES CALL YOU</CardTitle>
@@ -51,8 +51,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img4} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">TAKE INTERVIEW & HIRE</CardTitle>

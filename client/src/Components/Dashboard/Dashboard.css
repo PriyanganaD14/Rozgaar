@@ -1,15 +1,17 @@
 
 #navigation {
     background: #0e1a35;
+    padding: 0;
+}
+.side
+{
+    margin-top: -100px;
+    margin-bottom:-90px;
 }
 li
 {
     list-style-type: none;
 }
-#navigation {
-    padding: 0;
-}
-
 .display-table {
     display: table;
     padding: 0;
@@ -104,5 +106,15 @@ li
     margin: 0;
     padding: 21px 0;
 }
-
+#leftapp
+{
+    min-width:400px;
+}
+@media screen and (max-width: 1092px)
+{
+    #leftapp
+    {
+        margin-left: 200px;
+    }
+}
 

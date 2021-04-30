@@ -4,6 +4,7 @@ import {
     Card, CardBody,
     CardTitle, CardSubtitle, Button, Row, Col,
 } from 'reactstrap';
+import './Card.css';
 
 
 
@@ -12,8 +13,8 @@ const Cards = () => {
         <div>
 
             <Row>
-                <Col className="sm-12">
-                    <Card style={{ width: 400 }}>
+                <Col className="sm-12 xs-12 mb-4">
+                    <Card className="crdsz">
                         <CardBody style={{ textAlign: "center" }}>
                             <CardTitle tag="h5">I am Employer</CardTitle>
                             <CardSubtitle tag="h6" className="mb-2 text-muted">Need Staff</CardSubtitle>
@@ -22,8 +23,8 @@ const Cards = () => {
                     </Card>
                 </Col>
 
-                <Col className="sm-12">
-                    <Card style={{ width: 400 }}>
+                <Col className="sm-12 xs-12 mb-4">
+                    <Card className="crdsz">
                         <CardBody style={{ textAlign: "center" }}>
                             <CardTitle tag="h5">I am Candidate</CardTitle>
                             <CardSubtitle tag="h6" className="mb-2 text-muted">Need Job</CardSubtitle>
