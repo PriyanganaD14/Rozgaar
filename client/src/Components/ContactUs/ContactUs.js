@@ -4,11 +4,11 @@ import "./contact.css"
 const ContactUs = ()=>{
     return (
         <div className="all" >
-        <div className="card" style={{width:500,height:328}} id="abcd">
+        <div className="card outs"id="abcd">
         <div className="card-body int">
           <h5 className="card-title">Contact Us</h5>
           
-          <div className="card inrs" style={{width:350,height:200}}>
+          <div className="card inrs" >
         <div className="card-body intx">
           <h5 className="card-title">Rozgaar</h5>
           <div className="col">
@@ -18,7 +18,6 @@ const ContactUs = ()=>{
             </div> 
         </div>
       </div>
-
         </div>
       </div>
       </div>

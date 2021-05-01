@@ -7,6 +7,13 @@
     margin-left: 50px;
     margin-top: 25px;
     background-color:lightcoral;
+    width:350px;
+    height: 200px;
+}
+.outs
+{
+  width: 500px;
+  height: 328px;
 }
 .ik
 {
@@ -66,6 +73,48 @@
 {
     #abcd
     {
+      margin-left:25px;
+    }
+    .inrs
+    {
+      width: 275px;
+      margin-left:15px;
+    }
+    .outs
+    {
+      width:350px;
+    }
+}
+@media screen and (max-width: 400px)
+{
+    #abcd
+    {
       margin-left:2px;
+    }
+    .inrs
+    {
+      width: 275px;
+      margin-left:15px;
+    }
+    .outs
+    {
+      width:350px;
+    }
+}
+@media screen and (max-width: 300px)
+{
+    #abcd
+    {
+      margin-left:0px;
+      font-size: 0.8em;
+    }
+    .inrs
+    {
+      width: 240px;
+      margin-left:0px;
+    }
+    .outs
+    {
+      width:270px;
     }
 }
