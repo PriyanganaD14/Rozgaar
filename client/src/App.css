@@ -123,9 +123,34 @@ text-align: center;
 .rvws
 {
     background-color: cadetblue;
+    margin-top: -20px;
+}
+
+@media screen and (max-width: 1117px)
+{
+    
+    .rvws
+    {
+        width:300px;
+        margin-left: -110px;
+    }
+    
 }
 
 @media screen and (max-width: 860px)
+{
+    #setcrds
+    {
+ margin-left: px;
+    }
+    #ssec
+    {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+}
+@media screen and (max-width: 768px)
 {
     #setcrds
     {
@@ -133,8 +158,10 @@ text-align: center;
     }
     .rvws
     {
+        width: 100%;
         margin-top: 20px;
         margin-bottom: 20px;
+        margin-left:10px;
     }
     #ssec
     {
@@ -152,3 +179,4 @@ text-align: center;
 .removeBackground:hover{
     color:rgb(62, 62, 128);
 }
+
