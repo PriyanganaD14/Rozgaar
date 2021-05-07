@@ -35,6 +35,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Navbar = () => {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick1 = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose2 = () => {
+    setAnchorEl(null);
+    setState(false);
+  };
+
+
   const classes = useStyles();
   
   //showing the user 
@@ -69,6 +82,8 @@ const Navbar = () => {
   //functions for implementing cancel icon
   const handleOpen = () => {
     setOpen(true);
+    setAnchorEl(null);
+    setState(false);
   };
   const handleClose = () => {
     setOpen(false);
@@ -115,18 +130,18 @@ const Navbar = () => {
           
           {user?.result ? (
                <ul className={state ? 'nav-menu active' : 'nav-menu classes.profile'}>
-               <li><Link className="nav-links" to="/Profile">Profile</Link></li>
-               <li><Link className="nav-links" to="/Dashboard">Dashboard</Link></li>
+               <li><Link onClick={handleClose2} className="nav-links" to="/Profile">Profile</Link></li>
+               <li><Link onClick={handleClose2} className="nav-links" to="/Dashboard">Dashboard</Link></li>
                <li><Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar></li>
                <li><Typography className="nav-links" color="textPrimary">{user.result.name}</Typography></li>
-               <li><Link className="nav-links" onClick={logout}>Logout</Link></li>
+               <li><Link onClick={handleClose2} className="nav-links" onClick={logout}>Logout</Link></li>
                </ul>
            ) : (
              //<Button component={Link} to="/auth" varient="contained" color="primary" onClick={handleOpen}>Sign In</Button>
              <ul className={state ? 'nav-menu active' : 'nav-menu'}>
                
-             <li><Link className="nav-links" to="/Profile">Profile</Link></li>
-             <li><Link className="nav-links" to="/Dashboard">Dashboard</Link></li>
+             <li><Link onClick={handleClose2} className="nav-links" to="/Profile">Profile</Link></li>
+             <li><Link onClick={handleClose2} className="nav-links" to="/Dashboard">Dashboard</Link></li>
              <li><Link className="nav-links" onClick={handleOpen}>Signin</Link></li> 
              </ul>
            )}
