@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // localhost:7866/users
 app.use('/users', userRoutes);
 
+
 const port = process.env.PORT || 7866;
 
 app.post('/users', (req,res)=>{
@@ -41,11 +42,4 @@ app.get('/', (req, res) => {
   res.send("Rozgaar API.");
 })
 
-
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
- .then(() => app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`)))
- .catch((error) => console.log(error.message)); 
-
- mongoose.set('useFindAndModify', false);
-
-//app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`));

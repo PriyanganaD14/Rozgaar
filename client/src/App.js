@@ -9,6 +9,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import Profile from "./Components/Profile/Profile";
 import ProfileUpdate from "./Components/ProfileUpdate/ProfileUpdate";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import JobsFeed from "./Components/JobsFeed/JobsFeed";
 
 const Home =()=>(
   <div>
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/Profile" component={Profile}/>
         <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
         <Route export path="/ContactUs" component={ContactUs}/>
+        <Route export path="/jobsFeed" component={JobsFeed}/>
       
        </Switch>
         <Footer/>

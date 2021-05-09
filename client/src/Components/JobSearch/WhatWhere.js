@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import { Form,} from "reactstrap";
 const WhatWhere = () => {
@@ -24,7 +25,7 @@ const WhatWhere = () => {
 </svg></i>
     </div>
     <div className="col-auto my-1">
-      <button type="submit" className="btn btn-primary findlogo">Find Jobs</button>
+    <Link to="/jobsFeed" > <button type="submit" className="btn btn-primary findlogo">Find Jobs</button></Link>
     </div>
   </div>
     </Form>
