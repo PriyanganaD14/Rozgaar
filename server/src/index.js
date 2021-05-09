@@ -43,10 +43,4 @@ app.get('/', (req, res) => {
 })
 
 
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
- .then(() => app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`)))
- .catch((error) => console.log(error.message)); 
-
- mongoose.set('useFindAndModify', false);
-
-//app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Server is listening at http://localhost:${port}`));
