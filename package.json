@@ -6,6 +6,7 @@
     "install-dep": "npm i && npm run client-install && npm run server-install && -D chokidar"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "components": "^0.1.0",
     "concurrently": "^6.0.0",
     "react-router-dom": "^5.2.0",
