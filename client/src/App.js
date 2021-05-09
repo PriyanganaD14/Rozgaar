@@ -1,18 +1,38 @@
 import React from "react";
-import Navbar1 from "./Components/Navbar1";
-import Buttons from "./Components/Buttons";
-import CardSection from "./Components/CardSection";
-import Footer from "./Components/Footer";
 import './App.css';
+import Navbar from "./Components/Navbar/Navbar";
+import Buttons from "./Components/JobSearch/Buttons";
+import CardSection from "./Components/MidPage/CardSection";
+import Footer from "./Components/Footer/Footer";
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import Dashboard from "./Components/Dashboard/Dashboard";
+import Profile from "./Components/Profile/Profile";
+import ProfileUpdate from "./Components/ProfileUpdate/ProfileUpdate";
+import ContactUs from "./Components/ContactUs/ContactUs";
 
-const App = () => {
-  return (
-      <div>
-        <Navbar1/>
-        <Buttons/>
+const Home =()=>(
+  <div>
+       <Buttons/>
         <hr/>
         <CardSection/>
+  </div>
+)
+const App = () => {
+  return (
+      <div className="all">
+      <BrowserRouter>
+      <Navbar/>
+   
+       <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/Dashboard" component={Dashboard}/>
+        <Route exact path="/Profile" component={Profile}/>
+        <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
+        <Route export path="/ContactUs" component={ContactUs}/>
+      
+       </Switch>
         <Footer/>
+        </BrowserRouter>
       </div>
   );
 };
