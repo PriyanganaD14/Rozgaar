@@ -15,8 +15,8 @@ const ProfileUpdate =()=>{
                         <div className="user-info">
                             <img className="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""/>
                             <ul className="meta list list-unstyled">
-                                <li className="name">Robin Hood
-                                    <label className="label label-info">DRIVER</label>
+                                <li className="name"><h5>Robin Hood</h5><hr/>
+                                    <label className="label label-info"><h4>DRIVER</h4></label>
                                 </li>
                                 <li className="email"><a href="#">Robinhood.S@website.com</a></li>
                                 <li className="activity">Last logged in: Today at 2:18pm</li>
