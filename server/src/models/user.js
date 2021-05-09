@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
     minLength: 8,
   },
   // this will store the array of token, ensure the feature of login at more then one place
-  tokens: [
+   tokens: [
     {
       token: {
         type: String,
@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema({
       },
     },
   ],
-});
+})
 
 // methods accessible using model object are declared as {Schema}.methods.{function-name},
 // & called as {object-name}.{function-name}
