@@ -27,7 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 // localhost:7866/users
 app.use('/users', userRoutes);
 
-
 const port = process.env.PORT || 7866;
 
 app.post('/users', (req,res)=>{
