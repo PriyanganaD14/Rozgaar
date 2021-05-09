@@ -5,11 +5,11 @@ import {
   CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
 
-import './Style/HowWeWork.css';
-import img1 from './Assets/form.png';
-import img2 from './Assets/campaign.png';
-import img3 from './Assets/phone.png';
-import img4 from './Assets/interview.png';
+import './styles/HowWeWork.css';
+import img1 from '../Assets/form.png';
+import img2 from '../Assets/campaign.png';
+import img3 from '../Assets/phone.png';
+import img4 from '../Assets/interview.png';
 
 
 
@@ -18,8 +18,8 @@ const HowWeWork = () => {
   return (
     <div>
       <Row>
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4 mb-2">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img1} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">TELL ABOUT YOUR JOB</CardTitle>
@@ -29,8 +29,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4 mb-2">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img2} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">WE ADVERTISE YOUR JOB</CardTitle>
@@ -40,8 +40,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img3} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">CANDIDATES CALL YOU</CardTitle>
@@ -51,8 +51,8 @@ const HowWeWork = () => {
           </Card>
         </Col>
 
-        <Col className="col-lg-3 col-md-6 col-sm-12">
-          <Card style={{ height: 280 }} className="mb-md-4 hvr">
+        <Col className="col-lg-3 col-md-6 col-sm-6 col-xs-6 mt-4">
+          <Card style={{ height: 280 }} className="mb-md-4 hvr crd">
             <CardImg className="mid" style={{ width: 70, height: 80 }} src={img4} alt="Card image cap" />
             <CardBody>
               <CardTitle tag="h5">TAKE INTERVIEW & HIRE</CardTitle>

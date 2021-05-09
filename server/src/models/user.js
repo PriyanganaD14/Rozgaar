@@ -36,29 +36,7 @@ const userSchema = mongoose.Schema({
       },
     },
   ],
-});
-
-//const user = new mongoose.model("user",userSchema);
-
-// const createUser = async ()=>{
-//   try{
-//     const user3 = new user({
-//       name :"saurav",
-//       email : "saurav8292@gmail.com",
-//       password : "saurav@123"
-//     })
-
-//     const result = await user3.save();
-//     console.log(result);
-//   }catch(err){
-//     console.log(err);
-//   }
-
-// }
-
-// createUser();
-
-
+})
 
 // methods accessible using model object are declared as {Schema}.methods.{function-name},
 // & called as {object-name}.{function-name}

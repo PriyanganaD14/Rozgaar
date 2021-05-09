@@ -38,12 +38,30 @@ export default function SignUp(props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isSignup , setIsSignup] = useState(true);
+
+    const initialState = {name: '', email: '' , password: ''}; 
+    
+    const [formData, setFormData] = useState(initialState);
 
     const handleSubmitSignIn = () => {
         const { setOpen, setOpen1 } = props;
         setOpen1(false);
         setOpen(true);
-    }
+    };
+    
+    const handleChange = ({ target: { name, value } }) => {
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmitSignUp = (e) => {
+        e.preventDefault();
+       
+        console.log(formData); 
+
+        
+    };
+    
     return (
         <Container component="main" maxWidth="xs">
 
@@ -60,27 +78,28 @@ export default function SignUp(props) {
                 <Typography component="h1" variant="h5">
                     Sign Up
         </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
+                <form className={classes.form} onSubmit={handleSubmitSignUp} noValidate>
+                    {isSignup && (
+                        <TextField
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={handleChange}
                         id="name"
                         label="Full Name"
                         name="name"
                         autoComplete="name"
                         autoFocus
                     />
+                    )}
+                    
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleChange}
                         id="email"
                         label="Email Address"
                         name="email"
@@ -92,8 +111,7 @@ export default function SignUp(props) {
                         margin="normal"
                         required
                         fullWidth
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handleChange}
                         name="password"
                         label="Password"
                         type="password"
@@ -109,7 +127,7 @@ export default function SignUp(props) {
                         className={classes.submit}
                     >
                         Sign Up
-          </Button>
+          </Button> 
                     <Grid container justify="center">
                         <Grid item>
                             <Button onClick={handleSubmitSignIn}>{"have an account? Sign In"}</Button>
