@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const { signin, signup } = require('../controller/user');
+const { defaultRoute , signin, signup, deleteUser, resetPassword, updatePassword } = require('../controller/user');
+const auth = require("../middleware/auth");
 
-// localhost:{port}/users/signin
+router.get('/', defaultRoute);
 router.post('/signin', signin);
-
-// localhost:{port}/users/signup
 router.post('/signup', signup);
+router.delete('/deleteAccount', auth, deleteUser);
+router.post('/resetPassword', resetPassword);
+router.post('/updatePassword', updatePassword);
 
 module.exports = router;
