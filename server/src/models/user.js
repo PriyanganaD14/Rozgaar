@@ -4,16 +4,14 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 require('dotenv').config();
 
-const key = process.env.JWT_SECRET_KEY;
-
 const userSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: 'name is required.',
   },
   email: {
     type: String,
-    required: true,
+    required: "email is required",
     unique: true,
     // validator to validate whether email is valid or not
     validate(value) {
@@ -26,17 +24,16 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     // this will make sure that minimum length of password should be 8
-    minLength: 8,
+    minLength: [8, "password length should be at least 8 chars"],
   },
-  // this will store the array of token, ensure the feature of login at more then one place
-   tokens: [
-    {
-      token: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  resetToken: {
+    type:String,
+  },
+  expireToken: {
+    type: Date,
+  }
+}, {
+  timestamps:true
 })
 
 // methods accessible using model object are declared as {Schema}.methods.{function-name},
@@ -46,14 +43,11 @@ const userSchema = mongoose.Schema({
 userSchema.methods.genToken = async function () {
   const user = this;
   const token = jwt.sign(
-    { email: user?.email, id: user?._id.toString() },
-    key,
-    { expiresIn: "1hr" }
+    { id: user?._id.toString() },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: "24hr" }
   );
 
-  user.tokens = user.tokens.concat({ token });
-
-  await user.save();
   return token;
 };
 
@@ -62,7 +56,7 @@ userSchema.methods.genToken = async function () {
 
 // use to find the user using email & password
 userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email });
+  var user = await User.findOne({ email });
 
   if (!user) {
     throw new Error("Account not exist with this email.");
@@ -70,7 +64,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
   if (!isPasswordMatch) {
-    throw new Error("Invali credentials.");
+    throw new Error("Invalid credentials.");
   }
 
   return user;
