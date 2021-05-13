@@ -6,7 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import logo from '../Assets/favicon.ico'
+import logo from '../Assets/favicon.ico';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -118,6 +119,41 @@ export default function SignUp(props) {
                         id="password"
                         autoComplete="current-password"
                     />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        onChange={handleChange}
+                        name="confirm password"
+                        label="confirm Password"
+                        type="confirm password"
+                        id="confirm password"
+                        autoComplete="current-password"
+                    />
+                   
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        className="ml-5 mt-2"
+                        
+                    >
+                        Job seeker
+          </Button> 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        className="mr-5 mt-2"
+                    >
+                        Employer
+          </Button> 
+          
+    
 
                     <Button
                         type="submit"
