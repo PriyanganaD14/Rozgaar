@@ -17,7 +17,7 @@ import { signin } from '../../actions/auth';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(1),
         display: "flex",
         flexDirection: "column",
         alignItems: "center"
@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
     welcomeBack: {
         margin: "20px auto",
-        textAlign: "center"
+        textAlign: "center",
+        
     },
     // gapBeweenButton: {
     //     '& .MuiButton-label': {
