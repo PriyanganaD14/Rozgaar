@@ -1,42 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 const userRoutes = require("./routes/user");
 
-//user 
-const User = require('./models/user');
-
 require('dotenv').config();
 
-// Atlas DB connection
-//  const connectAtlasDB = require('./db/AtlasDB').connectDB;
-//  connectAtlasDB();
-
 // Local DB connection
-const connectLocalDB = require('./db/localDB').connectDB;
-connectLocalDB();
+const connectDB = require('./db/AtlasDB');
+connectDB();
 
 
 // express way of setting body-parser for upcoming and sending data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 
 // routers middleware
-// localhost:7866/users
-app.use('/users', userRoutes);
+// localhost:7866/user
+app.use('/user', userRoutes);
 
 
 const port = process.env.PORT || 7866;
-
-app.post('/users', (req,res)=>{
-
-  console.log(req.body);
-  const user = new User(req.body);
-  user.save();
-  res.send("hello ji ");
-})
 
 app.get('/', (req, res) => {
   res.send("Rozgaar API.");

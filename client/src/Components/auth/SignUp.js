@@ -9,6 +9,10 @@ import Container from "@material-ui/core/Container";
 import logo from '../Assets/favicon.ico';
 
 
+import {useDispatch} from 'react-redux';
+import { useHistory } from  'react-router-dom';
+
+import { signup } from '../../actions/auth';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,12 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp(props) {
     const classes = useStyles();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const [isSignup , setIsSignup] = useState(true);
 
-    const initialState = {name: '', email: '' , password: ''}; 
+    const initialState = {name: '', email: '' , password: ''};
     
     const [formData, setFormData] = useState(initialState);
 
@@ -57,10 +61,8 @@ export default function SignUp(props) {
 
     const handleSubmitSignUp = (e) => {
         e.preventDefault();
-       
-        console.log(formData); 
-
-        
+        console.log(formData);
+        dispatch(signup(formData, history));
     };
     
     return (
