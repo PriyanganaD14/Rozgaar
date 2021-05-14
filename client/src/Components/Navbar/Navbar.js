@@ -17,8 +17,9 @@ import { Avatar, Card, Grid, Toolbar, Typography } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 
-import SignIn from '../auth/SignIn'
-import SignUp from '../auth/SignUp'
+import SignIn from '../auth/SignIn';
+import SignUp from '../auth/SignUp';
+import ResetPassword from '../auth/ResetPassword';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,6 +79,7 @@ const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [state,setState]=useState(false);
+  const [isForgetClicked, setIsForgetClicked] = useState(false); 
   
   //functions for implementing cancel icon
   const handleOpen = () => {
@@ -93,6 +95,7 @@ const Navbar = () => {
   };
   const handleClose1 = () => {
     setOpen1(false);
+    setIsForgetClicked(false);
   };
 
 
@@ -167,6 +170,7 @@ const Navbar = () => {
                 <SignIn
                   setOpen={setOpen}
                   setOpen1={setOpen1} //from signin -> signup button
+                  setIsForgetClicked={setIsForgetClicked}
                 />
               </Card>
             </Fade>
@@ -194,6 +198,28 @@ const Navbar = () => {
                   setOpen={setOpen}
                  setOpen1={setOpen1} //from signup -> sigin 
                 />
+              </Card>
+            </Fade>
+          </Modal>
+
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={isForgetClicked}
+            onClose={handleClose1}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={isForgetClicked}>
+              <Card>
+                <Grid container justify="flex-end" >
+                  <Grid ><Button color="white" style={{ margin: "0px", padding: "0px" }} onClick={handleClose1}><CancelIcon /></Button></Grid>
+                </Grid>
+                <ResetPassword setIsForgetClicked={setIsForgetClicked}/>
               </Card>
             </Fade>
           </Modal>

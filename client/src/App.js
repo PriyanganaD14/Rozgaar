@@ -12,6 +12,7 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import JobsFeed from "./Components/JobsFeed/JobsFeed";
 import OurTeam from "./Components/OurTeam/OurTeam";
 
+import UpdatePassword from "./Components/auth/UpdatePassword";
 const Home =()=>(
   <div>
        <Buttons/>
@@ -33,7 +34,7 @@ const App = () => {
         <Route export path="/ContactUs" component={ContactUs}/>
         <Route export path="/jobsFeed" component={JobsFeed}/>
         <Route export path="/OurTeam" component={OurTeam}/>
-      
+        <Route excat path="/updatePassword/:token" component={UpdatePassword} />
        </Switch>
         <Footer/>
         </BrowserRouter>
