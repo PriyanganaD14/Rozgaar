@@ -45,7 +45,7 @@ export default function SignUp(props) {
 
     const [isSignup , setIsSignup] = useState(true);
 
-    const initialState = {name: '', email: '' , password: ''};
+    const initialState = {name: '', email: '' , password: '', confirmPassword: ''};
     
     const [formData, setFormData] = useState(initialState);
 
@@ -63,6 +63,7 @@ export default function SignUp(props) {
         e.preventDefault();
         console.log(formData);
         dispatch(signup(formData, history));
+        props.setOpen1(false);
     };
     
     return (
@@ -127,9 +128,9 @@ export default function SignUp(props) {
                         required
                         fullWidth
                         onChange={handleChange}
-                        name="confirm password"
-                        label="confirm Password"
-                        type="confirm password"
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
                         id="confirm password"
                         autoComplete="current-password"
                     />

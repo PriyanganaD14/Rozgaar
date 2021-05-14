@@ -62,6 +62,7 @@ export default function SignIn(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(signin({ email, password }, history));
+        setOpen(false);
     }
     const googleSuccess = async (res) => {
         console.log(res); 
