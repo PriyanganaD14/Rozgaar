@@ -60,6 +60,10 @@ export default function SignIn(props) {
         setOpen(false);
         setOpen1(true);
     }
+    const handleResetPassword = () => {
+        setOpen(false);
+        props.setIsForgetClicked(true);
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(signin({ email, password }, history));
@@ -138,8 +142,8 @@ export default function SignIn(props) {
                         className={classes.submit}
                     >
                         Sign In
-          </Button>
-        
+                    </Button>
+                </form>
           
           <GoogleLogin 
                      clientId="954976570977-d6kh972k8uk9c812bmpgqp9ublqtad4m.apps.googleusercontent.com"
@@ -160,19 +164,10 @@ export default function SignIn(props) {
                      onFailure={googleFailure} 
                      cookiePolicy="single_host_origin"
                     />
-                      <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                       Forgot Password
-          </Button>
-         
-
+                    <Button variant="contained" color="primary" className={classes.submit} onClick={handleResetPassword}>
+                        Forgot Password
+                    </Button>
                     <Grid container justify="center" >
-                       
                         <Grid item xs={9}>
                             <Button onClick={handleSubmitSignUp}>{"Don't have an account? Sign Up"}</Button>
                         </Grid>
@@ -180,7 +175,6 @@ export default function SignIn(props) {
                     <div>
                         <br />
                     </div>
-                </form>
             </div>
 
         </Container>

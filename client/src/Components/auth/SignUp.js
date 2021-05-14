@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
+import {TextField, Grid, InputAdornment, IconButton} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logo from '../Assets/favicon.ico';
 import { Form, FormGroup, Label, Input} from 'reactstrap';
 
+import Visibility from "@material-ui/icons/Visibility"; 
+import VisibilityOff from "@material-ui/icons/VisibilityOff"; 
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -44,6 +45,7 @@ export default function SignUp(props) {
     const dispatch = useDispatch();
     const history = useHistory();
 
+
     const [isSignup, setIsSignup] = useState(true);
 
     const [password, setPassword] = useState(""); 
@@ -53,7 +55,10 @@ export default function SignUp(props) {
     const initialState = { name: '', email: ''};
 
     const [formData, setFormData] = useState(initialState);
-
+    
+    const [showPassword, setShowPassword] = useState(false); 
+    const handleShowPassword = () => setShowPassword(!showPassword);
+     
     const handleSubmitSignIn = () => {
         const { setOpen, setOpen1 } = props;
         setOpen1(false);
@@ -68,6 +73,7 @@ export default function SignUp(props) {
 
     const handleSubmitSignUp = (e) => {
         e.preventDefault();
+
         console.log(formData);
         dispatch(signup(formData, history));
         props.setOpen1(false);
@@ -138,8 +144,17 @@ export default function SignUp(props) {
                         onChange={(e)=>setPassword(e.target.value)}
                         name="password"
                         label="Password"
-                        type="password"
-                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton  aria-label="toggle password visibility" onClick={handleShowPassword}>
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                  </IconButton>
+                                </InputAdornment>
+                              )
+                        }}
+                        id="password" 
                         autoComplete="current-password"
                     />
                     <TextField
@@ -178,7 +193,7 @@ export default function SignUp(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}
+                        className={classes.submit} 
                     >
                         Sign Up
           </Button>
