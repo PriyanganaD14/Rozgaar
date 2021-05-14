@@ -7,10 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logo from '../Assets/favicon.ico';
+import { Form, FormGroup, Label, Input} from 'reactstrap';
 
 
-import {useDispatch} from 'react-redux';
-import { useHistory } from  'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { signup } from '../../actions/auth';
 
@@ -43,10 +44,10 @@ export default function SignUp(props) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [isSignup , setIsSignup] = useState(true);
+    const [isSignup, setIsSignup] = useState(true);
 
-    const initialState = {name: '', email: '' , password: '', confirmPassword: ''};
-    
+    const initialState = { name: '', email: '', password: '', confirmPassword: '' };
+
     const [formData, setFormData] = useState(initialState);
 
     const handleSubmitSignIn = () => {
@@ -54,10 +55,12 @@ export default function SignUp(props) {
         setOpen1(false);
         setOpen(true);
     };
-    
+
     const handleChange = ({ target: { name, value } }) => {
         setFormData({ ...formData, [name]: value });
     };
+
+    
 
     const handleSubmitSignUp = (e) => {
         e.preventDefault();
@@ -65,7 +68,7 @@ export default function SignUp(props) {
         dispatch(signup(formData, history));
         props.setOpen1(false);
     };
-    
+
     return (
         <Container component="main" maxWidth="xs">
 
@@ -85,19 +88,19 @@ export default function SignUp(props) {
                 <form className={classes.form} onSubmit={handleSubmitSignUp} noValidate>
                     {isSignup && (
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        onChange={handleChange}
-                        id="name"
-                        label="Full Name"
-                        name="name"
-                        autoComplete="name"
-                        autoFocus
-                    />
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            onChange={handleChange}
+                            id="name"
+                            label="Full Name"
+                            name="name"
+                            autoComplete="name"
+                            autoFocus
+                        />
                     )}
-                    
+
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -134,29 +137,19 @@ export default function SignUp(props) {
                         id="confirm password"
                         autoComplete="current-password"
                     />
-                   
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        className="ml-5 mt-2"
-                        
-                    >
-                        Job seeker
-          </Button> 
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        className="mr-5 mt-2"
-                    >
-                        Employer
-          </Button> 
-          
-    
+                   <Form>
+                   <FormGroup check>
+          <Label check className="mr-5 mt-2">
+            <Input type="radio" name="radio1" />
+            Job Seeker
+          </Label>
+        
+          <Label check className="mr-5 mt-2">
+            <Input type="radio" name="radio1" />
+            Employer
+          </Label>
+        </FormGroup>
+                   </Form>
 
                     <Button
                         type="submit"
@@ -166,7 +159,7 @@ export default function SignUp(props) {
                         className={classes.submit}
                     >
                         Sign Up
-          </Button> 
+          </Button>
                     <Grid container justify="center">
                         <Grid item>
                             <Button onClick={handleSubmitSignIn}>{"have an account? Sign In"}</Button>
