@@ -13,6 +13,8 @@ import Icon from './icon'
 import {useDispatch} from 'react-redux';
 import { useHistory } from  'react-router-dom';
 
+import { signin } from '../../actions/auth';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -57,7 +59,10 @@ export default function SignIn(props) {
         setOpen(false);
         setOpen1(true);
     }
-    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(signin({ email, password }, history));
+    }
     const googleSuccess = async (res) => {
         console.log(res); 
         const result = res?.profileObj; 
@@ -94,7 +99,7 @@ export default function SignIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
         </Typography>
-                <form className={classes.form} noValidate >
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
                         margin="normal"

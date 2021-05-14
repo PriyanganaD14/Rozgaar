@@ -6,14 +6,15 @@ const connectDB = async ()=>{
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: false
+            useFindAndModify: false,
+            useCreateIndex: true
         });
 
-        console.log("Database connected!");
+        console.log("Atlas Database connected!");
     }
     catch(err){
         console.log(err);
     }
 }
 
-module.exports = {connectDB};
+module.exports = connectDB;
