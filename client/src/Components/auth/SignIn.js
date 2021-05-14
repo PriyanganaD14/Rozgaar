@@ -37,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
         margin: "20px auto",
         textAlign: "center"
     },
-    gapBeweenButton: {
-        '& .MuiButton-label': {
-            marginBottom: "12px",
-        }
-    },
+    // gapBeweenButton: {
+    //     '& .MuiButton-label': {
+    //         marginBottom: "12px",
+    //     }
+    // },
 
 
 }));
@@ -137,6 +137,7 @@ export default function SignIn(props) {
                     >
                         Sign In
           </Button>
+        
           
           <GoogleLogin 
                      clientId="954976570977-d6kh972k8uk9c812bmpgqp9ublqtad4m.apps.googleusercontent.com"
@@ -157,15 +158,26 @@ export default function SignIn(props) {
                      onFailure={googleFailure} 
                      cookiePolicy="single_host_origin"
                     />
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                       Forgot Password
+          </Button>
+         
 
-                    <Grid container justify="center" className={classes.gapBeweenButton}>
-                        <Grid item xs={5}>
-                            <Button >{"Forgot Password"}</Button>
-                        </Grid>
-                        <Grid item xs={8}>
+                    <Grid container justify="center" >
+                       
+                        <Grid item xs={9}>
                             <Button onClick={handleSubmitSignUp}>{"Don't have an account? Sign Up"}</Button>
                         </Grid>
                     </Grid>
+                    <div>
+                        <br />
+                    </div>
                 </form>
             </div>
 
