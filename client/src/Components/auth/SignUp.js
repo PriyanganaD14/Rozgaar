@@ -46,7 +46,11 @@ export default function SignUp(props) {
 
     const [isSignup, setIsSignup] = useState(true);
 
-    const initialState = { name: '', email: '', password: '', confirmPassword: '' };
+    const [password, setPassword] = useState(""); 
+    const [confirmPassword, setConfirmPassword]=useState("");
+    const [isError,setIsError]=useState("");
+
+    const initialState = { name: '', email: ''};
 
     const [formData, setFormData] = useState(initialState);
 
@@ -69,6 +73,17 @@ export default function SignUp(props) {
         props.setOpen1(false);
     };
 
+    const checkPasswordValidation = (e) =>{
+        const confPass=e.target.value;
+        setConfirmPassword(confPass)
+        if(password != confPass){
+            setIsError("Confirm Password should be match with Password");
+        }
+        else{
+            setIsError("");
+        }
+    };
+
     return (
         <Container component="main" maxWidth="xs">
 
@@ -85,6 +100,7 @@ export default function SignUp(props) {
                 <Typography component="h1" variant="h5">
                     Sign Up
         </Typography>
+
                 <form className={classes.form} onSubmit={handleSubmitSignUp} noValidate>
                     {isSignup && (
                         <TextField
@@ -117,8 +133,9 @@ export default function SignUp(props) {
                         variant="outlined"
                         margin="normal"
                         required
-                        fullWidth
-                        onChange={handleChange}
+                        fullWidth 
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)}
                         name="password"
                         label="Password"
                         type="password"
@@ -130,13 +147,18 @@ export default function SignUp(props) {
                         margin="normal"
                         required
                         fullWidth
-                        onChange={handleChange}
+                        value={confirmPassword}
+                        onChange={(e)=> checkPasswordValidation(e)}
                         name="confirmPassword"
                         label="Confirm Password"
                         type="password"
                         id="confirm password"
                         autoComplete="current-password"
                     />
+                    <div style ={{color:"red"}}>
+            {isError}
+
+        </div>
                    <Form>
                    <FormGroup check>
           <Label check className="mr-5 mt-2">
