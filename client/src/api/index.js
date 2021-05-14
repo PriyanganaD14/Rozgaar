@@ -13,8 +13,27 @@ export const signin = async (formData) => {
 
 export const signup = async (formData) => {
   try {
-    console.log(formData);
     const res = await api.post(`/user/signup`, formData);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const resetPassword = async (email) => {
+  try {
+    console.log(email);
+    const res = await api.post(`/user/resetPassword`, { email });
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const changePassword = async (newPassword, sentToken) => {
+  try {
+    console.log({ newPassword, sentToken });
+    const res = await api.post(`/user/updatePassword`, {newPassword, sentToken});
     return res;
   } catch (err) {
     console.log(err);
