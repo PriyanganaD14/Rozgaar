@@ -104,8 +104,7 @@ const Navbar = () => {
   // state = { clicked: false }
 
   const handleClick = () => {
-    setState(true);
-    //this.setState({ clicked: !this.state.clicked })
+    setState(!state)
   }
 
 
