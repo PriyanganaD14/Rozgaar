@@ -16,6 +16,8 @@ import { useHistory } from 'react-router-dom';
 
 import { signup } from '../../actions/auth';
 
+import validator from 'validator';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(1),
@@ -51,13 +53,28 @@ export default function SignUp(props) {
     const [password, setPassword] = useState(""); 
     const [confirmPassword, setConfirmPassword]=useState("");
     const [isError,setIsError]=useState("");
+    const [emailError, setEmailError]=useState('');
 
-    const initialState = { name: '', email: ''};
+
+    const initialState = { name: ''};
 
     const [formData, setFormData] = useState(initialState);
     
     const [showPassword, setShowPassword] = useState(false); 
     const handleShowPassword = () => setShowPassword(!showPassword);
+
+    const validateEmail = (e)=>{
+        var email = e.target.value;
+        setEmailError(email)
+
+        if(!validator.isEmail(email)){
+            setEmailError('Enter Valid Email !')
+        }
+        else{
+            setEmailError("")
+        }
+        
+    }
      
     const handleSubmitSignIn = () => {
         const { setOpen, setOpen1 } = props;
@@ -128,13 +145,16 @@ export default function SignUp(props) {
                         margin="normal"
                         required
                         fullWidth
-                        onChange={handleChange}
+                        onChange={(e)=>validateEmail(e)}
                         id="email"
                         label="Email Address"
                         name="email"
                         autoComplete="email"
                         autoFocus
                     />
+                    <span style={{ color: 'red'}}>
+                        {emailError}
+                    </span>
                     <TextField
                         variant="outlined"
                         margin="normal"
