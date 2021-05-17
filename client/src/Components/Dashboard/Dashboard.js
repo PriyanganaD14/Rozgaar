@@ -14,9 +14,9 @@ const Dashboard = () =>
         </div>
         <div className="navi">
             <ul>
-                <li className="active"><Link to="Dashboard/dashboard"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
+                <li className="active"><Link to="/Dashboard"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
                 <li><Link to="#"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
-                <li><Link to="#"><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>
+                <li><Link to="/Application"><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>
                 <li><Link to="#"><i className="fas fa-bookmark" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Bookmarks</span></Link></li>
                 <li><Link to="#"><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></Link></li>
                 <li><Link to="/Profile"><i className="fa fa-user" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Profile</span></Link></li>
