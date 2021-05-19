@@ -1,4 +1,7 @@
 import React from "react";
+
+import { useSelector } from 'react-redux';
+
 import './App.css';
 import Navbar from "./Components/Navbar/Navbar";
 import Buttons from "./Components/JobSearch/Buttons";
@@ -22,6 +25,8 @@ const Home =()=>(
   </div>
 )
 const App = () => {
+  const auth = useSelector(state => state.auth);
+  console.log(auth);
   return (
       <div className="all">
       <BrowserRouter>
@@ -29,7 +34,10 @@ const App = () => {
    
        <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path="/Dashboard" component={Dashboard}/>
+        { auth.userType ? 
+          <Route exact path="/user/Dashboard" component={Dashboard}/> 
+          : <Route exact path="/employer/Dashboard" component={Dashboard}/>
+        }
         <Route exact path="/Profile" component={Profile}/>
         <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
         <Route export path="/ContactUs" component={ContactUs}/>
