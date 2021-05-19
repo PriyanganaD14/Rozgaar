@@ -16,8 +16,8 @@ const Dashboard = () =>
      <Dash/>
     </div>
     <div className="col-9 mainss">
-    <div className="arrows" onClick={handleClick}>
-    <i className={state ? 'fas fa-arrow-left' : 'fas fa-arrow-right'}></i>
+    <div className="arrows">
+    <i className={state ? 'fas fa-arrow-left' : 'fas fa-arrow-right'} onClick={handleClick}></i>
     <ul className={state ? 'cd side' : 'ab'}>
     <Dash/>
     </ul>
