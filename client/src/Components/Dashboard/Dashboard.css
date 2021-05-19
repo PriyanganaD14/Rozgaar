@@ -110,6 +110,13 @@ li
 {
     min-width:400px;
 }
+.arrows
+{
+    color:deepblue;
+    font-size: 1.5em;
+    cursor:pointer;
+    display:none;
+}
 @media screen and (max-width: 1092px)
 {
     #leftapp
@@ -117,4 +124,38 @@ li
         margin-left: 200px;
     }
 }
-
+@media screen and (max-width: 500px)
+{
+  .arrows
+  {
+      display:grid;
+  }
+  .mainss
+  {
+      margin-left:0px;
+  }
+  .side
+  {
+        flex-direction: column;
+        position: absolute;
+        display: none;
+        margin-top: 40px;
+        margin-left:-40px;
+        opacity: 1;
+        transition: all 0.5s ease;
+  }
+  .cd
+  {
+display:grid;
+position: absolute;
+z-index: 1;
+  }
+  .ab
+  {
+  display:none;
+  }
+  #whole
+  {
+      margin-top: -50px;
+  }
+}
