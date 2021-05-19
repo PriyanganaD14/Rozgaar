@@ -36,8 +36,7 @@ const signup = async (req, res) => {
     user = await User.findOne({ _id: user._id }).select("-password");
     res.status(200).json({ result: user, token });
   } catch (e) {
-    console.log(e);
-    res.status(500).json({ messsge: "Something went wrong.", error: e });
+    res.status(500).json({ messsge: "Something went wrong.", error: e?.message });
   }
 };
 
@@ -55,8 +54,7 @@ const deleteUser = async (req, res) => {
 
     res.json({ message: "Account deleted Successfully." });
   } catch (e) {
-    console.log(e);
-    res.status(500).json({ messsge: "Something went wrong.", error: e });
+    res.status(500).json({ messsge: "Something went wrong.", error: e?.message });
   }
 };
 
@@ -86,9 +84,8 @@ const resetPassword = async (req, res) => {
     };
     await sgMail.send(message);
     res.json({ data: "Check Your Email to reset your Password" });
-  } catch (error) {
-    console.log("Error on sending reset Link====>", error);
-    res.json({ error });
+  } catch (e) {
+    res.json({ error: e?.message });
   }
 };
 
@@ -97,15 +94,13 @@ const updatePassword = async (req, res) => {
     const { newPassword, sentToken } = req?.body;
     const user = await User.findOne({
       resetToken: sentToken,
-      expireToken: { $gt:Date.now() }
+      expireToken: { $gt: Date.now() },
     });
     if (!user) {
-      return res
-        .status(422)
-        .json({
-          message:
-            "Session Expire or Invalid Token. Please Try to reset the Password Again.",
-        });
+      return res.status(422).json({
+        message:
+          "Session Expire or Invalid Token. Please Try to reset the Password Again.",
+      });
     } else {
       user.password = newPassword;
       user.resetToken = user.expireToken = undefined;
@@ -118,6 +113,17 @@ const updatePassword = async (req, res) => {
   }
 };
 
+const updateProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    res.json({ message: "Profile updated successfully." });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ messsge: "Something went wrong.", error: e });
+  }
+};
+
 module.exports = {
   defaultRoute,
   signin,
@@ -125,4 +131,5 @@ module.exports = {
   deleteUser,
   resetPassword,
   updatePassword,
+  updateProfile,
 };
