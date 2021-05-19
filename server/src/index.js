@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 
 const userRoutes = require("./routes/user");
+const jobRoutes = require("./routes/job");
 
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ app.use(cors());
 // routers middleware
 // localhost:7866/user
 app.use('/user', userRoutes);
+app.use('/job', jobRoutes);
 
 
 const port = process.env.PORT || 7866;

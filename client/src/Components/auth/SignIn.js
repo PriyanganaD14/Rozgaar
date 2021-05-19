@@ -1,49 +1,3 @@
-import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import logo from "../Assets/favicon.ico";
-
-import { GoogleLogin } from "react-google-login";
-import Icon from "./icon";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-
-import { signin } from "../../actions/auth";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(1),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(1, 0, 2),
-  },
-  welcomeBack: {
-    margin: "20px auto",
-    textAlign: "center",
-  },
-  // gapBeweenButton: {
-  //     '& .MuiButton-label': {
-  //         marginBottom: "12px",
-  //     }
-  // },
-}));
-
 export default function SignIn(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
@@ -96,7 +50,7 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -135,27 +89,34 @@ export default function SignIn(props) {
             Sign In
           </Button>
         </form>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <GoogleLogin
-              clientId="954976570977-d6kh972k8uk9c812bmpgqp9ublqtad4m.apps.googleusercontent.com"
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              cookiePolicy="single_host_origin"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={handleResetPassword}
-            >
-              Forgot Password
-            </Button>
-          </Grid>
-        </Grid>
 
+        <GoogleLogin
+          clientId="954976570977-d6kh972k8uk9c812bmpgqp9ublqtad4m.apps.googleusercontent.com"
+          render={(renderProps) => (
+            <Button
+              className={classes.googleButton}
+              color="primary"
+              fullWidth
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              startIcon={<Icon />}
+              variant="contained"
+            >
+              Sign in Using Google
+            </Button>
+          )}
+          onSuccess={googleSuccess}
+          onFailure={googleFailure}
+          cookiePolicy="single_host_origin"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={handleResetPassword}
+        >
+          Forgot Password
+        </Button>
         <Grid container justify="center">
           <Grid item xs={9}>
             <Button onClick={handleSubmitSignUp}>
@@ -170,3 +131,32 @@ export default function SignIn(props) {
     </Container>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: theme.spacing(1),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: "100%",
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+    welcomeBack: {
+      margin: "20px auto",
+      textAlign: "center",
+    },
+    // gapBeweenButton: {
+    //     '& .MuiButton-label': {
+    //         marginBottom: "12px",
+    //     }
+    // },
+  }));

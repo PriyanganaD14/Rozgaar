@@ -31,7 +31,7 @@ export default function ResetPassword(props) {
         <Typography component="h1" variant="h5">
           Enter the email associated with your account.
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField variant="outlined" margin="normal" required fullWidth value={email} onChange={(e) => setEmail(e.target.value)} id="email" label="Email Address" name="email" autoComplete="email" autoFocus
           />
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
