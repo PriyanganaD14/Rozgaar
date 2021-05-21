@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { createJob } = require('../controller/job');
 
-router.post('/create', createJob);
+router.post('/createJob', createJob);
 
 module.exports = router

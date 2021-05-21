@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+const JobType = require('./jobType'); 
+const Location = require('../location');
+const SkillSet = require('../skillSet');
+const User = require('../user');  
 
 const jobPostSchema = mongoose.Schema({
   jobTypeId: {
@@ -6,6 +10,14 @@ const jobPostSchema = mongoose.Schema({
     required: true,
     ref: 'JobType'
   },
+  whoCanApply:{
+    type: String, 
+    required: true, 
+  }, 
+  languages: [{
+     type : String,
+     required: true
+  }],
   vacancyCnt: {
     type: Number,
     required: true
@@ -25,14 +37,49 @@ const jobPostSchema = mongoose.Schema({
     ref: 'User'
   },
   skillsReq: [{
-    skill: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
-    }
-  }]
+  }], 
+  jobDescription:{
+    type: String, 
+  }
 }, {
     timestamps:true
 })
+
+jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription}) => {
+      
+     const newJob = await JobPost.create({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription});
+
+     newJob.save(); 
+     
+     const check = await Location.findOne({_id :locationId});
+ 
+     const newLocation = {
+         locality: check.locality, 
+         city: check.city, 
+         district: check.district, 
+         state:  check.state,
+         pincode: check.pincode
+     }; 
+     
+      
+     const newSkill = [];
+
+     for (const element in skillSetIds){
+      const skill = await Skill.findOne({_id:element}); 
+        
+      newSkill.push(skill.skillName);
+     }
+
+     const extractJobType = await JobType.findOne({_id: jobTypeId}); 
+     const newJobType = extractJobType.jobTitle; 
+    
+     const extractUser = await User.findOne({_id:postedBy}); 
+      const postedByUser = extractUser.name;
+      
+     return {newJobType,newLocation,newSkill,whoCanApply,languages,vacancyCnt,salary,postedByUser,jobDescription};
+};
 
 const JobPost = mongoose.model("JobPost", jobPostSchema);
 

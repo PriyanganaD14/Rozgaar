@@ -1,0 +1,48 @@
+.frmgrp{
+    background-color: #FFFFFF;
+}
+
+
+.arrows
+{
+    color:deepblue;
+    font-size: 1.5em;
+    cursor:pointer;
+    display:none;
+}
+
+.minss{
+    margin-top: -70px;
+}
+
+
+.sidee {
+   margin-top: -100px;
+   margin-bottom: -100px;
+    
+}
+
+.sidee a{
+    padding: 44px 20px;
+}
+
+.sidee .reactive a{
+    background: #122143;
+    border-left:5px solid #5584ff;
+    padding-left: 15px;
+    
+}
+
+.sidee .dummy a{
+    border-left: 0px;
+    background: #0e1a35;
+}
+
+.sidee a:hover{
+    background: #122143 none repeat scroll 0 0;
+    border-left: 5px solid #5584ff;
+    display: block;
+    
+}
+
+

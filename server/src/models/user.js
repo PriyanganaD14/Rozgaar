@@ -31,6 +31,10 @@ const userSchema = mongoose.Schema({
   },
   expireToken: {
     type: Date,
+  }, 
+  userType : { 
+    type: Boolean, 
+    required: "userType is required"
   }
 }, {
   timestamps:true
@@ -81,7 +85,7 @@ userSchema.statics.saveUser = async (body) => {
   if(body?.password !== body?.confirmPassword) {
     throw new Error("Passwords don't match.");
   }
-  user = await User.create({name: body?.name, email: body?.email, password: body?.password});
+  user = await User.create({name: body?.name, email: body?.email, password: body?.password, userType: body?.userType});
 
   return user;
 }

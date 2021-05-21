@@ -14,7 +14,9 @@ import ProfileUpdate from "./Components/ProfileUpdate/ProfileUpdate";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import JobsFeed from "./Components/JobsFeed/JobsFeed";
 import OurTeam from "./Components/OurTeam/OurTeam";
-import Application from "./Components/Dashboard/Application/Application"
+import JobSeekerApplication from "./Components/Dashboard/Application/EmployerApplication/EmployerApplication"; 
+import EmployerApplication from "./Components/Dashboard/Application/JobSeekerApplication/JobSeekerApplication";
+import PostJob from "./Components/Dashboard/PostJob/PostJob";
 
 import UpdatePassword from "./Components/auth/UpdatePassword";
 const Home =()=>(
@@ -25,8 +27,9 @@ const Home =()=>(
   </div>
 )
 const App = () => {
-  const auth = useSelector(state => state.auth);
-  console.log(auth);
+  // const auth = useSelector(state => state.auth);
+  // console.log(auth); 
+  // console.log(auth.authData.result.userType);
   return (
       <div className="all">
       <BrowserRouter>
@@ -34,17 +37,19 @@ const App = () => {
    
        <Switch>
         <Route exact path="/" component={Home}/>
-        { auth.userType ? 
-          <Route exact path="/user/Dashboard" component={Dashboard}/> 
-          : <Route exact path="/employer/Dashboard" component={Dashboard}/>
-        }
-        <Route exact path="/Profile" component={Profile}/>
+        <Route exact path="/jobSeeker/Dashboard" component={Dashboard}/> 
+        <Route exact path="/employer/Dashboard" component={Dashboard}/> 
+        <Route exact path="/jobSeeker/Profile" component={Profile}/>
+        <Route exact path="/employer/Profile" component={Profile}/>
         <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
         <Route export path="/ContactUs" component={ContactUs}/>
         <Route export path="/jobsFeed" component={JobsFeed}/>
+        <Route export path="/employer/postJob" component={PostJob}/>
         <Route export path="/OurTeam" component={OurTeam}/>
         <Route excat path="/updatePassword/:token" component={UpdatePassword} />
-        <Route exact path="/Application" component={Application}/>
+        <Route exact path="/jobSeeker/Application" component={JobSeekerApplication}/>
+        <Route exact path="/employer/Application" component={EmployerApplication}/>
+       
        </Switch>
         <Footer/>
         </BrowserRouter>
