@@ -15,6 +15,7 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import JobsFeed from "./Components/JobsFeed/JobsFeed";
 import OurTeam from "./Components/OurTeam/OurTeam";
 import Application from "./Components/Dashboard/Application/Application"
+import PostJob from "./Components/Dashboard/PostJob/PostJob"
 
 import UpdatePassword from "./Components/auth/UpdatePassword";
 const Home =()=>(
@@ -34,10 +35,12 @@ const App = () => {
    
        <Switch>
         <Route exact path="/" component={Home}/>
-        { auth.userType ? 
-          <Route exact path="/user/Dashboard" component={Dashboard}/> 
-          : <Route exact path="/employer/Dashboard" component={Dashboard}/>
-        }
+        
+        
+          <Route exact path="/Dashboard" component={Dashboard}/> 
+           
+        
+        
         <Route exact path="/Profile" component={Profile}/>
         <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
         <Route export path="/ContactUs" component={ContactUs}/>
@@ -45,6 +48,7 @@ const App = () => {
         <Route export path="/OurTeam" component={OurTeam}/>
         <Route excat path="/updatePassword/:token" component={UpdatePassword} />
         <Route exact path="/Application" component={Application}/>
+        <Route exact path="/PostJob" component={PostJob}/>
        </Switch>
         <Footer/>
         </BrowserRouter>

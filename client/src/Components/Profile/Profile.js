@@ -19,7 +19,7 @@ const Profile = () => {
         <CardBody className="middle">
           <CardTitle tag="h5">Rohan Roy</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Driver</CardSubtitle>
-          <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
+          <Link to="/Profile/ProfileUpdate" className="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
         </CardBody>
       </Card>
                 </div>

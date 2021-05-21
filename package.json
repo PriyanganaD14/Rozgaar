@@ -6,6 +6,7 @@
     "install-dep": "npm i && npm run client-install && npm run server-install && npm install -D chokidar"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@sendgrid/mail": "^7.4.4",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
