@@ -17,6 +17,7 @@ import OurTeam from "./Components/OurTeam/OurTeam";
 import JobSeekerApplication from "./Components/Dashboard/Application/EmployerApplication/EmployerApplication"; 
 import EmployerApplication from "./Components/Dashboard/Application/JobSeekerApplication/JobSeekerApplication";
 import PostJob from "./Components/Dashboard/PostJob/PostJob";
+import EmployeeDashboard from "./Components/EmployeeDashboard/Dashboard";
 
 import UpdatePassword from "./Components/auth/UpdatePassword";
 const Home =()=>(
@@ -38,7 +39,7 @@ const App = () => {
        <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/jobSeeker/Dashboard" component={Dashboard}/> 
-        <Route exact path="/employer/Dashboard" component={Dashboard}/> 
+        <Route exact path="/employer/Dashboard" component={EmployeeDashboard}/> 
         <Route exact path="/jobSeeker/Profile" component={Profile}/>
         <Route exact path="/employer/Profile" component={Profile}/>
         <Route export path="/Profile/ProfileUpdate" component={ProfileUpdate}/>
