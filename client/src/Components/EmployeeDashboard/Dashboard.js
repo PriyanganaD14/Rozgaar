@@ -118,7 +118,7 @@ const Dashboard = () =>
     
       </div>
 
-      <div className="col-md-4" id="leftapp">
+      <div className="col-md-4" id="beftapp">
       {/* <h className="np">Total Applications</h>
       <table class="table" id="tbl">
       <thead>

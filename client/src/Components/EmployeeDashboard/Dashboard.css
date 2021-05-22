@@ -123,9 +123,24 @@ li
     {
         margin-left: 200px;
     }
+    #beftapp
+    {
+        margin-left: 200px;
+    }
 }
-@media screen and (max-width: 500px)
+@media screen and (max-width: 767px)
 {
+    #beftapp
+    {
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width: 550px)
+{
+    #beftapp
+    {
+        margin-left: 30px;
+    }
   .arrows
   {
       display:grid;
@@ -163,4 +178,22 @@ transition: all 0.5s ease;
   {
       margin-top: -50px;
   }
+  @media screen and (max-width: 400px)
+{
+    #beftapp
+    {
+        margin-left: 80px;
+    }
+}
+@media screen and (max-width: 350px)
+{
+  .mainss
+  {
+    margin-left:-45px;
+  }  
+  .arrows
+  {
+      margin-left: 45px;
+  }
+}
 }
