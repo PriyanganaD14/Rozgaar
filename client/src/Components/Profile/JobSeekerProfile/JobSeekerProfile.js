@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
-import profilepicture from '../Assets/ProfilePicture.jpg';
+//import profilepicture from '.../Assets/ProfilePicture.jpg';
+import profilepicture from './ProfilePicture.jpg';
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Col, Row
   } from 'reactstrap';
-import './Profile.css';
+import './JobSeekerProfile.css';
 
 
 const Profile = () => {
@@ -14,7 +15,7 @@ const Profile = () => {
         <div>
             <div class="row ml-3 mr-3">
                 <div className="col-lg-3">
-                <Card style={{backgroundColor:"bisque", border:"none"}}>
+                <Card style={{backgroundColor:"#eee", border:"none"}}>
         <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
         <CardBody className="middle">
           <CardTitle tag="h5">Rohan Roy</CardTitle>

@@ -1,6 +1,6 @@
 .all
 {
-  background-color: bisque;
+  background-color: #eee;
 }
 #ssec
 {
@@ -106,7 +106,7 @@ code {
     margin-right: 30px;
     width: 300px;
     border-radius:7px;
-    background-color:burlywood;
+    background-color: #ade6e6;
 }
 .titles
 {
@@ -122,7 +122,7 @@ text-align: center;
 }
 .rvws
 {
-    background-color: cadetblue;
+    background-color: #eee;
     margin-top: -20px;
 }
 

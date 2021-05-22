@@ -1,0 +1,199 @@
+
+#enavigation {
+    background: #0e1a35;
+    padding: 0;
+}
+.eside
+{
+    margin-top: -100px;
+    margin-bottom:-90px;
+}
+li
+{
+    list-style-type: none;
+}
+.edisplay-table {
+    display: table;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.edisplay-table-row {
+    display: table-row;
+    height: 100%;
+}
+
+.edisplay-table-cell {
+    display: table-cell;
+    float: none;
+    height: 100%;
+}
+
+.ev-align {
+    vertical-align: top;
+}
+.elogo img {
+    max-width: 180px;
+    padding: 16px 0 17px;
+    width: 100%;
+}
+
+
+.enavi i {
+    font-size: 20px;
+}
+
+
+#enavigation{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+.elogo {
+    text-align: center;
+}
+
+.enavi a {
+    border-bottom: 1px solid #0d172e;
+    border-top: 1px solid #0d172e;
+    color: #ffffff;
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 28px 20px;
+    text-decoration: none;
+}
+
+.enavi i {
+    margin-right: 15px;
+    color: #5584ff;
+}
+
+.enavi .active a {
+    background: #122143;
+    border-left: 5px solid #5584ff;
+    padding-left: 15px;
+}
+
+.enavi a:hover {
+    background: #122143 none repeat scroll 0 0;
+    border-left: 5px solid #5584ff;
+    display: block;
+    padding-left: 15px;
+}
+
+
+
+.ehidden-xs{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.euser-dashboard {
+    padding: 0 20px;
+}
+
+.euser-dashboard h1 {
+    color: #0e1a35;
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0;
+    padding: 21px 0;
+}
+#eleftapp
+{
+    min-width:400px;
+}
+.earrows
+{
+    color:deepblue;
+    font-size: 1.5em;
+    cursor:pointer;
+    display:none;
+}
+@media screen and (max-width: 1092px)
+{
+    #eleftapp
+    {
+        margin-left: 200px;
+    }
+    #ebeftapp
+    {
+        margin-left: 200px;
+    }
+}
+@media screen and (max-width: 767px)
+{
+    #ebeftapp
+    {
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width: 550px)
+{
+    #ebeftapp
+    {
+        margin-left: 30px;
+    }
+  .earrows
+  {
+      display:grid;
+  }
+  .emainss
+  {
+      margin-left:0px;
+  }
+  .eside
+  {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        display: none;
+        margin-top: 25px;
+        margin-left:-40px;
+        opacity: 1;
+        transition: all 0.5s ease;
+        left: -1000%;
+  }
+  .ecd
+  {
+display:flex;
+position: absolute;
+z-index: 1;
+left: 0;
+opacity: 0.96;
+transition: all 0.5s ease;
+  }
+  .eab
+  {
+  display:none;
+  }
+  #ewhole
+  {
+      margin-top: -50px;
+  }
+  @media screen and (max-width: 400px)
+{
+    #ebeftapp
+    {
+        margin-left: 80px;
+    }
+}
+@media screen and (max-width: 350px)
+{
+  .emainss
+  {
+    margin-left:-45px;
+  }  
+  .earrows
+  {
+      margin-left: 45px;
+  }
+}
+}

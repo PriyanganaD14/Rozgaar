@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Avatar, Card, Grid, Toolbar, Typography } from '@material-ui/core';
+import { Avatar, Card, Grid, Typography } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 
@@ -110,7 +110,7 @@ const Navbar = () => {
 
     return (
       <>
-        <nav className="NavbarItems">
+        <nav className="NavbarItems fixed-top">
           <h1 className="navbar-logo">
             <NavbarBrand className="fav" href="/">
               <a href="/">
