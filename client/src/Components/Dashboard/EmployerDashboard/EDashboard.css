@@ -1,9 +1,9 @@
 
-#navigation {
+#enavigation {
     background: #0e1a35;
     padding: 0;
 }
-.side
+.eside
 {
     margin-top: -100px;
     margin-bottom:-90px;
@@ -12,40 +12,40 @@ li
 {
     list-style-type: none;
 }
-.display-table {
+.edisplay-table {
     display: table;
     padding: 0;
     height: 100%;
     width: 100%;
 }
 
-.display-table-row {
+.edisplay-table-row {
     display: table-row;
     height: 100%;
 }
 
-.display-table-cell {
+.edisplay-table-cell {
     display: table-cell;
     float: none;
     height: 100%;
 }
 
-.v-align {
+.ev-align {
     vertical-align: top;
 }
-.logo img {
+.elogo img {
     max-width: 180px;
     padding: 16px 0 17px;
     width: 100%;
 }
 
 
-.navi i {
+.enavi i {
     font-size: 20px;
 }
 
 
-#navigation{
+#enavigation{
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -53,11 +53,11 @@ li
 }
 
 
-.logo {
+.elogo {
     text-align: center;
 }
 
-.navi a {
+.enavi a {
     border-bottom: 1px solid #0d172e;
     border-top: 1px solid #0d172e;
     color: #ffffff;
@@ -68,18 +68,18 @@ li
     text-decoration: none;
 }
 
-.navi i {
+.enavi i {
     margin-right: 15px;
     color: #5584ff;
 }
 
-.navi .active a {
+.enavi .active a {
     background: #122143;
     border-left: 5px solid #5584ff;
     padding-left: 15px;
 }
 
-.navi a:hover {
+.enavi a:hover {
     background: #122143 none repeat scroll 0 0;
     border-left: 5px solid #5584ff;
     display: block;
@@ -88,29 +88,29 @@ li
 
 
 
-.hidden-xs{
+.ehidden-xs{
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
-.user-dashboard {
+.euser-dashboard {
     padding: 0 20px;
 }
 
-.user-dashboard h1 {
+.euser-dashboard h1 {
     color: #0e1a35;
     font-size: 30px;
     font-weight: 500;
     margin: 0;
     padding: 21px 0;
 }
-#leftapp
+#eleftapp
 {
     min-width:400px;
 }
-.arrows
+.earrows
 {
     color:deepblue;
     font-size: 1.5em;
@@ -119,37 +119,37 @@ li
 }
 @media screen and (max-width: 1092px)
 {
-    #leftapp
+    #eleftapp
     {
         margin-left: 200px;
     }
-    #beftapp
+    #ebeftapp
     {
         margin-left: 200px;
     }
 }
 @media screen and (max-width: 767px)
 {
-    #beftapp
+    #ebeftapp
     {
         margin-left: 0px;
     }
 }
 @media screen and (max-width: 550px)
 {
-    #beftapp
+    #ebeftapp
     {
         margin-left: 30px;
     }
-  .arrows
+  .earrows
   {
       display:grid;
   }
-  .mainss
+  .emainss
   {
       margin-left:0px;
   }
-  .side
+  .eside
   {
         display: flex;
         flex-direction: column;
@@ -161,7 +161,7 @@ li
         transition: all 0.5s ease;
         left: -1000%;
   }
-  .cd
+  .ecd
   {
 display:flex;
 position: absolute;
@@ -170,28 +170,28 @@ left: 0;
 opacity: 0.96;
 transition: all 0.5s ease;
   }
-  .ab
+  .eab
   {
   display:none;
   }
-  #whole
+  #ewhole
   {
       margin-top: -50px;
   }
   @media screen and (max-width: 400px)
 {
-    #beftapp
+    #ebeftapp
     {
         margin-left: 80px;
     }
 }
 @media screen and (max-width: 350px)
 {
-  .mainss
+  .emainss
   {
     margin-left:-45px;
   }  
-  .arrows
+  .earrows
   {
       margin-left: 45px;
   }

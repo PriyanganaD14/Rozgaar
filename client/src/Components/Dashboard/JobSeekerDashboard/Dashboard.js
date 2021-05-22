@@ -1,7 +1,6 @@
-import React from 'react'
 import './Dashboard.css'
 import './Dash.css'
-import Dash from  "./Dash"
+import Dash from './Dash'
 import { useState } from "react"; 
 
 const Dashboard = () =>

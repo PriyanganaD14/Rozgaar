@@ -1,61 +1,60 @@
-import React from 'react'
-import './Dashboard.css'
-import './Dash.css'
-import Dash from  "./Dash"
+import React from 'react';
+import './EDashboard.css';
+import './EDash.css';
+import EDash from  "./EDash"
 import { useState } from "react"; 
-import { PieChart } from 'react-minimal-pie-chart';
 import FullOption from './FullOption.tsx';
 
-const Dashboard = () =>
+const EDashboard = () =>
 {
   const [state,setState]=useState(false);
   const handleClick = () => {
     setState(!state)
   }
     return(
-        <div className="row" id="whole"> 
-        <div className="col-3 side">
-     <Dash/>
+        <div className="erow" id="ewhole"> 
+        <div className="col-3 eside">
+     <EDash/>
     </div>
-    <div className="col-9 mainss">
-    <div className="arrows">
+    <div className="col-9 emainss">
+    <div className="earrows">
     <i className={state ? 'fas fa-arrow-left' : 'fas fa-arrow-right'} onClick={handleClick}></i>
-    <ul className={state ? 'cd side' : 'ab'}>
-    <Dash/>
+    <ul className={state ? 'ecd eside' : 'eab'}>
+    <EDash/>
     </ul>
   </div>
     <div className="container">
     <div className="row align-items-start">
       <div className="col">
-      <div  className="one" id="crd" style={{width:250,height:150}}>
-      <div className="crcle0">
-      <i className="far fa-file-alt" id="ikons"></i>
+      <div  className="eone" id="ecrd" style={{width:250,height:150}}>
+      <div className="ecrcle0">
+      <i className="far fa-file-alt" id="eikons"></i>
       </div>
-        <p className="txt">Total Job Posted</p>
+        <p className="etxt">Total Job Posted</p>
     </div>
       </div>
       <div className="col">
-      <div className="two" id="crd" style={{width:250,height:150}}>
-      <div className="crcle1">
-      <i className="fas fa-clipboard-check" id="ikons"></i>
+      <div className="etwo" id="ecrd" style={{width:250,height:150}}>
+      <div className="ecrcle1">
+      <i className="fas fa-clipboard-check" id="eikons"></i>
       </div>
-        <p className="txt">Review</p>
+        <p className="etxt">Review</p>
     </div>
       </div>
       <div className="col">
-      <div className="three" id="crd" style={{width:250,height:150}}>
-      <div className="crcle2">
-      <i className="far fa-check-square" id="ikons"></i>
+      <div className="ethree" id="ecrd" style={{width:250,height:150}}>
+      <div className="ecrcle2">
+      <i className="far fa-check-square" id="eikons"></i>
       </div>
-        <p className="txt">Applications Approved</p>
+        <p className="etxt">Applications Approved</p>
     </div>
       </div>
     </div>
-    <div className="row align-items-center" id="srow">
+    <div className="row align-items-center" id="esrow">
 
-      <div className="col-md-6" id="leftapp">
-      <h className="np">New Applications</h>
-      <table class="table" id="tbl">
+      <div className="col-md-6" id="eleftapp">
+      <h className="enp">New Applications</h>
+      <table class="etable" id="etbl">
       <thead>
         <tr>
           <th scope="col">XYZ(Applied for....)</th>
@@ -118,7 +117,7 @@ const Dashboard = () =>
     
       </div>
 
-      <div className="col-md-4" id="beftapp">
+      <div className="col-md-4" id="ebeftapp">
       {/* <h className="np">Total Applications</h>
       <table class="table" id="tbl">
       <thead>
@@ -204,4 +203,4 @@ const Dashboard = () =>
     )
 } 
 
-export default Dashboard;
+export default EDashboard;

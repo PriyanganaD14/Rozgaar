@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
-import profilepicture from '../Assets/ProfilePicture.jpg';
+//import profilepicture from '.../Assets/ProfilePicture.jpg';
+import profilepicture from './ProfilePicture.jpg';
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Col, Row
   } from 'reactstrap';
-import './Profile.css';
+import './JobSeekerProfile.css';
 
 
 const Profile = () => {

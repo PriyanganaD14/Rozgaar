@@ -1,16 +1,16 @@
 
-#ikons
+#eikons
 {
  font-size: 2.5em;
  color: cornsilk;
  margin-top: 20px;
 }
-#crd
+#ecrd
 {
     margin-top: 20px;
     text-align: center;
 }
-.crcle0
+.ecrcle0
 {
     margin-left: 70px;
     height:80px;
@@ -18,7 +18,7 @@
     border-radius: 100%;
     background-color:#fabf60;
 }
-.crcle1
+.ecrcle1
 {
     margin-left: 70px;
     height:80px;
@@ -26,7 +26,7 @@
     border-radius: 100%;
     background-color:#3ed9b0;
 }
-.crcle2
+.ecrcle2
 {
     margin-left: 70px;
     height:80px;
@@ -34,7 +34,7 @@
     border-radius: 100%;
     background-color:#d121eb;
 }
-.txt
+.etxt
 {
     margin-top: 10px;
     text-align: center;
@@ -42,132 +42,132 @@
     color: white;
     font-weight:600;
 }
-.xyz
+.exyz
 {
     background-color:white;
 }
-.one
+.eone
 {
 background-color:#f6b852;
 }
-.two
+.etwo
 {
     background-color:#28d4a5;
 }
-.three
+.ethree
 {
     background-color:#c90ae6;
 }
-#tbl
+#etbl
 {
 margin-top: 10px;
 width:70%;
 background-color:white;
 }
-.np
+.enp
 {
     
    font-weight: 500;
    font-size:1.5em;
 }
-#srow
+#esrow
 {
     margin-top: 60px;
 }
-.ek
+.eek
 {
     color: blue;
 }
-.do
+.edo
 {
     color:green;
 }
-.teen
+.eteen
 {
     color:yellow;
 }
-.char
+.echar
 {
     color: red;
 }
-.rc
+.erc
 {
     margin-left: 40px;
 }
-.dc
+.edc
 {
     float: right;
     margin-right: 20px;
 }
-.mainss
+.emainss
 {
 margin-top: -50px;
 }
 @media screen and (max-width: 1160px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 250px;
     }
 }
 @media screen and (max-width: 1100px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 200px;
     }
 }
 @media screen and (max-width: 900px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 150px;
     }
-    #leftapp
+    #eleftapp
     {
         margin-left: 150px;
     }
 }
 @media screen and (max-width: 750px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 130px;
     }
-    #leftapp
+    #eleftapp
     {
         margin-left: 130px;
     }
 }
 @media screen and (max-width: 700px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 100px;
     }
-    #leftapp
+    #eleftapp
     {
         margin-left: 100px;
     }
 }
 @media screen and (max-width: 600px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 70px;
     }
-    #leftapp
+    #eleftapp
     {
         margin-left: 70px;
     }
 }
 @media screen and (max-width: 500px)
 {
-    #crd
+    #ecrd
     {
         margin-left: 50px;
     }
-    #leftapp
+    #eleftapp
     {
         margin-left: 50px;
     }
