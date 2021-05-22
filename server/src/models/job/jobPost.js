@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+;const mongoose = require('mongoose');
 const JobType = require('./jobType'); 
 const Location = require('../location');
-const SkillSet = require('../skillSet');
+const Skill = require('../skillSet');
 const User = require('../user');  
 
 const jobPostSchema = mongoose.Schema({
@@ -11,7 +11,7 @@ const jobPostSchema = mongoose.Schema({
     ref: 'JobType'
   },
   whoCanApply:{
-    type: String, 
+    type: String,
     required: true, 
   }, 
   languages: [{
@@ -42,43 +42,46 @@ const jobPostSchema = mongoose.Schema({
   }], 
   jobDescription:{
     type: String, 
+  },
+  highestQual:{
+    type: String, 
   }
 }, {
     timestamps:true
 })
 
-jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription}) => {
+jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual}) => {
       
-     const newJob = await JobPost.create({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription});
+     const newJob = await JobPost.create({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillsReq:skillSetIds,jobDescription,highestQual});
 
      newJob.save(); 
      
-     const check = await Location.findOne({_id :locationId});
+     const newLocation = await Location.findOne({_id :locationId});
  
-     const newLocation = {
-         locality: check.locality, 
-         city: check.city, 
-         district: check.district, 
-         state:  check.state,
-         pincode: check.pincode
-     }; 
+    //  const newLocation = {
+    //      locality: check.locality, 
+    //      city: check.city, 
+    //      district: check.district, 
+    //      state:  check.state,
+    //      pincode: check.pincode
+    //  }; 
      
       
      const newSkill = [];
 
      for (const element in skillSetIds){
-      const skill = await Skill.findOne({_id:element}); 
+      const skill = await Skill.findOne({_id:skillSetIds[element]}); 
         
-      newSkill.push(skill.skillName);
+      newSkill.push(skill);
      }
 
-     const extractJobType = await JobType.findOne({_id: jobTypeId}); 
-     const newJobType = extractJobType.jobTitle; 
+     const newJobType = await JobType.findOne({_id: jobTypeId}); 
+    //  const newJobType = extractJobType.jobTitle; 
     
-     const extractUser = await User.findOne({_id:postedBy}); 
-      const postedByUser = extractUser.name;
+     const postedByUser = await User.findOne({_id:postedBy}); 
+      // const postedByUser = extractUser.name;
       
-     return {newJobType,newLocation,newSkill,whoCanApply,languages,vacancyCnt,salary,postedByUser,jobDescription};
+     return {newJobType,newLocation,newSkill,whoCanApply,languages,vacancyCnt,salary,postedByUser,jobDescription,highestQual};
 };
 
 const JobPost = mongoose.model("JobPost", jobPostSchema);

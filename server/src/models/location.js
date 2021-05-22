@@ -31,7 +31,7 @@ locationSchema.statics.returnId = async ({locality,city,district,state,pincode})
     return isLocationExist._id; 
     
     const newLoc = await Location.create({locality,city,district,state,pincode}); 
-    console.log(newLoc);
+ 
     newLoc.save(); 
     
     return newLoc._id;

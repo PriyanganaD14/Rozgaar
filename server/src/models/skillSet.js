@@ -8,33 +8,38 @@ const skillSchema = mongoose.Schema({
 })
 
 
+skillSchema.statics.saveSkill = async(skill) =>{ 
+  // console.log(skill);
+  const isSkillExist = await Skill.findOne({skillName: skill});
+      
+  
+  if(isSkillExist)
+  return isSkillExist; 
+     
+  const newSkill = await Skill.create({skillName: skill}); 
+  console.log(newSkill);
+  newSkill.save(); 
+  
+  return newSkill;
+  
+};
+
 skillSchema.statics.returnIds = async(skillsReq) =>{
     
   //Needs to be checked : await isn't used in line 13 and 20
     // console.log(skillsReq); 
-
-  const Ids = [];  
-
-  await skillsReq.forEach(async(skill) => {
-    
-      const isSkillExist = await Skill.findOne({skillName: skill});
-      
-      console.log(isSkillExist); 
   
-      if(isSkillExist)
-      Ids.push(isSkillExist._id); 
-      else{
-         
-      const newSkill = await Skill.create({skillName: skill}); 
-      console.log(newSkill);
-      newSkill.save(); 
-      Ids.push(newSkill._id);
-      }
-      
-    }) 
+    
+  const Ids = [];  
  
+   for(const ele in skillsReq){
 
-    console.log(Ids); 
+    const  skill = await Skill.saveSkill(skillsReq[ele]);
+     
+     Ids.push(skill._id); 
+   }
+
+  //  console.log(Ids); 
 
     return Ids;
 };
