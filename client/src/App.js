@@ -14,8 +14,8 @@ import ProfileUpdate from "./Components/ProfileUpdate/ProfileUpdate";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import JobsFeed from "./Components/JobsFeed/JobsFeed";
 import OurTeam from "./Components/OurTeam/OurTeam";
-import JobSeekerApplication from "./Components/Dashboard/Application/EmployerApplication/EmployerApplication"; 
-import EmployerApplication from "./Components/Dashboard/Application/JobSeekerApplication/JobSeekerApplication";
+import JobSeekerApplication from "./Components/Dashboard/Application/JobSeekerApplication/JobSeekerApplication"; 
+import EmployerApplication from "./Components/Dashboard/Application/EmployerApplication//EmployerApplication";
 import PostJob from "./Components/Dashboard/PostJob/PostJob";
 import EmployeeDashboard from "./Components/EmployeeDashboard/Dashboard";
 
