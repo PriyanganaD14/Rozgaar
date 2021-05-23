@@ -54,7 +54,7 @@ const EDashboard = () =>
 
       <div className="col-md-6" id="eleftapp">
       <h className="enp">New Applications</h>
-      <table class="etable" id="etbl">
+      <table className="table" id="tbl">
       <thead>
         <tr>
           <th scope="col">XYZ(Applied for....)</th>

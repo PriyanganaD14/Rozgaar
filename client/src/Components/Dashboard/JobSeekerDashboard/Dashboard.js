@@ -52,7 +52,7 @@ const Dashboard = () =>
 
       <div className="col-md-6" id="leftapp">
       <h className="np">New Applications</h>
-      <table class="table" id="tbl">
+      <table className="table" id="tbl">
       <thead>
         <tr>
           <th scope="col">XYZ(Applied for....)</th>
