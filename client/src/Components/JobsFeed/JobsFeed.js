@@ -6,7 +6,7 @@ import "./JobsFeed.css";
 
 const JobsFeed = ()=>{
     return(
-<div className="container">
+<div className="container" style={{marginTop: "-70px"}}>
 <Form>
 <Row form>
         <Col md={6} sm={6}>

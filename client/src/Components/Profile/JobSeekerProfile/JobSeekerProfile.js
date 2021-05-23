@@ -12,7 +12,7 @@ import './JobSeekerProfile.css';
 
 const Profile = () => {
     return (
-        <div>
+        <div style={{marginTop: "-70px"}}>
             <div class="row ml-3 mr-3">
                 <div className="col-lg-3">
                 <Card style={{backgroundColor:"#eee", border:"none"}}>

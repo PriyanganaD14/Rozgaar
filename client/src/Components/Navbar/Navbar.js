@@ -149,7 +149,7 @@ const Navbar = () => {
              </ul>
            )}
         </nav>  
-        <div style={{ marginBottom: 100 }}>
+        <div style={{ marginBottom: "100px" }}>
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
