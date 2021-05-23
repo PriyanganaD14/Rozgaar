@@ -88,7 +88,7 @@ li
 
 
 
-.ehidden-xs{
+.hidden-xs{
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -128,18 +128,52 @@ li
         margin-left: 200px;
     }
 }
-@media screen and (max-width: 767px)
+
+@media screen and (max-width: 900px)
 {
+    #eleftapp
+    {
+        margin-left: 150px;
+    }
     #ebeftapp
     {
-        margin-left: 0px;
+        margin-left:150px;
     }
 }
-@media screen and (max-width: 550px)
+
+@media screen and (max-width: 767px)
+{
+    #eleftapp
+    {
+    margin-left: 130px;
+    } 
+  
+    #ebeftapp
+    {
+        margin-left:60px;
+    }
+}
+@media screen and (max-width: 700px)
+{
+    #eleftapp
+    {
+    margin-left: 100px;
+    } 
+  
+    #ebeftapp
+    {
+        margin-left:0px;
+    }
+}
+@media screen and (max-width: 500px)
 {
     #ebeftapp
     {
-        margin-left: 30px;
+        margin-left: 10px;
+    }
+    #eleftapp
+    {
+        margin-left:50px;
     }
   .earrows
   {

@@ -21,12 +21,6 @@ const PostJob = ()=>{
                 <Dash/>
             </div>
             <div className="col-lg-9 minss">
-            <div className="arrows">
-    <i className={state ? 'fas fa-arrow-left' : 'fas fa-arrow-right'} onClick={handleClick}></i>
-    <ul className={state ? 'cd side' : 'ab'}>
-    <Dash/>
-    </ul>
-  </div>
                 <h1 className="mb-4"><i>Post a Job</i></h1>
                 <div className="frmgrp mr-5">
             <Form>       
