@@ -110,7 +110,7 @@ const Navbar = () => {
 
     return (
       <>
-        <nav className="NavbarItems fixed-top">
+        <nav className="NavbarItems">
           <h1 className="navbar-logo">
             <NavbarBrand className="fav" href="/">
               <a href="/">
