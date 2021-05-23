@@ -25,7 +25,8 @@ const locationSchema = mongoose.Schema({
     type: Number,
     required: true,
     validate(value) {
-      if (value.length !== 6) {
+      console.log(value)
+      if (value.toString().length !== 6) {
         throw new Error("Pincode is Invalid");
       }
     },
