@@ -2,6 +2,7 @@
 
 const JobPost = require('../models/job/jobPost');
 const JobType = require('../models/job/jobType');
+const JobSeeker = require('../models/jobSeeker/jobSeeker');
 const Location = require('../models/location');
 const SkillSet = require('../models/skillSet'); 
 
@@ -29,9 +30,17 @@ const createJob = async (req, res) => {
 
 const applyJob = async (req, res) => {
   const body = req?.body;
-  console.log(body);
-  
-  res.status(200).json(body);
+  try {
+    const { name, jobSeekerId, jobPostId, contact, dob, locality, city, district, state, pincode, qualification, experience, skills, currentStatus, photo, languages } = body;
+
+    const location = await Location.returnId({locality, city, district, state, pincode});
+    skills_ = await SkillSet.returnIds(skills);
+    const jobSeekerInfo = await JobSeeker.saveJobSeeker({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
+    res.status(201).json(jobSeekerInfo);
+  } catch (error) {
+    console.log(error)
+    res.status(401).json({ message: "Something went wrong.", error});
+  }
 }
 
 module.exports = {
