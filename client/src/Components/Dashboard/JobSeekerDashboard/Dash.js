@@ -29,7 +29,7 @@ const Dash = () =>
            {user.result.userType ? ( 
                <ul>
                <li className="active dummy"><Link to={user.result.userType ? "/employer/Dashboard":"/jobSeeker/Dashboard"}><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
-               <li><Link to="#"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
+               <li><Link to="/jobsFeed"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
                <li><Link to={user.result.userType ? "/employer/Application":"/jobSeeker/Application"}><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>   
                <li className="reactive"><Link to={"/employer/postJob"}><i className="fas fa-bookmark" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Post Job</span></Link></li>
                <li><Link to="#"><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></Link></li>
@@ -40,7 +40,7 @@ const Dash = () =>
                  (
             <ul>
             <li className="active dummy"><Link to={user.result.userType ? "/employer/Dashboard":"/jobSeeker/Dashboard"}><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
-            <li><Link to="#"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
+            <li><Link to="/jobsFeed"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
             <li><Link to={user.result.userType ? "/employer/Application":"/jobSeeker/Application"}><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>   
             <li><Link to="#"><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></Link></li>
             <li><Link to={user.result.userType ? "/employer/Profile":"/jobSeeker/Profile"}><i className="fa fa-user" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Profile</span></Link></li>

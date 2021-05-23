@@ -21,26 +21,26 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
-import './EmployerApplication'
-
-function createData(name,date,position,base,contact,status) {
-  return { name,date,position,base,contact,status};
+import './EmployerApplication.css'
+import { Link } from 'react-router-dom'
+function createData(name,date,position,contact,status) {
+  return { name,date,position,contact,status};
 }
 
 const rows = [
-  createData('App-001','20-JUN-1990 08:03','Driver',3000, 6720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-002','20-JUN-1990 08:03','Maid', 4000, 8676203231, <Button id="pend" variant="outlined" color="secondary">On hold</Button>),
-  createData('App-003','20-JUN-1990 08:03','Cook', 5000, 8740329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-004','20-JUN-1990 08:03','Guard', 6000, 8920329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-005','20-JUN-1990 08:03','Receptionist', 7000, 6890329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-006','20-JUN-1990 08:03','Delivery Boy', 8000, 6660329731,<Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-007','20-JUN-1990 08:03','Sales', 4000, 6726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-008','20-JUN-1990 08:03','Teacher', 2000, 7727329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-009','20-JUN-1990 08:03','Cook', 1000, 8726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-010','20-JUN-1990 08:03','Guard', 3000, 5720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-011','20-JUN-1990 08:03','Driver', 2000, 9720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-012','20-JUN-1990 08:03','Maid', 3000, 3720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-013','20-JUN-1990 08:03','Servant', 7000, 8720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Driver',6720329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Maid', 8676203231, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Cook', 8740329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Guard', 8920329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Receptionist', 6890329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Delivery Boy', 6660329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Sales', 6726329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Teacher', 7727329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Cook', 8726329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Guard', 5720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Driver', 9720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Maid', 3720329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
+  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Servant',8720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -70,10 +70,9 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: <h className="titems">ID</h> },
+  { id: 'name', numeric: false, disablePadding: true, label: <h className="titems first">ID</h> },
   { id: 'date', numeric: true, disablePadding: false, label: <h className="titems">Date</h> },
   { id: 'position', numeric: true, disablePadding: false, label: <h className="titems">Position</h> },
-  { id: 'base', numeric: true, disablePadding: false, label: <h className="titems">Base Salary</h> },
   { id: 'contact', numeric: true, disablePadding: false, label: <h className="titems">Contact</h> },
   { id: 'status', numeric: true, disablePadding: false, label: <h className="titems">Status</h> },
 ];
@@ -87,14 +86,6 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -217,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Application() {
+export default function EmployerApplication() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('base');
@@ -266,7 +257,7 @@ export default function Application() {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 5));
     setPage(0);
   };
 
@@ -281,7 +272,6 @@ export default function Application() {
   return (
     <div className={classes.root} id="apps">
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
             className={classes.table}
@@ -307,26 +297,13 @@ export default function Application() {
 
                   return (
                     <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
+                    
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.date}</TableCell>
                       <TableCell align="right">{row.position}</TableCell>
-                      <TableCell align="right">{row.base}</TableCell>
                       <TableCell align="right">{row.contact}</TableCell>
                       <TableCell align="right">{row.status}</TableCell>
                     </TableRow>
