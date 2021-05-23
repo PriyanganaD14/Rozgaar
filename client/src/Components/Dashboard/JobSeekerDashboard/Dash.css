@@ -103,6 +103,11 @@ background-color:white;
 {
 margin-top: -50px;
 }
+.saurav {
+    position: fixed;
+    height: 100%;
+    background-color: #0e1a35;
+}
 @media screen and (max-width: 1160px)
 {
     #crd
