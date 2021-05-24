@@ -84,6 +84,12 @@ jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyC
      return {newJobType,newLocation,newSkill,whoCanApply,languages,vacancyCnt,salary,postedByUser,jobDescription,highestQual};
 };
 
+jobPostSchema.statics.findByCredentials = async (jobTypeId,locationId) =>{
+   
+     const findExactJob = await JobPost.find({jobTypeId,locationId}); 
+
+    return findExactJob;
+};
 const JobPost = mongoose.model("JobPost", jobPostSchema);
 
 module.exports = JobPost;

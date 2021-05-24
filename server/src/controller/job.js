@@ -17,7 +17,7 @@ const createJob = async (req, res) => {
     const jobTypeId = await JobType.returnId(title);
     
     const skillSetIds = await SkillSet.returnIds(skillsReq); 
-    
+  
     const job = await JobPost.saveJob({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual});
     
     return res.status(200).json(job);
@@ -43,7 +43,54 @@ const applyJob = async (req, res) => {
   }
 }
 
+//
+const findJob = async(req,res) =>{
+  const body = req?.body; 
+
+  try{
+    
+    const {jobType,city,state} = body; 
+    
+    const job = await JobType.findOne({jobTitle:jobType});
+  
+    if(!job)
+    return res.status(400).json({message:"Something went wrong.", error:"job not exist"});
+    
+    const loc = await Location.find({city,state});
+   
+    if(!loc)
+    return res.status(400).json({message:"Something is not right.", error:"location does not exist"});
+
+    const requiredJobs = []; 
+
+    for(const ele in loc){
+       const getjob = await JobPost.findByCredentials(job._id,loc[ele]._id); 
+    
+      if(!getjob)
+      continue;
+    
+      if(getjob.length>1){
+        for(const ele1 in getjob){
+          requiredJobs.push(getjob[ele1]);
+        }
+      }
+      else
+      requiredJobs.push(getjob);
+    } 
+    
+    if(requiredJobs.length > 0)
+    return res.status(200).json({result:requiredJobs});
+  
+    return res.status(401).json({message:"Something is not right." , error:"No jobs found!"}); 
+
+  }catch(err){
+     console.log(err); 
+     res.status(401).json({ message: "Something went wrong.", err});
+  }
+}
+
 module.exports = {
   createJob,
-  applyJob
+  applyJob, 
+  findJob
 }
