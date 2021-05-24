@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, Row, Col, FormGroup,Label, Input} from "reactstrap";
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import "./JobsFeed.css";
-
+import {Link} from "react-router-dom"
 
 const JobsFeed = ()=>{
     return(
-<div className="container">
+<div className="container" style={{marginTop: "-70px"}}>
 <Form>
 <Row form>
         <Col md={6} sm={6}>
@@ -43,7 +43,7 @@ const JobsFeed = ()=>{
           <CardText>Address</CardText>
           <CardText>Job Type</CardText>
           <CardText>Salary</CardText>
-          <Button type="button" color="primary" size="lg" className="btnsz">Apply Now</Button>
+         <Link to="/JobsFeed/FindJob"><Button type="button" color="primary" size="lg" className="btnsz">Apply Now</Button></Link>
         </Card>
       </Col>
       <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12">

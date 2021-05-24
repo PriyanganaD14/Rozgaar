@@ -3,23 +3,33 @@ const mongoose = require('mongoose');
 const locationSchema = mongoose.Schema({
   locality: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   city: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   district: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   state: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   pincode: {
-    type: String,
-    required: true
+    type: Number,
+    required: true,
+    validate(value) {
+      console.log(value)
+      if (value.toString().length !== 6) {
+        throw new Error("Pincode is Invalid");
+      }
+    },
   }
 })
 

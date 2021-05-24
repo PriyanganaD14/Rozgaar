@@ -8,7 +8,7 @@ import Cards from './Card';
 
 const Buttons = ()=>{
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={{marginTop: "-70px"}}>
             <div className="row">
                 <div className="col-md-9">
                     <div className="row justify-content-center">

@@ -61,7 +61,11 @@ const jobSeekerSchema = mongoose.Schema({
   },
   languages: [{
     type: String,
-  }]
+  }],
+  status: {
+    type: String, 
+    default: 'pending'
+  }
 },  {
   timestamps:true
 })

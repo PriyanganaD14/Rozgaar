@@ -6,6 +6,15 @@ const JobSeeker = require('../models/jobSeeker/jobSeeker');
 const Location = require('../models/location');
 const SkillSet = require('../models/skillSet'); 
 
+const defaultRoute = async (req, res) => {
+  const jobs = await JobPost
+    .find()
+    .populate('jobTypeId')
+    .populate('locationId')
+    .populate('skillsReq')
+  res.status(200).json(jobs);
+}
+
 const createJob = async (req, res) => {
   const body = req?.body;
   try {
@@ -43,54 +52,40 @@ const applyJob = async (req, res) => {
   }
 }
 
-//
-const findJob = async(req,res) =>{
-  const body = req?.body; 
-
+const findJob = async (req,res) => {
+  const body = req?.body;
   try{
-    
     const {jobType,city,state} = body; 
-    
     const job = await JobType.findOne({jobTitle:jobType});
-  
+    console.log(job);
     if(!job)
-    return res.status(400).json({message:"Something went wrong.", error:"job not exist"});
-    
+      return res.status(400).json({message:"Something went wrong.", error:"job not exist"});
     const loc = await Location.find({city,state});
-   
-    if(!loc)
-    return res.status(400).json({message:"Something is not right.", error:"location does not exist"});
-
+    console.log(loc);
+    if(!loc.length)
+      return res.status(400).json({message:"Something is not right.", error:"location does not exist"});
     const requiredJobs = []; 
-
-    for(const ele in loc){
-       const getjob = await JobPost.findByCredentials(job._id,loc[ele]._id); 
-    
-      if(!getjob)
-      continue;
-    
-      if(getjob.length>1){
-        for(const ele1 in getjob){
-          requiredJobs.push(getjob[ele1]);
-        }
+    for(const ele in loc) {
+      const getjob = await JobPost.findByCredentials(job._id,loc[ele]._id);
+      console.log(getjob);
+      for(const ele1 in getjob){
+        requiredJobs.push(getjob[ele1]);
       }
-      else
-      requiredJobs.push(getjob);
     } 
-    
+    console.log(requiredJobs);
     if(requiredJobs.length > 0)
-    return res.status(200).json({result:requiredJobs});
-  
+      return res.status(200).json({result:requiredJobs});
     return res.status(401).json({message:"Something is not right." , error:"No jobs found!"}); 
-
-  }catch(err){
-     console.log(err); 
-     res.status(401).json({ message: "Something went wrong.", err});
+  } catch (err){
+    console.log(err); 
+    res.status(401).json({ message: "Something went wrong.", err});
   }
 }
 
+
 module.exports = {
   createJob,
-  applyJob, 
-  findJob
+  applyJob,
+  findJob,
+  defaultRoute
 }

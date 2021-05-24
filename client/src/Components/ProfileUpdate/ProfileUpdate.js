@@ -7,7 +7,7 @@ const ProfileUpdate =()=>{
         // <div>
         //     <h1>Profile update</h1>
         // </div>
-        <div className="container">
+        <div className="container" style={{marginTop: "-70px"}}>
         <div className="view-account">
             <section className="module">
                 <div className="module-inner">
