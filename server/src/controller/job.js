@@ -44,7 +44,7 @@ const applyJob = async (req, res) => {
 
     const location = await Location.returnId({locality, city, district, state, pincode});
     skills_ = await SkillSet.returnIds(skills);
-    const jobSeekerInfo = await JobSeeker.saveJobSeeker({name, jobSeekerId, jobPotId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
+    const jobSeekerInfo = await JobSeeker.saveJobSeeker({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
     res.status(201).json(jobSeekerInfo);
   } catch (error) {
     console.log(error)

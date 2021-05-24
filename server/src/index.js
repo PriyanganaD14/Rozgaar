@@ -6,6 +6,7 @@ const app = express();
 // router import
 const userRoutes = require("./routes/user");
 const jobRoutes = require("./routes/job");
+const appnRoutes = require("./routes/application");
 
 //function import 
 const { findJob } = require('./controller/job');
@@ -15,6 +16,7 @@ require('dotenv').config();
 // Local DB connection
 const connectDB = require('./db/AtlasDB');
 const Location = require('./models/location');
+
 connectDB();
 
 // express way of setting body-parser for upcoming and sending data
@@ -26,7 +28,7 @@ app.use(cors());
 // localhost:7866/user
 app.use('/user', userRoutes);
 app.use('/job', jobRoutes);
-
+app.use('/appn',appnRoutes);
 
 // custom routes
 app.post('/findJob', findJob);
