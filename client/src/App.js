@@ -18,7 +18,7 @@ import JobSeekerApplication from "./Components/Dashboard/JobSeekerDashboard/JobS
 import EmployerApplication from "./Components/Dashboard/EmployerDashboard/EmployerApplication/EmployerApplication";
 import PostJob from "./Components/Dashboard/EmployerDashboard/PostJob/PostJob";
 import EmployerDashboard from "./Components/Dashboard/EmployerDashboard/EDashboard";
-
+import FindJob from "./Components/JobsFeed/FindJobForm/FindJob"
 import UpdatePassword from "./Components/auth/UpdatePassword";
 const Home =()=>(
   <div>
@@ -38,6 +38,7 @@ const App = () => {
    
        <Switch>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/JobsFeed/FindJOb" component={FindJob}/>
         <Route exact path="/jobSeeker/Dashboard" component={JobSeekerDashboard}/> 
         <Route exact path="/employer/Dashboard" component={EmployerDashboard}/> 
         <Route exact path="/jobSeeker/Profile" component={JobSeekerProfile}/>
