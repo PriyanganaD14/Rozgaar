@@ -1,3 +1,4 @@
+const JobPost = require("../models/job/jobPost");
 const JobSeeker = require("../models/jobSeeker/jobSeeker");
  
 
@@ -5,8 +6,7 @@ const seekerAppn = async (req, res) => {
     const body = req?.body; 
  
     try{
-       
-        const {userId} = body; 
+       const {userId} = body; 
          
         const totalAppn = await JobSeeker
         .find({jobSeekerId:userId})
@@ -47,8 +47,68 @@ const seekerAppn = async (req, res) => {
        res.status(402).json({message:"Something Went Wrong" , error:err})
     }
 
+} 
+
+const extractEmpPosts = async (req, res) =>{ 
+   const body = req?.body; 
+
+   try{
+      
+      const {userId} = body;  
+         
+      const totalJobPost = await JobPost
+      .find({postedBy:userId})
+      .populate('jobTypeId') 
+  
+      const result = []; 
+
+      for(const ele in totalJobPost){
+         const vv = totalJobPost[ele]; 
+
+         const title = vv.jobTypeId.jobTitle; 
+         const salary = vv.salary; 
+         const dateOfPost = vv.createdAt; 
+         const vacancy = vv.vacancyCnt;  
+
+         result.push({title,salary,dateOfPost,vacancy});
+      }
+      
+     return res.status(200).json({result}); 
+
+   }catch(err){
+      console.log(err); 
+      res.status(402).json({message:"Something went wrong" , error:err})
+   }
+}
+
+//url : http://localhost:7866/api/empAppn/?jobPostId=value
+const empAppn = async (req,res) =>{ 
+    const body = req?.body; 
+    const jobPostId = req?.query?.jobPostId;
+    try{
+       
+       const {userId} = body;  
+          
+       const totalJobPost = await JobPost
+       .find({postedBy:userId})
+       .populate('jobTypeId') 
+      
+       const result = []; 
+
+       for(const ele in totalJobPost){
+          const vv = totalJobPost[ele]; 
+          
+       }
+      return res.status(200).json({totalJobPost}); 
+
+    }catch(err){
+       console.log(err); 
+       res.status(402).json({message:"Something went wrong" , error:err})
+    }
 }
 
 module.exports = {
-   seekerAppn
+   seekerAppn, 
+   empAppn,
+   extractEmpPosts
 }
