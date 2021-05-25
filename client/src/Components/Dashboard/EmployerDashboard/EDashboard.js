@@ -3,7 +3,6 @@ import './EDashboard.css';
 import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
-import FullOption from './FullOption.tsx';
 
 const EDashboard = () =>
 {
@@ -77,17 +76,6 @@ const EDashboard = () =>
       </div>
 
       <div className="col-md-4" id="ebeftapp">
-    
-
-    <FullOption
-  data={[
-    { title: 'Applications', value: 18, color: '#000080' },
-    { title: 'Selected', value: 10, color: '#008000' },
-    { title: 'On Hold', value: 10, color: '#FFFF00' },
-    { title: 'Rejected', value: 62, color: '#FF0000' },
-
-  ]}
-/>;
 
       </div>
     </div>
