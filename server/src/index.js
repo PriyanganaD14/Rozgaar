@@ -28,7 +28,7 @@ app.use(cors());
 // localhost:7866/user
 app.use('/user', userRoutes);
 app.use('/job', jobRoutes);
-app.use('/appn',appnRoutes);
+app.use('/api',appnRoutes);
 
 // custom routes
 app.post('/findJob', findJob);
