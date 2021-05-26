@@ -12,7 +12,7 @@ const jobPostSchema = mongoose.Schema({
   },
   whoCanApply:{
     type: String,
-    required: true, 
+    required: true,
   }, 
   languages: [{
      type : String,
@@ -87,6 +87,7 @@ jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyC
 jobPostSchema.statics.findByCredentials = async (jobTypeId, locationId) => {
   console.log(jobTypeId, locationId)
   const findExactJob = await JobPost.find({jobTypeId,locationId});
+  console.log(findExactJob);
   return findExactJob;
 };
 

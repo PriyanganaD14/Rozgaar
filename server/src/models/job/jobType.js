@@ -3,20 +3,21 @@ const mongoose = require('mongoose');
 const jobTypeSchema = mongoose.Schema({
   jobTitle: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   }
 })
 
 
-jobTypeSchema.statics.returnId = async (title) => {
+jobTypeSchema.statics.returnId = async (jobTitle) => {
   
-  const isJobType = await JobType.findOne({jobTitle: title});
+  const isJobType = await JobType.findOne({jobTitle});
   
    
   if(isJobType)
   return isJobType._id; 
   
-  const newJobType = await JobType.create({jobTitle: title}); 
+  const newJobType = await JobType.create({jobTitle}); 
   //console.log(newJobType);
   newJobType.save(); 
   

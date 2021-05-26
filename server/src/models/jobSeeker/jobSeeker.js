@@ -18,7 +18,11 @@ const jobSeekerSchema = mongoose.Schema({
   },
   contact: {
     type: String, 
-    required: true  
+    required: true,
+    validate(value) {
+      if(value.length !== 10)
+        return new Error("Invalid Contact Number");
+    }
   }, 
   dob : {
     type: String,
@@ -90,6 +94,28 @@ jobSeekerSchema.statics.saveJobSeeker = async ({name, jobSeekerId, jobPostId, co
     return error;
   }
 };
+
+
+jobSeekerSchema.statics.returnSeekerdetails = async (jobPostId) => {
+  const details = await JobSeeker
+    .find({jobPostId})
+    .populate('location')
+    .populate('skills')
+  const result = [];
+  for(const ele in details) {
+    const { jobSeekerId, name,  contact,  dob, experience, currentStatus,  photo,  languages, status } = details[ele];
+    const location = {
+      locality: details[ele].location.locality,
+      city: details[ele].location.city,
+      district: details[ele].location.district,
+      state: details[ele].location.state,
+      pincode: details[ele].location.pincode
+    }
+    const skills = details[ele].skills.map(skill => skill.skillName);
+    result.push({ jobSeekerId, jobPostId, name, contact, dob,location, experience, currentStatus, skills, photo, languages, status });
+  }
+  return result;
+}
 
 const JobSeeker = mongoose.model('JobSeeker', jobSeekerSchema)
   
