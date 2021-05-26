@@ -38,7 +38,8 @@ const jobPostSchema = mongoose.Schema({
   },
   skillsReq: [{
       type: mongoose.Schema.Types.ObjectId,
-      required: true
+      required: true,
+      ref: 'Skill'
   }], 
   jobDescription:{
     type: String, 
@@ -86,8 +87,10 @@ jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyC
 
 jobPostSchema.statics.findByCredentials = async (jobTypeId, locationId) => {
   console.log(jobTypeId, locationId)
-  const findExactJob = await JobPost.find({jobTypeId,locationId});
-  console.log(findExactJob);
+  const findExactJob = await JobPost.find({jobTypeId,locationId})
+    .populate('locationId')
+    .populate('skillsReq')
+    .populate('jobTypeId')
   return findExactJob;
 };
 
