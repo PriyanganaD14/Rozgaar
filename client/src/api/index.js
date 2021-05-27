@@ -55,3 +55,8 @@ export const extractEmpPosts = async(userId) => {
    const result = await api.post(`/api/extractEmpPosts` , userId); 
    return result; 
 }
+
+export const postJob = async (formData) => {
+  const result = await api.post(`/job/createJob`, formData);
+  return result;
+}

@@ -19,4 +19,17 @@ export const getAllJobs = async () => {
   } catch (error) {
     return error?.response?.data;
   }
-} 
+}
+
+export const postJob = async (formData) => {
+  const skillsReq = [formData.skill];
+  const languages = [formData.language];
+  formData.skillsReq = skillsReq;
+  formData.languages = languages;
+  try {
+    const { data } = await api.postJob(formData);
+    return data;
+  } catch (error) {
+    return error?.response?.data;
+  }
+}
