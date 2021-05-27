@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getJobs, getAllJobs } from '../../actions/job';
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const JobsFeed = () => {
   const [job, setJob] = useState("");
   const [location, setLocation] = useState("");
@@ -116,15 +120,15 @@ const JobsFeed = () => {
               {jobs.map((job) => (
                 <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12" key={job._id}>
                   <Card body className="mb-4 mt-4 cr" style={{ textAlign: "center" }}>
-                  <CardTitle tag="h5">Job Type: {job?.jobTypeId?.jobTitle}</CardTitle>
+                  <CardTitle tag="h5">Job Type: {capitalizeFirstLetter(job?.jobTypeId?.jobTitle)}</CardTitle>
                   <CardText>
-                    Adddress: {` `} 
-                      {job?.locationId?.city}, 
+                    Address: {` `} 
+                      {capitalizeFirstLetter(job?.locationId?.city)}, 
                       {` `} 
-                      {job?.locationId?.state}, 
+                      {capitalizeFirstLetter(job?.locationId?.state)}
                   </CardText>
                   <CardText>Salary: {job?.salary}</CardText>
-                  <CardText>Skill: {job?.skillsReq[0].skillName}</CardText>
+                  <CardText>Skill: {capitalizeFirstLetter(job?.skillsReq[0].skillName)}</CardText>
                   <Link to="/JobsFeed/FindJob">
                     <Button type="button" color="primary" size="lg" className="btnsz">
                     Apply Now

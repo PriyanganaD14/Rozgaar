@@ -50,3 +50,9 @@ export const getAllJobs = async () => {
   const result = await api.post(`/job`);
   return result;
 }
+
+export const postJob = async (formData) => {
+  const result = await api.post(`/job/createJob`, formData);
+  return result;
+}
+
