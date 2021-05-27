@@ -3,9 +3,8 @@ import './EDashboard.css';
 import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
-<<<<<<< HEAD
-//import FullOption from './FullOption.tsx';
-=======
+
+
 
 import {
   Card, CardImg, CardText, CardBody,
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
 }));
->>>>>>> a7f5a66ada5eb93172493e7f6f2b05886af41e15
+
 
 const EDashboard = () =>
 {
@@ -103,20 +102,6 @@ const EDashboard = () =>
       </div>
 
       <div className="col-md-4" id="ebeftapp">
-<<<<<<< HEAD
-    
-{/* 
-    <FullOption
-  data={[
-    { title: 'Applications', value: 18, color: '#000080' },
-    { title: 'Selected', value: 10, color: '#008000' },
-    { title: 'On Hold', value: 10, color: '#FFFF00' },
-    { title: 'Rejected', value: 62, color: '#FF0000' },
-
-  ]}
-/>; */}
-=======
->>>>>>> a7f5a66ada5eb93172493e7f6f2b05886af41e15
 
       </div>
     </div>
