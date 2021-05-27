@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import './EDashboard.css';
 import './EDash.css';
 import EDash from  "./EDash"
@@ -17,6 +17,9 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { extractEmpPosts } from '../../../actions/application'; 
+import { CircularProgress } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,9 +33,40 @@ const useStyles = makeStyles((theme) => ({
 
 
 const EDashboard = () =>
-{
+{ 
+  const user = JSON.parse(localStorage.getItem('profile')); 
+  const [jobs, setJobs] = useState([]); 
   const [state,setState]=useState(false);
+  const [error, setError] = useState(""); 
+  const dispatch = useDispatch();
   const classes = useStyles();
+  
+  console.log(user?.result?._id); 
+
+  useEffect(() => {    
+    const dummy = async () => {
+      return await setJobs(await extractEmpPosts(user?.result?._id));
+    }
+    dummy();
+  }, [])
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    const userId = user?.result?._id;
+    
+    const data = await extractEmpPosts(userId);
+ 
+    
+    if(data?.error) {
+      setError(data?.error);
+      return;
+    }
+    setJobs(data?.result);
+    
+    console.log(jobs);
+    dispatch({ type: "APPLICATIONS", data})
+  }
+
   const handleClick = () => {
     setState(!state)
   }
@@ -112,95 +146,40 @@ const EDashboard = () =>
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          onClick={handleSubmit}
         >
-          <Typography className={classes.heading} ><h5 >JOB POSTED BY YOU</h5></Typography>
+          <Typography className={classes.heading} style={{color:'green'}}><h5 onClick={handleSubmit}>JOB POSTED BY YOU</h5></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. */}
-            <Row className="mt-3">
-                                <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                        <CardTitle tag="h5">Company Name / Title </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText style={{ textAlign: "Left" }}>Experience</CardText>
-                                             <CardText>Address / Location</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                             <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                                <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                    <CardTitle tag="h5"> Company Name / TITLE </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText>Experience</CardText>
-                                             <CardText>Address</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                             <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                                <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                    <CardTitle tag="h5">Company Name /TITLE </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText>Experience</CardText>
-                                             <CardText>Address</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                             <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                            
-                            
-                                <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                    <CardTitle tag="h5">Company Name / TITLE </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText>Experience</CardText>
-                                             <CardText>Address</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                             <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                                <Col className="col-lg-6 col-md-6 col--sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                    <CardTitle tag="h5">Company Name / TITLE </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText>Experience</CardText>
-                                             <CardText>Address</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                              <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                                <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                                    <Card body className="sz hvr">
-                                    <CardTitle tag="h5">Company Name / TITLE </CardTitle>
-                                        <CardTitle tag="h5">Post Name</CardTitle>
-                                        <CardTitle tag="h6">Vecancy</CardTitle>
-                                            <CardText>Experience</CardText>
-                                             <CardText>Address</CardText>
-                                            <CardText>Job Type</CardText>
-                                             <CardText>Salary</CardText>
-                                             <CardText>Date Of Post</CardText>
-                                        <CardText style={{ textAlign: "center" }}>Thank You</CardText>
-                                    </Card>
-                                </Col>
-                            </Row>
+            {error 
+              ? <h1>{error}</h1>
+              : (!jobs?.length 
+              ? <CircularProgress /> 
+              :  <div>
+                  <h1>{jobs.length} {jobs.length === 1 ? `job` : `jobs`} posted by you</h1>
+                  <Row> 
+                  {jobs.map((job) => (
+              <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12" key={job._id}>
+                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}}>
+                  <CardTitle tag="h5">Title: {job?.title.toUpperCase()} </CardTitle>
+                      <CardTitle tag="h6">Vacancy: {job?.vacancy}</CardTitle>
+                           <CardText>
+                           Adddress: {` `}
+                           {job?.location?.city}, 
+                           {` `}
+                           {job?.location?.state}
+                           </CardText>
+                           <CardText>whoCanApply: {job?.whoCanApply}</CardText>
+                          <CardText>Highest Qualification: {job?.highestQual}</CardText>
+                           <CardText>Salary: {job?.salary}</CardText>
+                           <CardText>Date Posted: {job?.dateOfPost.substring(10,0)}</CardText>
+                  </Card>
+              </Col>
+              ))}
+                  </Row>   
+            </div>
+              )} 
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -58,7 +58,8 @@ const seekerAppn = async (req, res) => {
 
 //extract all the posted jobs by employer
 const extractEmpPosts = async (req, res) => {
-  const body = req?.body;
+  const body = req?.body; 
+  // console.log(body);
   const jobPostId = req?.query?.jobPostId;
   try {
     const { userId } = body;
@@ -77,7 +78,7 @@ const extractEmpPosts = async (req, res) => {
       const title = temp.jobTypeId.jobTitle;
       const dateOfPost = temp.createdAt;
       const vacancy = temp.vacancyCnt;
-      const skills = temp.skillReq.skillName;
+      const skills = temp.skillsReq.skillName;
       const salary = temp.salary;
       const whoCanApply = temp.whoCanApply;
       const languages = temp.languages;

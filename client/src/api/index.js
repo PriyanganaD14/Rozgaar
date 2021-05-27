@@ -49,4 +49,9 @@ export const getJobs = async (formData) => {
 export const getAllJobs = async () => {
   const result = await api.post(`/job`);
   return result;
+} 
+
+export const extractEmpPosts = async(userId) => { 
+   const result = await api.post(`/api/extractEmpPosts` , userId); 
+   return result; 
 }

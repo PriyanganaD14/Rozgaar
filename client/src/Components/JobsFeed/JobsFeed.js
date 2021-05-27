@@ -5,13 +5,17 @@ import { CircularProgress } from '@material-ui/core';
 import "./JobsFeed.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { getJobs, getAllJobs } from '../../actions/job';
+import { getJobs, getAllJobs } from '../../actions/job'; 
+
 
 const JobsFeed = () => {
   const [job, setJob] = useState("");
   const [location, setLocation] = useState("");
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([]); 
   const [error, setError] = useState("");
+  const [locerr, setLocationError] = useState(""); 
+  const [goodTogo, setGoodToGo] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {    
@@ -19,18 +23,52 @@ const JobsFeed = () => {
       return await setJobs(await getAllJobs());
     }
     dummy();
-  }, [])
+  }, [location])
+
+  const validateLocation = (checklocation) =>{ 
+        if(!checklocation.includes(",")){
+          setLocationError("please enter a valid Location");
+          setGoodToGo(false);
+        }else{
+          setLocationError("");
+          setGoodToGo(true);
+        }
+};
+
+  const handleChange = ({ target: { name, value } }) =>{
+      //console.log(name,value); 
+      if(name === 'job'){
+        setJob(value);
+      }
+      if(name === 'location'){
+        validateLocation(value); 
+        setLocation(value);
+      } 
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+    
+    //console.log("location check" + locerr); 
+    
+    if(!goodTogo || locerr!=""){
+      setError("Please fill correct details :(");
+      return;
+    }
+    
+    setJobs([]); 
+    setError(""); 
+
     const data = await getJobs(job, location);
+    
     if(data?.error) {
       setError(data?.error);
       return;
-    }
+    } 
+    
     setJobs(data?.result);
     console.log(jobs);
-    dispatch({ type: "FETCH_JOB", data})
+    dispatch({ type: "FETCH_JOB", data})  
   }
   return (
     <div className="container" style={{ marginTop: "-70px" }}>
@@ -49,8 +87,10 @@ const JobsFeed = () => {
                   name="job"
                   id="jobcategory"
                   placeholder="Job-Category"
-                  value={job}
-                  onChange={(e) => setJob(e.target.value)}
+                  required
+                  //value={job}
+                  //onChange={(e) => setJob(e.target.value)}
+                  onChange={handleChange}
                 />
                 <i className="ikon">
                   <svg
@@ -62,10 +102,10 @@ const JobsFeed = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M1 4h14v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm7-2.5A2.5 2.5 0 0 0 5.5 4h-1a3.5 3.5 0 1 1 7 0h-1A2.5 2.5 0 0 0 8 1.5z" />
-                  </svg>
+                  </svg> 
                 </i>
               </div>
-            </FormGroup>
+            </FormGroup> 
           </Col>
           <Col md={6} sm={6}>
             <FormGroup>
@@ -79,9 +119,11 @@ const JobsFeed = () => {
                   type="text"
                   name="location"
                   id="location"
-                  placeholder="City, State e.g. Kolkata, West Bengal"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="City, State e.g. Kolkata, West Bengal" 
+                  required
+                  //value={location}
+                  //onChange={(e) => setLocation(e.target.value)}
+                  onChange={handleChange}
                 />
                 <i className="ikon">
                   <svg
@@ -98,6 +140,7 @@ const JobsFeed = () => {
                     />
                   </svg>
                 </i>
+                <span style={{color:'red'}}>{locerr}</span>
               </div>
             </FormGroup>
           </Col>
@@ -132,10 +175,10 @@ const JobsFeed = () => {
                   </Link>
                   </Card>
                 </Col>
-              ))}
+              ))} 
             </Row>
           </div>
-      }
+      } 
     </div>
   );
 };

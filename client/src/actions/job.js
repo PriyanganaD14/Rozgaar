@@ -19,4 +19,4 @@ export const getAllJobs = async () => {
   } catch (error) {
     return error?.response?.data;
   }
-}
+} 
