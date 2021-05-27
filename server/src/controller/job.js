@@ -31,9 +31,9 @@ const createJob = async (req, res) => {
     
     return res.status(200).json(job);
 
-  } catch (err) {
-     console.log(err);
-     res.status(500).json("Database error"); 
+  } catch (error) {
+     console.log(error);
+     res.status(500).json({ message: "Database error", error: error?.message }); 
   } 
 }
 
@@ -48,12 +48,13 @@ const applyJob = async (req, res) => {
     res.status(201).json(jobSeekerInfo);
   } catch (error) {
     console.log(error)
-    res.status(401).json({ message: "Something went wrong.", error});
+    res.status(401).json({ message: "Something went wrong.", error: error?.message});
   }
 }
 
 const findJob = async (req,res) => {
   const body = req?.body;
+  console.log(body);
   try{
     const {jobType,city,state} = body; 
     const job = await JobType.findOne({jobTitle:jobType});
@@ -75,10 +76,10 @@ const findJob = async (req,res) => {
     console.log(requiredJobs);
     if(requiredJobs.length > 0)
       return res.status(200).json({result:requiredJobs});
-    return res.status(401).json({message:"Something is not right." , error:"No jobs found!"}); 
-  } catch (err){
+    return res.status(401).json({message:"Something is not right." , error:"No job found on that Location"}); 
+  } catch (error){
     console.log(err); 
-    res.status(401).json({ message: "Something went wrong.", err});
+    res.status(401).json({ message: "Something went wrong.", error: error?.message });
   }
 }
 

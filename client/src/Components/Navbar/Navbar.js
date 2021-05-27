@@ -67,12 +67,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-  
-     const token = user?.token;
-
-     //JWT.... 
-
-     setUser(JSON.parse(localStorage.getItem('profile')));
+    setUser(JSON.parse(localStorage.getItem('profile')));
   },[location]);
 
 
