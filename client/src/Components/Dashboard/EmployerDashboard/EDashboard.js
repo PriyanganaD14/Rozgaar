@@ -3,6 +3,7 @@ import './EDashboard.css';
 import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
+import PieChart from './PieChart'
 
 
 
@@ -136,7 +137,7 @@ const EDashboard = () =>
       </div>
 
       <div className="col-md-4" id="ebeftapp">
-
+      <PieChart />
       </div>
     </div>
     

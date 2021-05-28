@@ -22,6 +22,7 @@
     "react-datepicker": "^3.8.0",
     "react-native-date-picker": "^3.3.0",
     "react-router-dom": "^5.2.0",
+    "react-svg-piechart": "^2.4.2",
     "styled": "^1.0.0",
     "validator": "^13.6.0"
   },
