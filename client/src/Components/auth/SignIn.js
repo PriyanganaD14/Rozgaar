@@ -1,15 +1,3 @@
-// import Typography from "@material-ui/core/Typography";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Container from "@material-ui/core/Container";
-// import logo from "../Assets/favicon.ico";
-
-// import { GoogleLogin } from "react-google-login";
-// import Icon from "./icon";
-// import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
-
-// import { signin } from "../../actions/auth";
-
 import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";

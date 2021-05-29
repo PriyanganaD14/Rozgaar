@@ -40,3 +40,23 @@ export const changePassword = async (newPassword, sentToken) => {
     console.log(err);
   }
 }
+
+export const getJobs = async (formData) => {
+  const result = await api.post(`/findJob`, formData);
+  return result;
+}
+
+export const getAllJobs = async () => {
+  const result = await api.post(`/job`);
+  return result;
+} 
+
+export const extractEmpPosts = async(userId) => { 
+   const result = await api.post(`/api/extractEmpPosts` , userId); 
+   return result; 
+}
+
+export const postJob = async (formData) => {
+  const result = await api.post(`/job/createJob`, formData);
+  return result;
+}

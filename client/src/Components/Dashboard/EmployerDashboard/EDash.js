@@ -24,7 +24,7 @@ const EDash = () =>
        </div>
        <div className="enavi">
            <ul>
-               <li className="active"><Link to="/Dashboard"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
+               <li className="active"><Link to="/employer/Dashboard"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
                <li><Link to="/JobsFeed"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
                <li><Link to="/employer/Application"><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>
                <li><Link to="/employer/postJob"><i className="fas fa-bookmark" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Post Job</span></Link></li>

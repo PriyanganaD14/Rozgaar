@@ -1,48 +1,55 @@
-.frmgrp{
-    background-color: #FFFFFF;
+
+
+.headss
+{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+    color: darkblue;
 }
-
-.minss{
-    margin-top: -70px;
+.xdd
+{
+    color: darkmagenta;
 }
-
-
-.sidee {
-   margin-top: -100px;
-   margin-bottom: -100px;
-    
+.xsd
+{
+    font-size: 1.7em;
+    font-weight: 500;
+    color:darkblue;
 }
-
-.sidee a{
-    padding: 44px 20px;
+.able
+{
+    margin-left: 25px;
 }
-
-.sidee .reactive a{
-    background: #122143;
-    border-left:5px solid #5584ff;
-    padding-left: 15px;
-    
+.matric
+{
+    font-size: 1.3em;
+    padding-top: 25px;
+    padding-right: 40px;
 }
-
-.sidee .dummy a{
-    border-left: 0px;
-    background: #0e1a35;
+.met
+{
+    padding-top: 20px;
 }
-
-.sidee a:hover{
-    background: #122143 none repeat scroll 0 0;
-    border-left: 5px solid #5584ff;
-    display: block;
-    
+.headss
+{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+    color: darkblue;
 }
-
-@media screen and (max-width :575px) {
-
-    .szz{
-        
-        width: 100%;
-    }
-    
+@media screen and (max-width: 600px)
+{
+  .matric
+  {
+    margin-left:5px;
+  }
+  .Dob
+  {
+      margin-left: 5px;
+  }
+  .can
+  {
+      margin-left: 5px;
+  }
 }
-
-
