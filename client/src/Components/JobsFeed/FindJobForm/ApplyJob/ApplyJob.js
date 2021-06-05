@@ -44,7 +44,7 @@ const ApplyJob = (props) =>
     skills : "",
     jobSeekerId: "",
     jobPostId : "",
-    dob :"",
+    //dob :"",
     read : false,
     qualification : [],
     currentStatus : "",
@@ -83,7 +83,7 @@ const ApplyJob = (props) =>
         ...prevState,
         jobPostId: props.jobPostId,
         jobSeekerId: user?.result?._id,
-        dob: dob
+       // dob: dob
       }
     })
     console.log(formData);

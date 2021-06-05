@@ -13,6 +13,4 @@ router.post('/resetPassword', resetPassword);
 router.post('/updatePassword', updatePassword);
 router.patch('/update', auth, updateProfile); 
 
-router.post('/getProfile',auth,getJobSeekerProf);
-
 module.exports = router;
