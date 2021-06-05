@@ -174,6 +174,29 @@ const getProfile = async(req, res) => {
     }
 };
 
+const getJobSeekerProf = async(req,res)=>{
+
+    const body = req?.body;
+    
+    try{
+      const {userId} = body;
+      const jobSeeker = JobSeeker.find({jobSeekerId : userId});
+
+      const result = {
+           name : jobSeeker.name,
+           contact : jobSeeker.contact,
+           dob : jobSeeker.dob,
+           
+      }
+
+    }
+    catch(err){
+
+    }
+    
+
+}
+
 module.exports = {
   defaultRoute,
   signin,

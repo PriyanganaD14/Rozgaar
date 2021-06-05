@@ -27,7 +27,7 @@ const createJob = async (req, res) => {
     const jobTypeId = await JobType.returnId(title);
     
     const skillSetIds = await SkillSet.returnIds(skillsReq); 
-    
+  
     const job = await JobPost.saveJob({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual});
     
     return res.status(200).json(job);

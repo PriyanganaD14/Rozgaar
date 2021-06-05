@@ -33,3 +33,12 @@ export const postJob = async (formData) => {
     return error?.response?.data;
   }
 }
+
+export const applyJob = async(formData)=>{
+  try{
+    const { data }= await api.applyJob(formData);
+    return data;
+  }catch(error){
+    return error?.response?.data;
+  }
+}
