@@ -1,4 +1,4 @@
-;const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const JobType = require('./jobType'); 
 const Location = require('../location');
 const Skill = require('../skillSet');

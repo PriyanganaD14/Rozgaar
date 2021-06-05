@@ -172,7 +172,10 @@ const JobsFeed = () => {
                   </CardText>
                   <CardText>Salary: {job?.salary}</CardText>
                   <CardText>Skill: {capitalizeFirstLetter(job?.skillsReq[0].skillName)}</CardText>
-                  <Link to="/JobsFeed/FindJob">
+                  <Link to={{
+                    pathname: '/JobsFeed/FindJob',
+                    jobPostId: job._id
+                  }}>
                     <Button type="button" color="primary" size="lg" className="btnsz">
                     Apply Now
                     </Button>

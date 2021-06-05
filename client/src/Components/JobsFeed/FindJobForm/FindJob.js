@@ -1,15 +1,18 @@
 import React from 'react';
 import './FindJob.css';
-import Personal from "./Personal/Personal"
-const FindJob = () =>
+import ApplyJob from "./ApplyJob/ApplyJob"
+
+
+
+const FindJob = ( props ) =>
 {
     return (
-        <div className="container">
+        <div className="container"  style={{marginTop: "-70px"}}>
 
-        <p className="heads">HEADER</p>
+        <p className="heads">Apply Job</p>
 
         <div className="row">
-        <Personal/>
+        <ApplyJob jobPostId= {props.location.jobPostId}/>
         </div>
 
         </div>
