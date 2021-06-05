@@ -5,6 +5,7 @@ const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const User = require("../models/user");
+const JobSeeker = require("../models/jobSeeker/jobSeeker");
 
 sgMail.setApiKey(process.env.SENDGRID_EMAIL_API_KEY);
 
@@ -18,7 +19,9 @@ const signin = async (req, res) => {
   try {
     let user = await User.findByCredentials(body?.email, body?.password);
     const token = await user.genToken();
-    user = await User.findOne({ email: body?.email }).select("-password");
+    //user = await User.findOne({ email: body?.email }).select("-password");
+    user = await user.whatToReturn();
+      
     res.status(200).json({ result: user, token });
   } catch (e) {
     res
@@ -33,7 +36,9 @@ const signup = async (req, res) => {
     var user = await User.saveUser(body);
     const token = await user.genToken();
     user.save();
-    user = await User.findOne({ _id: user._id }).select("-password");
+    //user = await User.findOne({ _id: user._id }).select("-password");
+    user = await user.whatToReturn();
+    
     res.status(200).json({ result: user, token });
   } catch (e) {
     res.status(500).json({ messsge: "Something went wrong.", error: e?.message });
@@ -122,6 +127,51 @@ const updateProfile = async (req, res) => {
     console.log(e);
     res.status(500).json({ messsge: "Something went wrong.", error: e });
   }
+}; 
+
+//function to getProfile 
+const getProfile = async(req, res) => {
+    
+    const {userId} = req?.body; 
+    
+    try{
+      const user = await User.findById(userId); 
+                 
+      const JS = await JobSeeker.findOne({jobSeekerId: userId}) 
+                                      .populate('location');
+     
+     console.log(JS); 
+
+      const profile = {
+        name: user.name, 
+        email: user.email, 
+        contact:user.contact, 
+        skills: user.skills,
+        languages: user.languages, 
+        dob: user.dob, 
+        currSalary: user.currSalary, 
+        photo: user.photo,
+      };
+     
+      let address = {}; 
+      
+      if(JS && JS.location)
+      {
+        address = {
+        locality: JS.location.locality,
+        state: JS.location.state,
+        district: JS.location.district,
+        city: JS.location.city,
+        pincode: JS.location.pincode,
+        }
+      }
+      
+      res.status(200).json({result:{profile,address}})
+
+    }catch(err){
+        console.log(err); 
+        res.status(409).json({message: "Something went wrong.", error: err?.message});
+    }
 };
 
 module.exports = {
@@ -132,4 +182,5 @@ module.exports = {
   resetPassword,
   updatePassword,
   updateProfile,
+  getProfile
 };

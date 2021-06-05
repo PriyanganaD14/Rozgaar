@@ -6,7 +6,7 @@ const FindJob = () =>
     return (
         <div className="container">
 
-        <p className="heads">HEADER</p>
+        <p className="heads">JOB APPLICATION</p>
 
         <div className="row">
         <Personal/>

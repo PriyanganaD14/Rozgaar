@@ -36,7 +36,7 @@ const Dashboard = () =>
       <div className="crcle1">
       <i className="fas fa-clipboard-check" id="ikons"></i>
       </div>
-        <p className="txt">Applications Submit</p>
+        <p className="txt">Status On Hold</p>
     </div>
       </div>
       <div className="col">

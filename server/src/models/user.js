@@ -2,9 +2,24 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const Location = require("./location");
 require('dotenv').config();
 
 const userSchema = mongoose.Schema({
+  //attributes common 
+  contact:{
+    type:String,
+  },
+  userType : { 
+    type: Boolean, 
+    required: "userType is required"
+  },
+  resetToken: {
+    type:String,
+  },
+  expireToken: {
+    type: Date,
+  }, 
   name: {
     type: String,
     required: 'name is required.',
@@ -26,16 +41,65 @@ const userSchema = mongoose.Schema({
     // this will make sure that minimum length of password should be 8
     minLength: [8, "password length should be at least 8 chars"],
   },
-  resetToken: {
-    type:String,
+  
+  //attributes for jobseekers
+  skills: [{
+    type:String, 
+  }], 
+  dob:{
+    type:String
   },
-  expireToken: {
-    type: Date,
+  photo:{
+    type:String
+  },
+  totalJobApplied:{
+    type:Number,
+    default:0,
+  },
+  totalJobPending:{
+    type:Number,
+    default:0
   }, 
-  userType : { 
-    type: Boolean, 
-    required: "userType is required"
-  }
+  totalJobApproved:{
+    type:Number,
+    default:0
+  },
+  languages:[{
+    type:String,
+    lowercase:true,
+  }],
+  currSalary:{
+    type:Number,
+    default:0
+  },
+  jobsApplied:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'JobSeeker',
+  }],  
+
+  
+  //attributes for employee
+  jobsPosted:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'JobPost', 
+  }], 
+  newAppn:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'JobSeeker', 
+  }],
+  totalAppn:{
+    type:Number,
+    default:0
+  },
+  appnPending:{
+    type:Number,
+    default:0
+  },
+  appnApproved:{
+    type:Number,
+    default:0
+  },
+
 }, {
   timestamps:true
 })
@@ -103,6 +167,108 @@ userSchema.pre("save", async function (next) {
   // this indicates the end of middleware, if something went wrong function runs forever
   next();
 })
+
+// used to return document as per userTypes
+userSchema.methods.whatToReturn = async function () {
+  const user = this;
+  
+  //for common
+  const {contact,
+    userType,
+    resetToken,
+    expireToken,
+    name,
+    createdAt,
+    updatedAt,
+    _id} = user; 
+  
+    //for employer
+  if(user.userType){
+      const {email,
+        jobsPosted,
+        newAppn,
+        totalAppn,
+        appnPending,
+        appnApproved} = user; 
+
+        return {
+          _id,
+          contact,
+          userType,
+          resetToken,
+          expireToken,
+          name,
+          email,
+          jobsPosted,
+          newAppn,
+          totalAppn,
+          appnPending,
+          appnApproved,
+          createdAt, 
+          updatedAt};
+  } 
+   
+  //for jobSeeker 
+  const {
+    skills,
+    totalJobApplied,
+    totalJobPending,
+    totalJobApproved,
+    languages,
+    currSalary,
+    jobsApplied,
+  } = user; 
+  
+  return {
+    _id,
+    contact,
+    userType,
+    resetToken,
+    expireToken,
+    name,
+    skills,
+    totalJobApplied,
+    totalJobPending,
+    totalJobApproved,
+    languages,
+    currSalary,
+    jobsApplied,
+    createdAt,
+    updatedAt
+  };
+
+}; 
+
+userSchema.methods.extDetailsJS = async  function ({appnId,skills,languages,dob,photo}){
+   const user = this; 
+   
+   user.jobsApplied.push(appnId);
+   user.totalJobApplied++; 
+   user.appnPending++; 
+
+   const set = new Set(user.skills); 
+
+   for(const ele in skills){
+      if(!set.has(skills[ele].toLowerCase())){
+          user.skills.push(skills[ele].toLowerCase());
+      }
+   }
+   
+   const setL = new Set(user.languages); 
+
+   for(const ele in languages){
+    if(!setL.has(languages[ele].toLowerCase())){
+        user.languages.push(languages[ele].toLowerCase());
+    }
+   } 
+  
+   console.log('After editing: ' + user.languages); 
+
+   user.dob = dob;
+   user.photo = photo;
+ 
+   return user;
+}
 
 const User = mongoose.model("User", userSchema);
 
