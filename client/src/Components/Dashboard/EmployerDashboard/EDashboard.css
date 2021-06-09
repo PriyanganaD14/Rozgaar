@@ -162,8 +162,15 @@ li
   
     #ebeftapp
     {
-        margin-left:0px;
+        margin-left:40px;
     }
+}
+@media screen and (max-width: 600px)
+{
+ #ebeftapp
+ {
+     margin-left:60px;
+ }   
 }
 @media screen and (max-width: 500px)
 {
