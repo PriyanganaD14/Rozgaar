@@ -13,25 +13,7 @@ const ApplyJob = (props) =>
   const user = JSON.parse(localStorage.getItem('profile'));
   const [message, setMessage] = useState("");
   const history = useHistory();
-  const [dob, setDob] = useState("");
-
-  const qualInitstate = [{
-    school: "",
-    board:"",
-    percent :""
-  }]
-
-  const expInitState = {
-    job :"",
-    year : ""
-  }
-
-  const[qualification, setQualification] = useState(qualInitstate);
-  //console.log(qualification);
-
-  const[experience, setExperience] = useState(expInitState);
   
-
   const initialState = {
     name: "",
     email :"", 
@@ -41,30 +23,26 @@ const ApplyJob = (props) =>
     district :"",
     state :"",
     pincode : "",
-    skills : "",
-    jobSeekerId: "",
-    jobPostId : "",
-    //dob :"",
+    skill : "",
+    jobSeekerId: user?.result?._id,
+    jobPostId : props.jobPostId,
+    dob :"", 
     read : false,
-    qualification : [],
-    currentStatus : "",
-    experience: {
-      job :"",
-      year:"",
-    }  
+    currentStatus : "", 
+    _10th_school: "",
+    _10th_board: "",
+    _10th_percentage: "",
+    _12th_school: "",
+    _12th_board: "",
+    _12th_percentage: "",
+    _grad_school: "",
+    _grad_board: "",
+    _grad_percentage: "",
+    job: "",
+    year: "",
+    language: "",
   }
   const [formData, setFormData] = useState(initialState);
-  
-  const handleChangeExp= (event)=>{
-      // console.log(event.target.value + " hh "+ event.target.name );
-      // setExperience({...experience, [event.target.name] : event.target.value});
-      // console.log(formData);
-  }
-
-  const handleChangeQual= (event)=>{
-  //   console.log(event.target.name);
-  //  // setFormData({...qualification, ["qualifi"] : formData)
-  }
 
   const handleChange= (event)=>{
   //  console.log(event.target.value);
@@ -77,22 +55,16 @@ const ApplyJob = (props) =>
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    console.log(user?.result?._id, props.jobPostId)
-    await setFormData((prevState) => {
-      return {
-        ...prevState,
-        jobPostId: props.jobPostId,
-        jobSeekerId: user?.result?._id,
-       // dob: dob
-      }
-    })
-    console.log(formData);
     const data = await applyJob(formData);
+    console.log(data);
+    if(data.error) {
+      return setMessage(data.error)
+    }
     setMessage("Applied successfully!");
-    // setFormData(initialState);
-    // setTimeout(()=>{
-    //   history.push('/jobsFeed');
-    // },2000);
+    setFormData(initialState);
+    setTimeout(()=>{
+      history.push('/jobSeeker/Dashboard');
+    },2000);
   }
 
   return (
@@ -150,8 +122,8 @@ const ApplyJob = (props) =>
     <div className="form-row">
       <label className="Dob">Date Of Birth  :-</label>
       <DatePicker 
-        selected={dob} 
-        onChange={(date) => setDob(date)}
+        selected={formData.dob}
+        onChange={(dob) => setFormData({ ...formData, ["dob"]: dob})}
         name = "dob" 
       />
     </div>
@@ -221,10 +193,10 @@ const ApplyJob = (props) =>
         <div className="col-auto my-1">
           <label className="mr-sm-2 sr-only" for="inlineFormCustomSelect">Skills</label>
           <select className="custom-select mr-sm-2" id="inlineFormCustomSelect"
-           name = "skills"
+           name = "skill"
            onChange= {handleChange1} >
 
-            <option selected>Skills</option>
+            <option selected>Skill</option>
             <option value="1">Cooking</option>
             <option value="2">Driving</option>
             <option value="3">Security guard</option>
@@ -233,6 +205,22 @@ const ApplyJob = (props) =>
         </div>
       </div>
 
+      <p className="xsd">Regional Language :-</p>
+      <div className="form-row">
+        <div className="col-auto my-1">
+          <label className="mr-sm-2 sr-only" for="inlineFormCustomSelect">Skills</label>
+          <select className="custom-select mr-sm-2" id="inlineFormCustomSelect"
+           name = "language"
+           onChange= {handleChange1} >
+
+            <option selected>Language</option>
+            <option value="1">Hindi</option>
+            <option value="2">Bengali</option>
+            <option value="3">Bhojpuri</option>
+            <option value="4">Magahi</option>
+          </select>
+        </div>
+      </div>
 
       <p className="xsd">Educational Qualification :-</p>
       <div className="form-row">
@@ -262,8 +250,8 @@ const ApplyJob = (props) =>
             <input 
               type="text" 
               className="form-control" 
-              name = "10th-school"
-              onChange= {handleChangeQual}
+              name = "_10th_school"
+              onChange= {handleChange}
               id="validationCustom03" 
               placeholder="School" 
             />
@@ -277,8 +265,8 @@ const ApplyJob = (props) =>
           <input 
             type="text" 
             className="form-control"
-            name = "10th-board"
-            onChange= {handleChangeQual} 
+            name = "_10th_board"
+            onChange= {handleChange} 
             id="validationCustom03" 
             placeholder="Board"
           />
@@ -293,8 +281,8 @@ const ApplyJob = (props) =>
           <input 
             type="text" 
             className="form-control" 
-            name = "10th-percentage"
-            onChange= {handleChangeQual}
+            name = "_10th_percentage"
+            onChange= {handleChange}
             id="validationCustom03" 
             placeholder="Percentage" 
           />
@@ -312,8 +300,8 @@ const ApplyJob = (props) =>
           <input 
             type="text" 
             className="form-control"
-            name = "12th-school"
-            onChange= {handleChangeQual}
+            name = "_12th_school"
+            onChange= {handleChange}
             id="validationCustom03" 
             placeholder="School"
           />
@@ -328,8 +316,8 @@ const ApplyJob = (props) =>
         <input 
           type="text" 
           className="form-control" 
-          name = "12th-board"
-          onChange= {handleChangeQual}
+          name = "_12th_board"
+          onChange= {handleChange}
           id="validationCustom03" placeholder="Board"
         />
         <div className="invalid-feedback">
@@ -341,8 +329,8 @@ const ApplyJob = (props) =>
           <label for="validationCustom03">Percentage</label>
           <input type="text" className="form-control"
            id="validationCustom03" 
-           name = "12th-percentage"
-           onChange= {handleChangeQual}
+           name = "_12th_percentage"
+           onChange= {handleChange}
            placeholder="Percentage" />
           <div className="invalid-feedback">
             Please provide a valid input
@@ -359,8 +347,8 @@ const ApplyJob = (props) =>
             type="text" 
             className="form-control" 
             id="validationCustom03" 
-            name = "grad-school"
-            onChange= {handleChangeQual}
+            name = "_grad_school"
+            onChange= {handleChange}
             placeholder="University" 
           />
          
@@ -376,8 +364,8 @@ const ApplyJob = (props) =>
           type="text" 
           className="form-control"
           id="validationCustom03"
-          name = "grad-board"
-          onChange= {handleChangeQual}
+          name = "_grad_board"
+          onChange= {handleChange}
           placeholder="Degree" 
          />
         
@@ -393,8 +381,8 @@ const ApplyJob = (props) =>
               type="text" 
               className="form-control"
               id="validationCustom03"
-              name = "grad-percentage"
-              onChange= {handleChangeQual}
+              name = "_grad_percentage"
+              onChange= {handleChange}
               placeholder="Percentage" 
             />
         
@@ -429,7 +417,7 @@ const ApplyJob = (props) =>
           <input type="text" className="form-control" 
           id="validationCustom03" 
           name = "job"
-          onChange= {handleChangeExp}
+          onChange= {handleChange}
           placeholder="Job" />
             <div className="invalid-feedback">
               Please provide a valid input
@@ -441,7 +429,7 @@ const ApplyJob = (props) =>
             <input type="text" className="form-control"
              id="validationCustom03"
              name = "year"
-             onChange= {handleChangeExp}
+             onChange= {handleChange}
              placeholder="year" />
             <div className="invalid-feedback">
               Please provide a valid year

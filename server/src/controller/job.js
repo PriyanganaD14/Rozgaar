@@ -40,6 +40,7 @@ const createJob = async (req, res) => {
 
 const applyJob = async (req, res) => {
   const body = req?.body;
+  console.log(body);
   try {
     const { name, jobSeekerId, jobPostId, contact, dob, locality, city, district, state, pincode, qualification, experience, skills, currentStatus, photo, languages } = body;
 

@@ -34,11 +34,40 @@ export const postJob = async (formData) => {
   }
 }
 
-export const applyJob = async(formData)=>{
+export const applyJob = async (formData)=>{
   try{
-    const { data }= await api.applyJob(formData);
+    const { data }= await api.applyJob(modifyFormData(formData));
     return data;
   }catch(error){
     return error?.response?.data;
   }
+}
+
+const modifyFormData = (formData) => {
+  const qualification = [];
+  var tempQual = {};
+  for(const data in formData) {
+    if(data.charAt(0) === '_') {
+      const temp = data.split('_');
+      if(!tempQual.type)
+        tempQual.type = temp[1];
+      tempQual[temp[2]] = formData[data];
+    }
+    var i = 0;
+    for(const t in tempQual)
+      i++;
+    if(i == 4) {
+      i = 0;
+      qualification.push(tempQual);
+      tempQual = {};
+    }
+  }
+  formData.qualification = qualification;
+  formData.experience = [{job: formData.job, year: formData.year}];
+  const skillsReq = [formData.skill];
+  const languages = [formData.language];
+  formData.skills = skillsReq;
+  formData.languages = languages;
+  ['job', 'year', '_10th_board', '_10th_percentage', '_10th_school', '_12th_board', '_12th_percentage', '_12th_school', '_grad_board', '_grad_percentage', '_grad_school', 'language', 'skill'].forEach(item => delete formData[item]);
+  return formData;
 }

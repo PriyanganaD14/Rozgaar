@@ -38,6 +38,9 @@ const jobSeekerSchema = mongoose.Schema({
     type: {
       type: String,
     },
+    school: {
+      type: String,
+    },
     percent: {
       type: Number,
     },
