@@ -12,6 +12,10 @@ li
 {
     list-style-type: none;
 }
+.zobcard
+{
+    width: 100%;
+}
 .edisplay-table {
     display: table;
     padding: 0;
@@ -117,6 +121,7 @@ li
     cursor:pointer;
     display:none;
 }
+
 @media screen and (max-width: 1092px)
 {
     #eleftapp
@@ -127,6 +132,13 @@ li
     {
         margin-left: 200px;
     }
+}
+@media screen and (max-width:800px)
+{
+.zobs
+{
+    margin-left: 7%;
+}
 }
 
 @media screen and (max-width: 900px)
@@ -165,12 +177,22 @@ li
         margin-left:40px;
     }
 }
+@media screen and (max-width:680px)
+{
+.zobs
+{
+    margin-left:13%;
+}
+}
 @media screen and (max-width: 600px)
 {
  #ebeftapp
  {
      margin-left:60px;
- }   
+ } 
+ .zobs{
+     margin-left:80px;
+ }  
 }
 @media screen and (max-width: 500px)
 {
@@ -182,6 +204,7 @@ li
     {
         margin-left:50px;
     }
+    
   .earrows
   {
       display:grid;

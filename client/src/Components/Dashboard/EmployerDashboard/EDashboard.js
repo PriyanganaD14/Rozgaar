@@ -24,7 +24,7 @@ import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '92%',
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -141,7 +141,7 @@ const EDashboard = () =>
       </div>
     </div>
     
-    <div className={classes.root}>
+    <div className={classes.root} className="zobs">
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -152,7 +152,7 @@ const EDashboard = () =>
           <Typography className={classes.heading} style={{color:'green'}}><h5 onClick={handleSubmit}>JOB POSTED BY YOU</h5></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography className="zobcard">
             {error 
               ? <h1>{error}</h1>
               : (!jobs?.length 
