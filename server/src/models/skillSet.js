@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const skillSchema = mongoose.Schema({
   skillName: {
     type: String,
-    required: true,
     lowercase: true
   }
 })

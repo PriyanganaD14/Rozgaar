@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); 
 
-const jobSeekerSchema = mongoose.Schema({
+const applicationSchema = mongoose.Schema({
   // applicant personal details
   name: {
     type: String,
@@ -38,6 +38,9 @@ const jobSeekerSchema = mongoose.Schema({
     type: {
       type: String,
     },
+    school: {
+      type: String,
+    },
     percent: {
       type: Number,
     },
@@ -68,23 +71,23 @@ const jobSeekerSchema = mongoose.Schema({
   }],
   status: {
     type: String, 
-    default: 'pending'
+    default: 'pending'   // pending, approved, rejected
   }
 },  {
   timestamps:true
 })
 
-jobSeekerSchema.statics.saveJobSeeker = async ({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages}) => {
+applicationSchema.statics.saveApplication = async ({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages}) => {
 
-  let jobSeekerInfo = await JobSeeker.findOne({ jobSeekerId, jobPostId });
-  if(jobSeekerInfo)
+  let applicationInfo = await Application.findOne({ jobSeekerId, jobPostId });
+  if(applicationInfo)
     throw new Error("You already applied for this job.");
 
-  jobSeekerInfo = await JobSeeker.create({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages});
-  jobSeekerInfo.save();
+  applicationInfo = await Application.create({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages});
+  applicationInfo.save();
   try {
-    const result = await JobSeeker
-      .findOne({_id: jobSeekerInfo._id})
+    const result = await Application
+      .findOne({_id: applicationInfo._id})
       .populate('location')
       .populate('skills')
       .populate('jobSeekerId')
@@ -96,8 +99,8 @@ jobSeekerSchema.statics.saveJobSeeker = async ({name, jobSeekerId, jobPostId, co
 };
 
 
-jobSeekerSchema.statics.returnSeekerdetails = async (jobPostId) => {
-  const details = await JobSeeker
+applicationSchema.statics.returnSeekerdetails = async (jobPostId) => {
+  const details = await Application
     .find({jobPostId})
     .populate('location')
     .populate('skills')
@@ -117,7 +120,7 @@ jobSeekerSchema.statics.returnSeekerdetails = async (jobPostId) => {
   return result;
 }
 
-const JobSeeker = mongoose.model('JobSeeker', jobSeekerSchema)
+const Application = mongoose.model('Application', applicationSchema)
   
-module.exports = JobSeeker;
+module.exports = Application;
   

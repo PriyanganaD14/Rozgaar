@@ -5,7 +5,7 @@ const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const User = require("../models/user");
-const JobSeeker = require("../models/jobSeeker/jobSeeker");
+const Application = require("../models/application/application");
 
 sgMail.setApiKey(process.env.SENDGRID_EMAIL_API_KEY);
 
@@ -137,8 +137,9 @@ const getProfile = async(req, res) => {
     try{
       const user = await User.findById(userId); 
                  
-      const JS = await JobSeeker.findOne({jobSeekerId: userId}) 
-                                      .populate('location');
+      const JS = await Application
+        .findOne({jobSeekerId: userId}) 
+        .populate('location');
      
      console.log(JS); 
 
@@ -173,29 +174,6 @@ const getProfile = async(req, res) => {
         res.status(409).json({message: "Something went wrong.", error: err?.message});
     }
 };
-
-const getJobSeekerProf = async(req,res)=>{
-
-    const body = req?.body;
-    
-    try{
-      const {userId} = body;
-      const jobSeeker = JobSeeker.find({jobSeekerId : userId});
-
-      const result = {
-           name : jobSeeker.name,
-           contact : jobSeeker.contact,
-           dob : jobSeeker.dob,
-           
-      }
-
-    }
-    catch(err){
-
-    }
-    
-
-}
 
 module.exports = {
   defaultRoute,

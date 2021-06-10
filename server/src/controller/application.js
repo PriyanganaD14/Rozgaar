@@ -1,5 +1,5 @@
 const JobPost = require("../models/job/jobPost");
-const JobSeeker = require("../models/jobSeeker/jobSeeker");
+const Application = require("../models/application/application");
 
 const seekerAppn = async (req, res) => {
   const body = req?.body;
@@ -7,7 +7,7 @@ const seekerAppn = async (req, res) => {
   try {
     const { userId } = body;
 
-    const totalAppn = await JobSeeker.find({ jobSeekerId: userId }).populate({
+    const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
       path: "jobPostId",
       populate: {
         path: "jobTypeId",
@@ -132,12 +132,12 @@ const empAppn = async (req, res) => {
   try {
      // for knowing seeker details for a particular job post
     if(jobPostId) {
-      result = await JobSeeker.returnSeekerdetails(jobPostId);
+      result = await Application.returnSeekerdetails(jobPostId);
     } else {
       const { userId } = body;
       const totalJobPost = await JobPost.find({ postedBy: userId });
       for (const ele in totalJobPost) {
-         const res = await JobSeeker.returnSeekerdetails(totalJobPost[ele]._id);
+         const res = await Application.returnSeekerdetails(totalJobPost[ele]._id);
          for (const t in res) result.push(res[t]);
       }
    }
