@@ -3,6 +3,7 @@ const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Location = require("./location");
+const Application = require("./application/application");
 require('dotenv').config();
 
 const userSchema = mongoose.Schema({
@@ -83,10 +84,10 @@ const userSchema = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'JobPost', 
   }], 
-  newAppn:[{
+  newAppn:[{  //we will keep all the applications applied for the job and then frotend can extract new ones
     type:mongoose.Schema.Types.ObjectId,
     ref:'Application', 
-  }],
+  }], 
   totalAppn:{
     type:Number,
     default:0
@@ -238,6 +239,31 @@ userSchema.methods.whatToReturn = async function () {
   };
 
 }; 
+
+userSchema.methods.extDetailsEMP = async function({jobPostId}) {
+   const user = this; 
+
+   user.jobsPosted.push(jobPostId); 
+
+   //find all the applications on current jobId 
+   const Appn = await Application.find({jobPostId:jobPostId});
+   
+   user.totalAppn+=Appn.length; 
+
+   if(Appn){
+     for(const ele in Appn){
+      user.newAppn.push(Appn[ele]._id);
+       
+        if(Appn[ele].status=='pending')
+        user.appnPending++; 
+        else if(Appn[ele].status=='approved') 
+        user.appnApproved++; 
+     }
+   } 
+
+   return user;
+
+}
 
 userSchema.methods.extDetailsJS = async  function ({appnId,skills,languages,dob,photo}){
    const user = this; 

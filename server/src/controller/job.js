@@ -30,7 +30,16 @@ const createJob = async (req, res) => {
   
     const job = await JobPost.saveJob({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual});
     
-    return res.status(200).json(job);
+    const findUser = User.findById({_id: postedBy}); 
+    
+    const jobId = job._id; 
+ 
+    const user = findUser.extDetailsEMP({jobId});
+    user.save(); 
+
+    const result = await user.whatToReturn();
+
+    return res.status(200).json(result);
 
   } catch (error) {
      console.log(error);
@@ -52,8 +61,19 @@ const applyJob = async (req, res) => {
     
     const appnId = applicationInfo._id;
     const user = await findUser.extDetailsJS({appnId,skills,languages,dob,photo});
-
     user.save();
+
+    const job = await JobPost.findById({_id: jobPostId}); 
+    console.log('job = ' , job); 
+
+    const findEMP = await User.findById({_id: job.postedBy});
+    console.log('findEMP = ' , findEMP); 
+    
+    const employer = await findEMP.extDetailsEMP({jobPostId});
+    console.log('employer = ' , employer);
+    
+    employer.save();
+
     const result = await user.whatToReturn(); 
      
     res.status(201).json({result});
