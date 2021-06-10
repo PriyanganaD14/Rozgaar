@@ -12,7 +12,6 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import {applyJob} from '../../../../actions/job.js'
 import { useHistory } from 'react-router';
-import { PromiseProvider } from 'mongoose';
 
 const ApplyJob = (props) =>
 {
@@ -21,10 +20,6 @@ const ApplyJob = (props) =>
   const history = useHistory();
   
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   const initialState = {
     name: "",
@@ -55,6 +50,12 @@ const ApplyJob = (props) =>
     language: "",
   }
   const [formData, setFormData] = useState(initialState);
+
+  const handleDateChange = (date) =>
+  {
+    setSelectedDate(date);
+    setFormData({ ...formData,["dob"]:selectedDate})
+  };
 
   const handleChange= (event)=>{
   //  console.log(event.target.value);
@@ -136,9 +137,10 @@ const ApplyJob = (props) =>
       <Grid container>
       <KeyboardDatePicker
       margin="normal"
+      name="dob"
       id="date-picker-dialog"
       label="Date Of Birth"
-      format="MM/dd/yyyy"
+      format="dd/MM/yyyy"
       value={selectedDate}
       onChange={handleDateChange}
       KeyboardButtonProps={{
@@ -147,7 +149,6 @@ const ApplyJob = (props) =>
     />
       </Grid>
       </MuiPickersUtilsProvider>
-
     </div>
 
     <p className="xsd">Address :-</p>
