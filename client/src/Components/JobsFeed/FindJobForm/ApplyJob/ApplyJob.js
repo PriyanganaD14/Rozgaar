@@ -244,7 +244,7 @@ const ApplyJob = (props) =>
       </div>
       { /* 10th */ }
       <div className="form-row met">
-        <h className="matric">Matric</h>
+        <h className="matric mtrs">Matric</h>
         <div className="col-md-3 mb-3">
             <label for="validationCustom03">School</label>
             <input 
@@ -339,7 +339,7 @@ const ApplyJob = (props) =>
       </div>
 
       <div className="form-row met">
-      <h className="matric">Graduation</h>
+      <h className="matric grds">Graduation</h>
       <div className="col-md-3 mb-3">
           <label for="validationCustom03">School</label>
          
