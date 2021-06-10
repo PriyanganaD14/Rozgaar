@@ -62,6 +62,10 @@ const modifyFormData = (formData) => {
       tempQual = {};
     }
   }
+  formData.locality = formData.locality.toLowerCase();
+  formData.city = formData.city.toLowerCase();
+  formData.district = formData.district.toLowerCase();
+  formData.state = formData.state.toLowerCase();
   formData.qualification = qualification;
   formData.experience = [{job: formData.job, year: formData.year}];
   const skillsReq = [formData.skill];
