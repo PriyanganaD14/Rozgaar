@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import "./ApplyJob.css"
 
-import DatePicker from "react-datepicker";
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 import "react-datepicker/dist/react-datepicker.css";
 import {applyJob} from '../../../../actions/job.js'
@@ -14,6 +20,12 @@ const ApplyJob = (props) =>
   const [message, setMessage] = useState("");
   const history = useHistory();
   
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
   const initialState = {
     name: "",
     email :"", 
@@ -119,13 +131,23 @@ const ApplyJob = (props) =>
         </div>
       </div>
 
-    <div className="form-row">
-      <label className="Dob">Date Of Birth  :-</label>
-      <DatePicker 
-        selected={formData.dob}
-        onChange={(dob) => setFormData({ ...formData, ["dob"]: dob})}
-        name = "dob" 
-      />
+    <div className="form-row" style={{marginLeft:"10px"}}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container>
+      <KeyboardDatePicker
+      margin="normal"
+      id="date-picker-dialog"
+      label="Date Of Birth"
+      format="MM/dd/yyyy"
+      value={selectedDate}
+      onChange={handleDateChange}
+      KeyboardButtonProps={{
+        'aria-label': 'change date',
+      }}
+    />
+      </Grid>
+      </MuiPickersUtilsProvider>
+
     </div>
 
     <p className="xsd">Address :-</p>
