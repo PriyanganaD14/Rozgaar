@@ -74,7 +74,7 @@ const userSchema = mongoose.Schema({
   },
   jobsApplied:[{
     type:mongoose.Schema.Types.ObjectId,
-    ref:'JobSeeker',
+    ref:'Application',
   }],  
 
   
@@ -85,7 +85,7 @@ const userSchema = mongoose.Schema({
   }], 
   newAppn:[{
     type:mongoose.Schema.Types.ObjectId,
-    ref:'JobSeeker', 
+    ref:'Application', 
   }],
   totalAppn:{
     type:Number,

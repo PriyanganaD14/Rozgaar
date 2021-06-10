@@ -2,7 +2,7 @@
 
 const JobPost = require('../models/job/jobPost');
 const JobType = require('../models/job/jobType');
-const JobSeeker = require('../models/jobSeeker/jobSeeker');
+const Application = require('../models/application/application');
 const Location = require('../models/location');
 const SkillSet = require('../models/skillSet'); 
 const User = require('../models/user');
@@ -46,11 +46,11 @@ const applyJob = async (req, res) => {
 
     const location = await Location.returnId({locality, city, district, state, pincode});
     const skills_ = await SkillSet.returnIds(skills);
-    const jobSeekerInfo = await JobSeeker.saveJobSeeker({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
+    const applicationInfo = await Application.saveApplication({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
     
-    const findUser = await User.findById({_id:jobSeekerId});
+    const findUser = await User.findById({_id: jobSeekerId});
     
-    const appnId = jobSeekerInfo._id;
+    const appnId = applicationInfo._id;
     const user = await findUser.extDetailsJS({appnId,skills,languages,dob,photo});
 
     user.save();
