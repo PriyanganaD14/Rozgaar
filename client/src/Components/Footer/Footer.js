@@ -6,7 +6,10 @@ import {FiTwitter} from 'react-icons/fi';
 import {Link} from 'react-router-dom';
 
 
-const Footer = ()=>{
+
+const Footer = (props)=>{
+  
+
     return (
      <div>
          <footer className="bg-dark text-center text-lg-start mt-7">
@@ -27,6 +30,9 @@ const Footer = ()=>{
          </footer>
      </div>
     );
+    
+    
+    
 };
 
 

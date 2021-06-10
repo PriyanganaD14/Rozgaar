@@ -22,6 +22,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
 import './JobSeekerApplication.css'
+import Footer from '../../../Footer/Footer';
 
 function createData(name,date,position,base,contact,status) {
   return { name,date,position,base,contact,status};
@@ -354,6 +355,7 @@ export default function JobSeekerApplication() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+      <Footer/>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import "./JobsFeed.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getJobs, getAllJobs } from '../../actions/job'; 
+import Footer from "../Footer/Footer";
 
 
 const capitalizeFirstLetter = (string) => {
@@ -75,6 +76,7 @@ const JobsFeed = () => {
     dispatch({ type: "FETCH_JOB", data})  
   }
   return (
+    <div>
     <div className="container" style={{ marginTop: "-70px" }}>
       <Form onSubmit={handleSubmit}>
         <Row form>
@@ -186,6 +188,9 @@ const JobsFeed = () => {
             </Row>
           </div>
       } 
+      
+    </div>
+    <Footer/>
     </div>
   );
 };

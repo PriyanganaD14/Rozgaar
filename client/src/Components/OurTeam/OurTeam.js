@@ -7,13 +7,14 @@ import img3 from '../Assets/pd1.jpg';
 import img4 from '../Assets/ars.JPG';
 import img5 from '../Assets/ar.jpeg';
 import img6 from '../Assets/ak.jpg';
+import Footer from '../Footer/Footer';
 
 
 
 
 const OurTeam =()=>{
     return (
-        <>
+        <div style={{marginTop: "-70px"}} >
         <section id="team" className="pb-5">
     <div className="container">
         <h5 className="section-title h1">OUR TEAM</h5>
@@ -310,7 +311,8 @@ const OurTeam =()=>{
         </div>
     </div>
 </section>
-</>
+<Footer/>
+</div>
     );
 }
 

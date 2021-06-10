@@ -3,6 +3,7 @@ import "./PostJob.css";
 
 import { postJob } from '../../../../actions/job';
 import { useHistory } from "react-router";
+import Footer from "../../../Footer/Footer";
 
 const PostJob = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -47,6 +48,7 @@ const PostJob = () => {
     }, 2000)
   }
   return (
+    <div>
     <div className="container" style={{marginTop: "-70px"}}>
       <h2 className="headss">Post a Job </h2>
       <div className="row">
@@ -323,7 +325,11 @@ const PostJob = () => {
           <h3>{message}</h3>
         </div>
       </div>
+   
     </div>
+    <Footer/>
+    </div>
+    
   );
 };
 

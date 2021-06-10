@@ -8,6 +8,7 @@ import {applyJob} from '../../../../actions/job.js'
 import { useHistory } from 'react-router';
 import { PromiseProvider } from 'mongoose';
 
+
 const ApplyJob = (props) =>
 {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -96,6 +97,7 @@ const ApplyJob = (props) =>
   }
 
   return (
+    
     <div className="xdd">
     <form className="needs-validation" onSubmit = {handleSubmit}>
 
@@ -465,7 +467,10 @@ const ApplyJob = (props) =>
       <button className="btn btn-primary" type="submit">Submit form</button>
     </form>
     <h3>{message}</h3>
+    
   </div>
+  
+  
   )
 }
   

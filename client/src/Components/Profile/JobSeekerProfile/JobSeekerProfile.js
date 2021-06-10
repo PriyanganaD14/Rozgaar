@@ -8,6 +8,8 @@ import {
     CardTitle, CardSubtitle, Col, Row
   } from 'reactstrap';
 import './JobSeekerProfile.css';
+import Footer from '../../Footer/Footer';
+
 
 
 const Profile = () => {
@@ -101,7 +103,7 @@ const Profile = () => {
 
 
 
-
+          <Footer/>
 
         </div>
     );

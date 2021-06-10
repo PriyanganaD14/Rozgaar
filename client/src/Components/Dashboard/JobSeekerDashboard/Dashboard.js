@@ -2,6 +2,8 @@ import './Dashboard.css'
 import './Dash.css'
 import Dash from './Dash'
 import { useState } from "react"; 
+import Footer from '../../Footer/Footer';
+
 
 const Dashboard = () =>
 {
@@ -10,6 +12,7 @@ const Dashboard = () =>
     setState(!state)
   }
     return(
+      <div  >
         <div className="row" id="whole"> 
         <div className="col-3 side">
      <Dash/>
@@ -109,6 +112,8 @@ const Dashboard = () =>
     </div>
   </div>
     </div>
+    </div>
+     <Footer/>
     </div>
     )
 } 

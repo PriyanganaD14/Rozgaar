@@ -23,6 +23,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
 import './EmployerApplication.css'
 import { Link } from 'react-router-dom'
+import Footer from '../../../Footer/Footer';
 function createData(name,date,position,contact,status) {
   return { name,date,position,contact,status};
 }
@@ -331,6 +332,7 @@ export default function EmployerApplication() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+      <Footer/>
     </div>
   );
 }

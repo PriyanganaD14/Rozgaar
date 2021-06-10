@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../Footer/Footer';
 import './ProfileUpdate.css'
 
 
@@ -7,6 +8,7 @@ const ProfileUpdate =()=>{
         // <div>
         //     <h1>Profile update</h1>
         // </div>
+        <div>
         <div className="container" style={{marginTop: "-70px"}}>
         <div className="view-account">
             <section className="module">
@@ -103,7 +105,11 @@ const ProfileUpdate =()=>{
                 </div>
             </section>
         </div>
+       
     </div>
+    <Footer/>
+    </div>
+    
     );
 }
 

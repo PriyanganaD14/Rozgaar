@@ -25,6 +25,8 @@ const Home =()=>(
        <Buttons/>
         <hr/>
         <CardSection/>
+        <Footer/>
+      
   </div>
 )
 const App = () => {
@@ -38,6 +40,7 @@ const App = () => {
    
        <Switch>
         <Route exact path="/" component={Home}/>
+        
         <Route exact path="/JobsFeed/FindJob" component={FindJob}/>
         <Route exact path="/jobSeeker/Dashboard" component={JobSeekerDashboard}/> 
         <Route exact path="/employer/Dashboard" component={EmployerDashboard}/> 
@@ -50,9 +53,10 @@ const App = () => {
         <Route excat path="/updatePassword/:token" component={UpdatePassword} />
         <Route exact path="/jobSeeker/Application" component={JobSeekerApplication}/>
         <Route exact path="/employer/Application" component={EmployerApplication}/>
-       
+      
        </Switch>
-        <Footer/>
+      
+    
         </BrowserRouter>
       </div>
   );
