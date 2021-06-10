@@ -3,10 +3,12 @@ import { Form, Row, Col, FormGroup, Label, Input } from "reactstrap";
 import { Card, Button, CardTitle, CardText } from "reactstrap";
 import { CircularProgress } from '@material-ui/core';
 import "./JobsFeed.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getJobs, getAllJobs } from '../../actions/job'; 
 import Footer from "../Footer/Footer";
+
+import Popup from '../../Components/Popup';
 
 
 const capitalizeFirstLetter = (string) => {
@@ -14,12 +16,14 @@ const capitalizeFirstLetter = (string) => {
 }
 
 const JobsFeed = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
   const [job, setJob] = useState("");
   const [location, setLocation] = useState("");
   const [jobs, setJobs] = useState([]); 
   const [error, setError] = useState("");
   const [locerr, setLocationError] = useState(""); 
   const [goodTogo, setGoodToGo] = useState(false);
+  const [openPopup,setOpenPopup] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -29,6 +33,11 @@ const JobsFeed = () => {
     }
     dummy();
   }, [location])
+
+  const handleApplyNow = () => {
+    if(!user || user.result.userType)
+    setOpenPopup(true);
+  }
 
   const validateLocation = (checklocation) =>{ 
         if(!checklocation.includes(",")){
@@ -174,14 +183,21 @@ const JobsFeed = () => {
                   </CardText>
                   <CardText>Salary: {job?.salary}</CardText>
                   <CardText>Skill: {capitalizeFirstLetter(job?.skillsReq[0].skillName)}</CardText>
-                  <Link to={{
-                    pathname: '/JobsFeed/FindJob',
-                    jobPostId: job._id
-                  }}>
-                    <Button type="button" color="primary" size="lg" className="btnsz">
-                    Apply Now
-                    </Button>
-                  </Link>
+                    <Button type="button" color="primary" size="lg" className="btnsz" onClick={handleApplyNow}>
+                      Apply Now
+                      {(user && !user.result.userType)
+                         &&
+                        <Redirect to={{
+                          pathname: '/JobsFeed/FindJob',
+                          jobPostId: job._id
+                        }} />
+                      }
+                      </Button>
+                      <Popup 
+                        openPopup={openPopup} 
+                        setOpenPopup={setOpenPopup} 
+                        title={!user ? "You are not logged in" : user.result.userType && "Cant apply... you are logged in as Emp."} 
+                      />
                   </Card>
                 </Col>
               ))} 
