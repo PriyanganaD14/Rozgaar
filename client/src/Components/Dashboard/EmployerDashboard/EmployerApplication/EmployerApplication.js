@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState , useEffect }from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -22,27 +22,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
 import './EmployerApplication.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Footer from '../../../Footer/Footer';
+import { empAppn } from '../../../../actions/application'; 
+import { CircularProgress } from '@material-ui/core'; 
+import Popup from '../../../Popup'
+
 function createData(name,date,position,contact,status) {
   return { name,date,position,contact,status};
 }
-
-const rows = [
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Driver',6720329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Maid', 8676203231, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Cook', 8740329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Guard', 8920329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Receptionist', 6890329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Delivery Boy', 6660329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Sales', 6726329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Teacher', 7727329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Cook', 8726329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Guard', 5720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Driver', 9720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Maid', 3720329731,<div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-  createData(<Link className="frl" to="#">App-001</Link>,'20-JUN-1990 08:03','Servant',8720329731, <div> <i className="far fa-check-circle tick"></i><i className="far fa-times-circle cross"></i></div>),
-];
+ 
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -217,6 +206,42 @@ export default function EmployerApplication() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
+  const [rows,setrows]=useState([]);
+  const [error, setError] = useState(""); 
+  const [openPopup,setOpenPopup] = useState(false)
+  
+  const params = useParams(); 
+
+  const user = JSON.parse(localStorage.getItem('profile'));
+  useEffect( () => {
+   const dummy= async () => {
+     
+    var data; 
+
+    console.log(user?.result?._id); 
+ 
+    if(params?.jobPostId)
+    data = await empAppn(user?.result?._id , params?.jobPostId);
+    else 
+    data = await empAppn(user?.result?._id , null);
+    
+    console.log(data);
+    if(data?.error)
+      {
+        setError(data?.error);
+        return setOpenPopup(true);
+      }
+      
+      var sdata=[]
+    data["result"].map(data => {
+      return sdata.push(createData(data.jobSeekerId, data.createdAt, data.jobType, data.contact, <Button id="pend" variant="outlined" color="secondary">{data.status}</Button>));
+    })
+    await setrows(sdata);
+    }
+
+   dummy();
+  }, []) 
+
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -272,7 +297,21 @@ export default function EmployerApplication() {
 
   return (
     <div className={classes.root} id="apps">
-      <Paper className={classes.paper}>
+    <Popup 
+    openPopup={openPopup} 
+    setOpenPopup={setOpenPopup} 
+    title={"No Application found."} 
+  />
+    {error
+      ? <h1 style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>{error}</h1>
+      : (!rows?.length 
+      ? (<div  style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>
+         <CircularProgress /> 
+         <h1 style={{ justifyContent: "center", position: "fixed", top: "65%" }}>Loading...please wait</h1>
+         </div> 
+      ):<div>
+      
+    <Paper className={classes.paper}>
         <TableContainer>
           <Table
             className={classes.table}
@@ -301,7 +340,7 @@ export default function EmployerApplication() {
                     >
                     
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        <Link to={`/applicant/${row.name}`}>{row.name}</Link>
                       </TableCell>
                       <TableCell align="right">{row.date}</TableCell>
                       <TableCell align="right">{row.position}</TableCell>
@@ -332,6 +371,8 @@ export default function EmployerApplication() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+      </div>
+      )}
       <Footer/>
     </div>
   );

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //import profilepicture from '.../Assets/ProfilePicture.jpg';
 import profilepicture from './ProfilePicture.jpg';
 import {
@@ -10,9 +10,10 @@ import {
 import './JobSeekerProfile.css';
 import Footer from '../../Footer/Footer';
 
-
-
 const Profile = () => {
+    
+    const params = useParams(); 
+
     return (
         <div style={{marginTop: "-70px"}}>
             <div class="row ml-3 mr-3">
@@ -22,8 +23,11 @@ const Profile = () => {
         <CardBody className="middle">
           <CardTitle tag="h5">Rohan Roy</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Driver</CardSubtitle>
-          <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
-        </CardBody>
+          {!params.applicantId ?
+              <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
+            : null
+           }
+          </CardBody>
       </Card>
                 </div>
                 <div className="col-lg-9">

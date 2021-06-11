@@ -4,7 +4,7 @@ import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
 import PieChart from './PieChart'
-
+import { useHistory } from "react-router-dom";
 
 
 import {
@@ -41,7 +41,8 @@ const EDashboard = () =>
   const [error, setError] = useState(""); 
   const dispatch = useDispatch();
   const classes = useStyles();
-  
+  const history = useHistory();
+
   console.log(user?.result?._id); 
 
   useEffect(() => {    
@@ -162,7 +163,7 @@ const EDashboard = () =>
                   <Row> 
                   {jobs.map((job) => (
               <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12" key={job._id}>
-                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}}>
+                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}} onClick={() => {history.push(`/employer/Application/${job?.id}`) }}>
                   <CardTitle tag="h5">Title: {job?.title.toUpperCase()} </CardTitle>
                       <CardTitle tag="h6">Vacancy: {job?.vacancy}</CardTitle>
                            <CardText>

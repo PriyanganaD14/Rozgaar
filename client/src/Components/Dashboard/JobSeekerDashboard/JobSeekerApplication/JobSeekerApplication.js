@@ -278,19 +278,22 @@ export default function JobSeekerApplication() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   const user = JSON.parse(localStorage.getItem('profile'));
   useEffect( () => {
-   const dummy= async()=>
-   {
-    const data = await fetchAppn(user.result._id);
+   const dummy= async () => {
+    const data = await fetchAppn(user?.result?._id);
     console.log(data);
-    if(data.error)
-      return setOpenPopup(true);
+    if(data?.error)
+      {
+        setError(data?.error);
+        return setOpenPopup(true);
+      }
     var sdata=[]
     data["result"].map(data => {
-      return sdata.push(createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, data.jobStatus, <Button id="pend" variant="outlined" color="secondary">On hold</Button>));
+      return sdata.push(createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, <Button id="pend" variant="outlined" color="secondary"> {data.jobStatus}</Button>));
     })
     setrows(sdata);
     console.log(rows);
-   }
+    }
+
    dummy();
   }, [])
   return (
@@ -301,10 +304,13 @@ export default function JobSeekerApplication() {
         title={"No Application found."} 
       />
       {error
-        ? <h1>{error}</h1>
+        ? <h1 style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>{error}</h1>
         : (!rows?.length 
-        ? <CircularProgress /> 
-        :<div>
+        ? (<div  style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>
+           <CircularProgress /> 
+           <h1 style={{ justifyContent: "center", position: "fixed", top: "65%" }}>Loading...please wait</h1>
+           </div> 
+        ):<div>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>

@@ -124,18 +124,19 @@ const extractEmpPosts = async (req, res) => {
   }
 };
 
-//url : http://localhost:7866/api/empAppn?jobPostId=value
+//url : http://localhost:7866/api/empAppn/jobPostId
 const empAppn = async (req, res) => {
-  const body = req?.body;
-  const jobPostId = req?.query?.jobPostId;
+  const body = req?.body; 
+  const jobPostId = req?.params?.jobPostId;
+ 
   let result = [];
   try {
      // for knowing seeker details for a particular job post
     if(jobPostId) {
       result = await Application.returnSeekerdetails(jobPostId);
     } else {
-      const { userId } = body;
-      const totalJobPost = await JobPost.find({ postedBy: userId });
+      const { empId } = body;
+      const totalJobPost = await JobPost.find({ postedBy: empId });
       for (const ele in totalJobPost) {
          const res = await Application.returnSeekerdetails(totalJobPost[ele]._id);
          for (const t in res) result.push(res[t]);

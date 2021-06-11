@@ -242,6 +242,12 @@ userSchema.methods.whatToReturn = async function () {
 
 userSchema.methods.extDetailsEMP = async function({jobPostId}) {
    const user = this; 
+   
+   const set = new Set(user.jobsPosted); 
+   
+    if(!set.has(jobPostId)){
+          user.jobsPosted.push(jobPostId);
+      }
 
    user.jobsPosted.push(jobPostId); 
 

@@ -17,4 +17,14 @@ export const fetchAppn = async (userId) => {
   } catch (error) {
     return error?.response?.data;
   }
+} 
+
+//getting employer applications when a particular postId is Provided
+export const empAppn = async (empId , jobPostId) => {
+   try{ 
+       const {data} = await api.empAppn(empId , jobPostId);  
+       return data;
+   } catch (error){
+     return error?.response?.data;
+   }
 }
