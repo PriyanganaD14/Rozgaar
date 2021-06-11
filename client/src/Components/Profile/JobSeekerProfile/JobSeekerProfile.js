@@ -13,6 +13,10 @@ import Footer from '../../Footer/Footer';
 
 
 const Profile = () => {
+
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const name = user?.result?.name;
+
     return (
         <div style={{marginTop: "-70px"}}>
             <div class="row ml-3 mr-3">
@@ -20,7 +24,7 @@ const Profile = () => {
                 <Card style={{backgroundColor:"#eee", border:"none"}}>
         <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
         <CardBody className="middle">
-          <CardTitle tag="h5">Rohan Roy</CardTitle>
+          <CardTitle tag="h5">{name} </CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Driver</CardSubtitle>
           <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
         </CardBody>
