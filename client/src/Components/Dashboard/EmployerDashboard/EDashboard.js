@@ -18,9 +18,10 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { extractEmpPosts } from '../../../actions/application'; 
+import { empAppn, extractEmpPosts } from '../../../actions/application'; 
 import { CircularProgress } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const max5Appn = (data) => {
+  const result = [];
+  for(var i = 0; i < Math.min(data.length, 4); i++) {
+    result.push({ jobType: data[i].jobType, name: data[i].name, appliedAt: data[i].createdAt })
+  }
+  result.sort((a, b) => {
+    return b.appliedAt - a.appliedAt;
+  });
+  result.forEach(item => {
+    console.log(moment(item.createdAt).format('YYYY-MM-DD HH:MM:SS'))
+  })
+  return result;
+}
+
 const EDashboard = () =>
 { 
   const user = JSON.parse(localStorage.getItem('profile')); 
@@ -42,12 +57,22 @@ const EDashboard = () =>
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
+  const [appns, setAppns] = useState([]);
+  const [newAppnErr, setNewAppnErr] = useState("");
 
   console.log(user?.result?._id); 
 
   useEffect(() => {    
     const dummy = async () => {
-      return await setJobs(await extractEmpPosts(user?.result?._id));
+      // await setJobs(await extractEmpPosts(user?.result?._id));
+      const data = await empAppn(user?.result?._id, null);
+      if(data.error) {
+        setNewAppnErr(data.error);
+        return;
+      }
+      const result = max5Appn(data.result);
+      console.log(result);
+      setAppns(result);
     }
     dummy();
   }, [])
@@ -89,7 +114,7 @@ const EDashboard = () =>
       <div className="col">
       <div  className="eone" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle0">
-      <i className="far fa-file-alt" id="eikons"></i>
+      <i className="far" id="eikons">{user?.result?.jobsPosted.length}</i>
       </div>
         <p className="etxt">Total Job Posted</p>
     </div>
@@ -97,7 +122,7 @@ const EDashboard = () =>
       <div className="col">
       <div className="etwo" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle1">
-      <i className="fas fa-clipboard-check" id="eikons"></i>
+      <i className="far" id="eikons">{user?.result?.appnPending}</i>
       </div>
         <p className="etxt">Applications Pending</p>
     </div>
@@ -105,7 +130,7 @@ const EDashboard = () =>
       <div className="col">
       <div className="ethree" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle2">
-      <i className="far fa-check-square" id="eikons"></i>
+      <i className="far" id="eikons">{user?.result?.appnApproved}</i>
       </div>
         <p className="etxt">Applications Approved</p>
     </div>
@@ -114,31 +139,28 @@ const EDashboard = () =>
     <div className="row align-items-center" id="esrow">
 
       <div className="col-md-6" id="eleftapp">
-      <h className="enp">New Applications</h>
-      <table className="table" id="tbl">
-      <thead>
-        <tr>
-          <th scope="col">XYZ(Applied for....)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">XYZ(Applied for....)</th>
-        </tr>
-        <tr>
-          <th scope="row">XYZ(Applied for...)</th>
-        </tr>
-        <tr>
-          <th scope="row">XYZ(Applied for...)</th>
-        </tr>
-      </tbody>
-    </table>
-
-  
+        <h className="enp">New Applications</h>
+        <table className="table" id="tbl">
+        <tbody>
+          {newAppnErr 
+            ? <h3>{newAppnErr} </h3>
+            : appns.map(app => {
+              return (
+                <tr>
+                  <th scope="col">{`${app.name}(Applied for ${app.jobType})`}</th>
+                </tr>
+              )
+          })}
+        </tbody>
+        </table>
       </div>
 
       <div className="col-md-4" id="ebeftapp">
-      <PieChart />
+      <PieChart
+        pending={user?.result?.appnPending} 
+        approved={user?.result?.appnApproved} 
+        rejected={(user?.result?.jobsPosted.length - user?.result?.appnPending - user?.result?.appnApproved)}
+      />
       </div>
     </div>
     
@@ -173,7 +195,7 @@ const EDashboard = () =>
                            {job?.location?.state}
                            </CardText>
                            <CardText>whoCanApply: {job?.whoCanApply}</CardText>
-                          <CardText>Highest Qualification: {job?.highestQual}</CardText>
+                           <CardText>Highest Qualification: {job?.highestQual}</CardText>
                            <CardText>Salary: {job?.salary}</CardText>
                            <CardText>Date Posted: {job?.dateOfPost.substring(10,0)}</CardText>
                   </Card>

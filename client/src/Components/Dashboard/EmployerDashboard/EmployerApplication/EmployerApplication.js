@@ -25,6 +25,7 @@ import Footer from '../../../Footer/Footer';
 import { empAppn } from '../../../../actions/application'; 
 import { CircularProgress, Button } from '@material-ui/core'; 
 import Popup from '../../../Popup'
+import Sad from '../../../Actions/Sad'
 
 function createData(name,date,position,contact,status) {
   return { name,date,position,contact,status};
@@ -296,10 +297,12 @@ export default function EmployerApplication() {
   return (
     <div className={classes.root} id="apps">
     <Popup 
-    openPopup={openPopup} 
-    setOpenPopup={setOpenPopup} 
-    title={"No Application found."} 
-  />
+      openPopup={openPopup} 
+      setOpenPopup={setOpenPopup} 
+      title={"No Application found."} 
+      render={<Sad />}
+      path='/employer/Dashboard'
+    />
     {error
       ? <h1 style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>{error}</h1>
       : (!rows?.length 

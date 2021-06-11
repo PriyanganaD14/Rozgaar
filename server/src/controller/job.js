@@ -69,6 +69,7 @@ const applyJob = async (req, res) => {
     const findEMP = await User.findById({_id: job.postedBy});
     console.log('findEMP = ' , findEMP); 
     
+    // pushing application id to emp 
     const employer = await findEMP.extDetailsEMP({jobPostId});
     console.log('employer = ' , employer);
     

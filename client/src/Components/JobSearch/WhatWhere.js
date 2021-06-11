@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory } from "react-router-dom";
 
 import { Form,} from "reactstrap";
 import { getJobs } from "../../api";
@@ -7,17 +7,19 @@ import { useDispatch } from 'react-redux';
 import {Button as ButtonMU} from '@material-ui/core';
 
 
-
+import Sad from '../Actions/Sad'
+import Popup from '../Popup';
 
 const WhatWhere = () => {
-
-
-  const[locerr,setLocationError]=useState("");
-  const[goodTogo,setGoodToGo]=useState(false);
-  const[job,setJob]=useState("");
-  const[location,setLocation]=useState("");
-  const[error,setError]=useState("");
-  const[jobs,setJobs]=useState("");
+  const [locerr,setLocationError]=useState("");
+  const [goodTogo,setGoodToGo]=useState(false);
+  const [job,setJob]=useState("");
+  const [location,setLocation]=useState("");
+  const [error,setError]=useState("");
+  const [jobs,setJobs]=useState("");
+  const [clicked, setOnclicked] = useState(false);
+  const [openPopup,setOpenPopup] = useState(false);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -46,32 +48,30 @@ const WhatWhere = () => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    console.log(job,location);
-
-    if(!goodTogo || locerr!=""){
-      setError("Please fill correct details");
+    if(!goodTogo || locerr!="") {
+      setOpenPopup(true);
+      setError("Location should be in city, state format");
       return;
     }
-    
-    setJobs([]);
-    setError("");
-
-    const data =await getJobs(job,location);
-
-    if(data?.error){
-      setError(data?.error);
-      return;
-    }
-
-    setJobs(data?.result);
-    console.log(jobs);
-    dispatch({type: "FETCH_JOB"})
-
+    history.push({
+      pathname: '/jobsFeed',
+      data: {
+        job,
+        location
+      }
+    })
+    setOnclicked(true);
   }
   
 
   return (
     <Form class="form-row align-items-center forms" id="ssec" onSubmit={handleSubmit} >
+    <Popup 
+      openPopup={openPopup} 
+      setOpenPopup={setOpenPopup} 
+      title={error} 
+      render={<Sad />}
+    />
     <div className="form-row align-items-center forms" >
     <div className="col-sm-10 ikons">
       <label className="sr-only" for="inlineFormInputName">Name</label>
@@ -109,7 +109,7 @@ const WhatWhere = () => {
    {/* <Link to="/jobsFeed" ><button type="submit" className="btn btn-primary findlogo">Find Jobs</button></Link>*/}
    <ButtonMU type="submit" variant="contained" color="primary">
      Find Job
-     {(job && location) &&
+     {clicked &&
      <Redirect to="/jobsFeed"/>}
    </ButtonMU>
     </div>

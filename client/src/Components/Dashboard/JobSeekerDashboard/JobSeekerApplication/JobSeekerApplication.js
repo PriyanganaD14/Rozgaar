@@ -25,6 +25,7 @@ import './JobSeekerApplication.css'
 import Footer from '../../../Footer/Footer';
 import { CircularProgress } from '@material-ui/core';
 import Popup from '../../../Popup'
+import Sad from '../../../Actions/Sad'
 
 function createData(name,date,jobType,base,contact,status) {
   return { name,date,jobType,base,contact,status};
@@ -302,6 +303,8 @@ export default function JobSeekerApplication() {
         openPopup={openPopup} 
         setOpenPopup={setOpenPopup} 
         title={"No Application found."} 
+        render={<Sad />}
+        path='/jobSeeker/Dashboard'
       />
       {error
         ? <h1 style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh", width: "100vw" }}>{error}</h1>

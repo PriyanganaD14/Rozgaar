@@ -4,6 +4,7 @@ export const getJobs = async (job, location) => {
   const jobType = job.toLowerCase();
   const city = location.split(',')[0].trim().toLowerCase();
   const state = location.split(',')[1].trim().toLowerCase();
+  console.log(job, city, state)
   try {
     const { data } = await api.getJobs({jobType, city, state});
     return data;
