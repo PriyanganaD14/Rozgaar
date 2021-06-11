@@ -240,7 +240,7 @@ userSchema.methods.whatToReturn = async function () {
 
 }; 
 
-userSchema.methods.extDetailsEMP = async function({jobPostId}) {
+userSchema.methods.extDetailsEMP = async function(jobPostId,appnId) {
    const user = this; 
    
    const set = new Set(user.jobsPosted); 
@@ -249,23 +249,11 @@ userSchema.methods.extDetailsEMP = async function({jobPostId}) {
           user.jobsPosted.push(jobPostId);
       }
 
-   user.jobsPosted.push(jobPostId); 
-
-   //find all the applications on current jobId 
-   const Appn = await Application.find({jobPostId:jobPostId});
+   if(appnId)
+   user.newAppn.push(appnId);
    
-   user.totalAppn+=Appn.length; 
-
-   if(Appn){
-     for(const ele in Appn){
-      user.newAppn.push(Appn[ele]._id);
-       
-        if(Appn[ele].status=='pending')
-        user.appnPending++; 
-        else if(Appn[ele].status=='approved') 
-        user.appnApproved++; 
-     }
-   } 
+   user.totalAppn++; 
+   user.appnPending++; 
 
    return user;
 
@@ -276,7 +264,7 @@ userSchema.methods.extDetailsJS = async  function ({appnId,skills,languages,dob,
    
    user.jobsApplied.push(appnId);
    user.totalJobApplied++; 
-   user.appnPending++; 
+   user.totalJobPending++; 
 
    const set = new Set(user.skills); 
 
