@@ -42,7 +42,7 @@ const Dash = () =>
             <li className="active dummy"><Link to={user.result.userType ? "/employer/Dashboard":"/jobSeeker/Dashboard"}><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></Link></li>
             <li><Link to="/jobsFeed"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Jobs</span></Link></li>
             <li><Link to={user.result.userType ? "/employer/Application":"/jobSeeker/Application"}><i className="far fa-address-card" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Applications</span></Link></li>   
-            <li><Link to="#"><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></Link></li>
+            <li><Link to="/Profile/ProfileUpdate"><i className="fas fa-user-circle" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Update Profile</span></Link></li>
             <li><Link to={user.result.userType ? "/employer/Profile":"/jobSeeker/Profile"}><i className="fa fa-user" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Profile</span></Link></li>
             <li><Link onClick={logout}><i className="fas fa-sign-out-alt" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Logout</span></Link></li>
             </ul>

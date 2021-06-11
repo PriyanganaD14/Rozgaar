@@ -8,8 +8,8 @@ import PieChart from './PieChart'
 
 
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Col, Row
+  Card, CardText,
+  CardTitle, Col, Row
 } from 'reactstrap';
 
 import { makeStyles } from '@material-ui/core/styles';

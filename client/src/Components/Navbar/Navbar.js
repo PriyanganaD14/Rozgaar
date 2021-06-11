@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import './Navbar.css'
 import { Button, NavbarBrand } from "reactstrap"
 import logo from "../Assets/favicon.ico"

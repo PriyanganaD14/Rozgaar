@@ -74,7 +74,9 @@ const JobsFeed = () => {
     setJobs(data?.result);
     console.log(jobs);
     dispatch({ type: "FETCH_JOB", data})  
+    
   }
+  
   return (
     <div>
     <div className="container" style={{ marginTop: "-70px" }}>

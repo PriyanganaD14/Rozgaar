@@ -9,7 +9,7 @@ import Container from "@material-ui/core/Container";
 import logo from "../Assets/favicon.ico";
 
 import { GoogleLogin } from "react-google-login";
-import Icon from "./icon";
+
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
