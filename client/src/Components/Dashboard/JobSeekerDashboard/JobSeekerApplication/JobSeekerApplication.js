@@ -223,6 +223,7 @@ export default function JobSeekerApplication() {
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
   const [openPopup,setOpenPopup] = useState(false)
   const [rows,setrows]=useState([]);
+  const [error, setError] = useState(""); 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -299,6 +300,11 @@ export default function JobSeekerApplication() {
         setOpenPopup={setOpenPopup} 
         title={"No Application found."} 
       />
+      {error
+        ? <h1>{error}</h1>
+        : (!rows?.length 
+        ? <CircularProgress /> 
+        :<div>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -369,6 +375,8 @@ export default function JobSeekerApplication() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      </div>
+        )}
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
