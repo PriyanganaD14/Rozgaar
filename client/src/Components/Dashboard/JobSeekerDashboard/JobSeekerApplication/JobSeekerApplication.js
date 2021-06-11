@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -23,26 +23,18 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
 import './JobSeekerApplication.css'
 import Footer from '../../../Footer/Footer';
+import { CircularProgress } from '@material-ui/core';
+import Popup from '../../../Popup'
 
-function createData(name,date,position,base,contact,status) {
-  return { name,date,position,base,contact,status};
+function createData(name,date,jobType,base,contact,status) {
+  return { name,date,jobType,base,contact,status};
 }
 
-const rows = [
-  createData('App-001','20-JUN-1990 08:03','Driver',3000, 6720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-002','20-JUN-1990 08:03','Maid', 4000, 8676203231, <Button id="pend" variant="outlined" color="secondary">On hold</Button>),
-  createData('App-003','20-JUN-1990 08:03','Cook', 5000, 8740329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-004','20-JUN-1990 08:03','Guard', 6000, 8920329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-005','20-JUN-1990 08:03','Receptionist', 7000, 6890329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-006','20-JUN-1990 08:03','Delivery Boy', 8000, 6660329731,<Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-007','20-JUN-1990 08:03','Sales', 4000, 6726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-008','20-JUN-1990 08:03','Teacher', 2000, 7727329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-009','20-JUN-1990 08:03','Cook', 1000, 8726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-010','20-JUN-1990 08:03','Guard', 3000, 5720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-011','20-JUN-1990 08:03','Driver', 2000, 9720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-012','20-JUN-1990 08:03','Maid', 3000, 3720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  createData('App-013','20-JUN-1990 08:03','Servant', 7000, 8720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-];
+// createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, data.jobStatus);
+
+// var rows = [];
+
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -73,7 +65,7 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: 'name', numeric: false, disablePadding: true, label: <h className="titems">ID</h> },
   { id: 'date', numeric: true, disablePadding: false, label: <h className="titems">Date</h> },
-  { id: 'position', numeric: true, disablePadding: false, label: <h className="titems">Position</h> },
+  { id: 'Job Type', numeric: true, disablePadding: false, label: <h className="titems">Job Type</h> },
   { id: 'base', numeric: true, disablePadding: false, label: <h className="titems">Base Salary</h> },
   { id: 'contact', numeric: true, disablePadding: false, label: <h className="titems">Contact</h> },
   { id: 'status', numeric: true, disablePadding: false, label: <h className="titems">Status</h> },
@@ -152,7 +144,10 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
+const { fetchAppn } = require('../../../../actions/application');
+
 const EnhancedTableToolbar = (props) => {
+  const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useToolbarStyles();
   const { numSelected } = props;
 
@@ -226,6 +221,9 @@ export default function JobSeekerApplication() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
+  const [openPopup,setOpenPopup] = useState(false)
+  const [rows,setrows]=useState([]);
+  const [error, setError] = useState(""); 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -278,9 +276,35 @@ export default function JobSeekerApplication() {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
+  const user = JSON.parse(localStorage.getItem('profile'));
+  useEffect( () => {
+   const dummy= async()=>
+   {
+    const data = await fetchAppn(user.result._id);
+    console.log(data);
+    if(data.error)
+      return setOpenPopup(true);
+    var sdata=[]
+    data["result"].map(data => {
+      return sdata.push(createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, data.jobStatus, <Button id="pend" variant="outlined" color="secondary">On hold</Button>));
+    })
+    setrows(sdata);
+    console.log(rows);
+   }
+   dummy();
+  }, [])
   return (
     <div className={classes.root} id="apps">
+      <Popup 
+        openPopup={openPopup} 
+        setOpenPopup={setOpenPopup} 
+        title={"No Application found."} 
+      />
+      {error
+        ? <h1>{error}</h1>
+        : (!rows?.length 
+        ? <CircularProgress /> 
+        :<div>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -326,7 +350,7 @@ export default function JobSeekerApplication() {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.date}</TableCell>
-                      <TableCell align="right">{row.position}</TableCell>
+                      <TableCell align="right">{row.jobType}</TableCell>
                       <TableCell align="right">{row.base}</TableCell>
                       <TableCell align="right">{row.contact}</TableCell>
                       <TableCell align="right">{row.status}</TableCell>
@@ -352,9 +376,11 @@ export default function JobSeekerApplication() {
         />
       </Paper>
       <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
+      control={<Switch checked={dense} onChange={handleChangeDense} />}
+      label="Dense padding"
+    />
+      </div>
+        )}
       <Footer/>
     </div>
   );

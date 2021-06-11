@@ -9,3 +9,12 @@ export const extractEmpPosts = async(userId) => {
       return error?.response?.data;
     }
  }
+
+export const fetchAppn = async (userId) => {
+  try {
+    const {data} = await api.fetchAppn({userId}); 
+    return data;
+  } catch (error) {
+    return error?.response?.data;
+  }
+}

@@ -10,11 +10,14 @@ import {useDispatch} from 'react-redux';
 
 //signin and signup
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
+import Modal from '@material-ui/core/Modal';import Backdrop from '@material-ui/core/Backdrop';
+
 import Fade from '@material-ui/core/Fade';
 import { Avatar, Card, Grid, Typography } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
+
+import img from '../Assets/1.png'
+import flag from '../Assets/3.png'
 
 
 import SignIn from '../auth/SignIn';
@@ -124,13 +127,26 @@ const Navbar = () => {
           <div className="menu-icon" onClick={handleClick}>
             <i className={state ? 'fas fa-times' : 'fas fa-bars'}></i>
           </div> 
-          
+          <div>
           {user?.result ? (
+            
+            
                <ul className={state ? 'nav-menu active' : 'nav-menu classes.profile'}>
-               <li><Link onClick={handleClose2} className="nav-links" to={user.result.userType ? "/employer/Profile": "/jobSeeker/Profile"}>Profile</Link></li>
+              
+               {!user.result.userType ?(
+                    <>
+                    <li><Avatar className={classes.purple} alt={user.result.name} src={img}>{user.result.name.charAt(0)}</Avatar></li>
+                    <li><Link onClick={handleClose2} className="nav-links" to="/jobSeeker/Profile">Profile</Link></li>
+                    </>
+               ):( 
+                 <li><Avatar className={classes.purple} alt={user.result.name} src={flag}>{user.result.name.charAt(0)}</Avatar></li>)}
+              
                <li><Link onClick={handleClose2} className="nav-links" to={user.result.userType ? "/employer/Dashboard": "/jobSeeker/Dashboard"}>Dashboard</Link></li>
                <li><Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar></li>
-               <li><Typography className="nav-links" color="textPrimary">{user.result.name}</Typography></li>
+              
+              
+                <li><Link  className="nav-links" >{user.result.name}</Link></li>
+              
                <li><Link onClick={handleClose2} className="nav-links" onClick={logout}>Logout</Link></li>
                </ul>
            ) : (
@@ -143,6 +159,7 @@ const Navbar = () => {
              <li><Link className="nav-links" onClick={handleOpen}>Signin</Link></li> 
              </ul>
            )}
+           </div>
         </nav>  
         <div style={{ marginBottom: "100px" }}>
           <Modal
