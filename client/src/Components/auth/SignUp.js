@@ -11,7 +11,7 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { signup } from "../../actions/auth";

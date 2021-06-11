@@ -56,7 +56,7 @@ const modifyFormData = (formData) => {
     var i = 0;
     for(const t in tempQual)
       i++;
-    if(i == 4) {
+    if(i === 4) {
       i = 0;
       qualification.push(tempQual);
       tempQual = {};

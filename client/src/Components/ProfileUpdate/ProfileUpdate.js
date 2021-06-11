@@ -20,13 +20,13 @@ const ProfileUpdate =()=>{
                                 <li className="name"><h5>Robin Hood</h5><hr/>
                                     <label className="label label-info"><h4>DRIVER</h4></label>
                                 </li>
-                                <li className="email"><a href="#">Robinhood.S@website.com</a></li>
+                                <li className="email"><a href="Robinhood.S@website.com">Robinhood.S@website.com</a></li>
                                 <li className="activity">Last logged in: Today at 2:18pm</li>
                             </ul>
                         </div>
                         <nav className="side-menu">
                             <ul className="nav">
-                                <li className="active"><a href="#"><span className="fa fa-user"></span> Profile</a></li>
+                                <li className="active"><a href="/jobSeeker/Profile"><span className="fa fa-user"></span> Profile</a></li>
                                 {/* <li><a href="#"><span className="fa fa-cog"></span> Settings</a></li>
                                 <li><a href="#"><span className="fa fa-credit-card"></span> Billing</a></li>
                                 <li><a href="#"><span className="fa fa-envelope"></span> Messages</a></li>

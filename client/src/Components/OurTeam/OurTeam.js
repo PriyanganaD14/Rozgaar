@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+
 import './OurTeam.css'
 import img1 from '../Assets/sks.JPG';
 import img2 from '../Assets/sk.jpeg';
@@ -26,7 +26,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img3} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img3} alt="card image"/></p>
                                     <h4 className="card-title">Priyangana Das</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -40,22 +40,22 @@ const OurTeam =()=>{
                                     <p className="card-text"> She manage complex details about projects that require analyzing design requirements, recommending technical solutions to make projects scalable, maintainable and efficient.</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
@@ -74,7 +74,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img2} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img2} alt="card image"/></p>
                                     <h4 className="card-title">Saurav Kumar</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -88,22 +88,22 @@ const OurTeam =()=>{
                                     <p className="card-text">He debug websites to fix mistakes in the code to make sure they are error-free for network administrators and end-users. Works on Responsive and Mobile Design.</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
@@ -122,7 +122,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img1} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img1} alt="card image"/></p>
                                     <h4 className="card-title">Sunny Kumar</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -136,22 +136,22 @@ const OurTeam =()=>{
                                     <p className="card-text">He interpret requirements and create project plans to meet schedule and quality goals. Work across teams to identify and solve problems. </p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
@@ -170,7 +170,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img5} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img5} alt="card image"/></p>
                                     <h4 className="card-title">Ayush Raj</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -184,22 +184,22 @@ const OurTeam =()=>{
                                     <p className="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
@@ -218,7 +218,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img4} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img4} alt="card image"/></p>
                                     <h4 className="card-title">Abhishek Ranjan Singh</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -232,22 +232,22 @@ const OurTeam =()=>{
                                     <p className="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
@@ -266,7 +266,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><img className=" img-fluid" src={img6} alt="card image"/></p>
+                                    <p><image className=" img-fluid" src={img6} alt="card image"/></p>
                                     <h4 className="card-title">Abhishek Kumar</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -280,22 +280,22 @@ const OurTeam =()=>{
                                     <p className="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
-                                            <a className="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a className="social-icon text-xs-center" target="_blank" rel="noopener noreferrer" href="https://www.fiverr.com/share/qb8D02">
                                                 <i className="fa fa-google"></i>
                                             </a>
                                         </li>
