@@ -34,8 +34,8 @@ const createJob = async (req, res) => {
     const findUser = User.findById({_id: postedBy}); 
     
     const jobId = job._id; 
- 
-    const user = findUser.extDetailsEMP({jobId});
+
+    const user = findUser.extDetailsEMP(jobId, null);
     user.save(); 
 
     const result = await user.whatToReturn();
@@ -71,7 +71,7 @@ const applyJob = async (req, res) => {
     console.log('findEMP = ' , findEMP); 
     
     // pushing application id to emp 
-    const employer = await findEMP.extDetailsEMP({jobPostId});
+    const employer = await findEMP.extDetailsEMP(jobPostId , appnId);
     console.log('employer = ' , employer);
     
     employer.save();
