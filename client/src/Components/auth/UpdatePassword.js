@@ -1,16 +1,15 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Avatar, Button, TextField, Grid, Typography, Container }  from "@material-ui/core";
+import { Button, TextField,Typography, Container }  from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import logo from "../Assets/favicon.ico";
-import Icon from "./icon";
+
 
 import { changePassword } from '../../actions/auth';
 const UpdatePassword = ({ history }) => {
   const classes = useStyles();
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
+ // const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [submit, setSubmit] = useState(false);
   const { token } = useParams();
 

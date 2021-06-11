@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -23,7 +23,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Button from '@material-ui/core/Button'
 import './JobSeekerApplication.css'
 import Footer from '../../../Footer/Footer';
-
+import { CircularProgress } from '@material-ui/core';
 import Popup from '../../../Popup'
 
 function createData(name,date,jobType,base,contact,status) {
@@ -34,22 +34,6 @@ function createData(name,date,jobType,base,contact,status) {
 
 // var rows = [];
 
-
-const rows = [
-  // createData('App-001','20-JUN-1990 08:03','Driver',3000, 6720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-002','20-JUN-1990 08:03','Maid', 4000, 8676203231, <Button id="pend" variant="outlined" color="secondary">On hold</Button>),
-  // createData('App-003','20-JUN-1990 08:03','Cook', 5000, 8740329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-004','20-JUN-1990 08:03','Guard', 6000, 8920329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-005','20-JUN-1990 08:03','Receptionist', 7000, 6890329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-006','20-JUN-1990 08:03','Delivery Boy', 8000, 6660329731,<Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-007','20-JUN-1990 08:03','Sales', 4000, 6726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-008','20-JUN-1990 08:03','Teacher', 2000, 7727329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-009','20-JUN-1990 08:03','Cook', 1000, 8726329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-010','20-JUN-1990 08:03','Guard', 3000, 5720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-011','20-JUN-1990 08:03','Driver', 2000, 9720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-012','20-JUN-1990 08:03','Maid', 3000, 3720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-  // createData('App-013','20-JUN-1990 08:03','Servant', 7000, 8720329731, <Button id="pend" variant="outlined" color="secondary">Pending</Button>),
-];
 
 
 function descendingComparator(a, b, orderBy) {
@@ -238,6 +222,8 @@ export default function JobSeekerApplication() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
   const [openPopup,setOpenPopup] = useState(false)
+  const [rows,setrows]=useState([]);
+  const [error, setError] = useState(""); 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -291,16 +277,21 @@ export default function JobSeekerApplication() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   const user = JSON.parse(localStorage.getItem('profile'));
-  useState(async () => {
+  useEffect( () => {
+   const dummy= async()=>
+   {
     const data = await fetchAppn(user.result._id);
     console.log(data);
     if(data.error)
       return setOpenPopup(true);
-    
+    var sdata=[]
     data["result"].map(data => {
-      return rows.push(createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, data.jobStatus, <Button id="pend" variant="outlined" color="secondary">On hold</Button>));
+      return sdata.push(createData(data.appnId, data.jobAppliedAt, data.jobType, data.jobSalary, data.contact, data.jobStatus, <Button id="pend" variant="outlined" color="secondary">On hold</Button>));
     })
+    setrows(sdata);
     console.log(rows);
+   }
+   dummy();
   }, [])
   return (
     <div className={classes.root} id="apps">
@@ -309,6 +300,11 @@ export default function JobSeekerApplication() {
         setOpenPopup={setOpenPopup} 
         title={"No Application found."} 
       />
+      {error
+        ? <h1>{error}</h1>
+        : (!rows?.length 
+        ? <CircularProgress /> 
+        :<div>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -380,9 +376,11 @@ export default function JobSeekerApplication() {
         />
       </Paper>
       <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
+      control={<Switch checked={dense} onChange={handleChangeDense} />}
+      label="Dense padding"
+    />
+      </div>
+        )}
       <Footer/>
     </div>
   );

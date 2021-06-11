@@ -20,7 +20,7 @@ const ApplyJob = (props) =>
   const [message, setMessage] = useState("");
   const history = useHistory();
   
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const initialState = {
     name: "",

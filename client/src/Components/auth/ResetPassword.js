@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Avatar, Button, TextField, Grid, Typography, Container }  from "@material-ui/core";
+import { Avatar, Button, TextField, Typography, Container }  from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../Assets/favicon.ico";
-import Icon from "./icon";
-import { useHistory } from "react-router-dom";
+
+//import { useHistory } from "react-router-dom";
 
 import { resetPassword } from '../../actions/auth';
 
@@ -11,7 +11,7 @@ export default function ResetPassword(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [submit, setSubmit] = useState(false);
-  const history = useHistory();
+  //const history = useHistory();
   
   const handleSubmit = (e) => {
     e.preventDefault();
