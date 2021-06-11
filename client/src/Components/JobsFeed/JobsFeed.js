@@ -23,7 +23,8 @@ const JobsFeed = () => {
   const [error, setError] = useState("");
   const [locerr, setLocationError] = useState(""); 
   const [goodTogo, setGoodToGo] = useState(false);
-  const [openPopup,setOpenPopup] = useState(false)
+  const [openPopup,setOpenPopup] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const JobsFeed = () => {
   const handleApplyNow = () => {
     if(!user || user.result.userType)
     setOpenPopup(true);
+    setClicked(true);
   }
 
   const validateLocation = (checklocation) =>{ 
@@ -185,7 +187,7 @@ const JobsFeed = () => {
                   <CardText>Skill: {capitalizeFirstLetter(job?.skillsReq[0].skillName)}</CardText>
                     <Button type="button" color="primary" size="lg" className="btnsz" onClick={handleApplyNow}>
                       Apply Now
-                      {(user && !user.result.userType)
+                      {(user && !user.result.userType && clicked)
                          &&
                         <Redirect to={{
                           pathname: '/JobsFeed/FindJob',

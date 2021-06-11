@@ -3,7 +3,7 @@ const Application = require("../models/application/application");
 
 const seekerAppn = async (req, res) => {
   const body = req?.body;
-
+  console.log(body);
   try {
     const { userId } = body;
 
