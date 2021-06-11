@@ -2,10 +2,31 @@ import React, { useState } from "react";
 import "./PostJob.css";
 
 import { postJob } from '../../../../actions/job';
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import Footer from "../../../Footer/Footer";
 
-const PostJob = () => {
+const modify = (data, postedBy) => {
+  const initialState = {
+    title: data.jobTitle, 
+    whoCanApply: data.whoCanApply,
+    salary: data.salary,
+    skill: data.skillName,
+    postedBy: postedBy,
+    vacancyCnt: data.vacancy,
+    locality: data.location.locality, 
+    city: data.location.city, 
+    district: data.location.district,
+    state: data.location.state, 
+    pincode: data.location.pincode, 
+    language: data.languages[0], 
+    highestQual: data.highestQual,
+    jobDescription: data.jobDescription
+  }
+  return initialState;
+}
+
+const PostJob = (props) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const [message, setMessage] = useState("");  
   const history = useHistory();
@@ -14,7 +35,7 @@ const PostJob = () => {
     whoCanApply:"",
     salary:"",
     skill:"",
-    postedBy:"",
+    postedBy: user?.result?._id,
     vacancyCnt:"",
     locality:"", 
     city:"", 
@@ -26,9 +47,12 @@ const PostJob = () => {
     jobDescription:""
   }
   const [formData, setFormData] = useState(initialState);
-  useState(() => {
+  useState(async () => {
     console.log(user?.result?._id);
-    setFormData({ ...formData, ["postedBy"]: user?.result?._id })
+    await setFormData({ ...formData, ["postedBy"]: user?.result?._id })
+    if(props?.location?.job)
+      await setFormData(modify(props?.location?.job));
+    console.log(props?.location?.job);
   }, [])
   const handleChange = (e) => {
     // console.log(e.target.name, e.target.value);
@@ -38,9 +62,11 @@ const PostJob = () => {
     // console.log(e.target.name, e.target[e.target.value].label);
     setFormData({ ...formData, [e.target.name]: e.target[e.target.value].label });
   }
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await postJob(formData);
+    console.log(formData);
+    const data = await postJob(formData, dispatch);
     setMessage("Job is successfully created.");
     setFormData(initialState);
     setTimeout(() => {
@@ -57,21 +83,6 @@ const PostJob = () => {
             <p className="xsd">General Information:-</p>
             <div className="form-row">
               <div className="col-lg-4 col-md-4 mb-3">
-                <label for="exampleJobTitle">Job Title</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="title"
-                  id="exampleJobTitle"
-                  placeholder="Enter Job Titile"
-                  required
-                  onChange={handleChange}
-                />
-                <div className="invalid-feedback">
-                  Please provide a valid Job Title.
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-4 mb-3">
                 <label for="exampleJobType">Job Type</label>
                 <select
                   type="select"
@@ -79,6 +90,7 @@ const PostJob = () => {
                   name="jobType"
                   id="exampleJobType"
                   onChange={handleChange1}
+                  defaultValue={formData.title}
                 >
                   <option selected>Select Job Type</option>
                   <option value="1">Driver</option>
@@ -105,6 +117,7 @@ const PostJob = () => {
                     placeholder="Enter Salary"
                     required
                     onChange={handleChange}
+                    defaultValue={formData.salary}
                   />
                   <div className="invalid-feedback">
                     Please provide paid salary
@@ -119,6 +132,7 @@ const PostJob = () => {
                   name="skill"
                   id="exampleSkill"
                   onChange={handleChange1}
+                  defaultvale={formData.skill}
                 >
                   <option selected>Select Required Skill</option>
                   <option value="1">Driving</option>
@@ -138,6 +152,7 @@ const PostJob = () => {
                   name="highestQual"
                   id="exampleQualification"
                   onChange={handleChange1}
+                  defaultValue={formData.highestQual}
                 >
                   <option selected>Select Required Qualification</option>
                   <option value="1">Graduation</option>
@@ -157,6 +172,7 @@ const PostJob = () => {
                   name="whoCanApply"
                   id="exampleGender"
                   onChange={handleChange1}
+                  defaultValue={formData.whoCanApply}
                 >
                   <option selected>Select who can</option>
                   <option value="1">Male and Female both</option>
@@ -177,6 +193,7 @@ const PostJob = () => {
                   placeholder="Enter Vacancy"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.vacancyCnt}
                 />
                 <div className="invalid-feedback">
                   Please provide valid vacancy.
@@ -190,6 +207,7 @@ const PostJob = () => {
                   name="language"
                   id="exampleLanguage"
                   onChange={handleChange1}
+                  defaultValue={formData.language}
                 >
                   <option selected>Select Required Language</option>
                   <option value="1">English</option>
@@ -213,6 +231,7 @@ const PostJob = () => {
                   placeholder="Enter Locality"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.locality}
                 />
                 <div className="invalid-feedback">
                   Please provide a valid input
@@ -228,6 +247,7 @@ const PostJob = () => {
                   placeholder="Enter City"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.city}
                 />
                 <div className="invalid-feedback">
                   Please provide a valid city.
@@ -243,6 +263,7 @@ const PostJob = () => {
                   placeholder="Enter District"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.district}
                 />
                 <div className="invalid-feedback">
                   Please provide a valid district
@@ -258,6 +279,7 @@ const PostJob = () => {
                   placeholder="Enter State"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.state}
                 />
                 <div className="invalid-feedback">
                   Please provide a valid state
@@ -273,6 +295,7 @@ const PostJob = () => {
                   placeholder="Enter Pincode"
                   required
                   onChange={handleChange}
+                  defaultValue={formData.pincode}
                 />
                 <div className="invalid-feedback">
                   Please provide a valid pincode
@@ -295,6 +318,7 @@ const PostJob = () => {
                   rows="5"
                   name="jobDescription"
                   onChange={handleChange}
+                  defaultValue={formData.jobDescription}
                 ></textarea>
               </div>
             </div>

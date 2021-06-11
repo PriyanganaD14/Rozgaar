@@ -7,12 +7,16 @@ const seekerAppn = async (req, res) => {
   try {
     const { userId } = body;
 
-    const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
-      path: "jobPostId",
-      populate: {
-        path: "jobTypeId",
-      },
-    });
+    try {
+      const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
+        path: "jobPostId",
+        populate: {
+          path: "jobTypeId",
+        },
+      });
+    } catch (error) {
+      return error
+    }
 
     const result = [];
 
@@ -73,7 +77,6 @@ const extractEmpPosts = async (req, res) => {
 
     for (const ele in totalJobPost) {
       const temp = totalJobPost[ele];
-
       const id = temp._id;
       const title = temp.jobTypeId.jobTitle;
       const dateOfPost = temp.createdAt;
@@ -85,7 +88,9 @@ const extractEmpPosts = async (req, res) => {
       const highestQual = temp.highestQual;
       const jobDescription = temp.jobDescription;
       const loc = temp.locationId;
-
+      const skillName = temp.skillsReq[0].skillName;
+      const jobTitle = temp.jobTypeId.jobTitle
+      console.log(skillName);
       const location = {
         locality: loc.locality,
         state: loc.state,
@@ -106,6 +111,8 @@ const extractEmpPosts = async (req, res) => {
         languages,
         highestQual,
         jobDescription,
+        skillName,
+        jobTitle
       });
     }
 

@@ -18,6 +18,7 @@ const defaultRoute = async (req, res) => {
 
 const createJob = async (req, res) => {
   const body = req?.body;
+  console.log(formData);
   try {
     const {locality,whoCanApply,vacancyCnt,salary,postedBy,jobDescription,languages,city,district,state,pincode,title,skillsReq,highestQual} = body; 
     

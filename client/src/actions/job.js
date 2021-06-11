@@ -22,13 +22,15 @@ export const getAllJobs = async () => {
   }
 }
 
-export const postJob = async (formData) => {
+export const postJob = async (formData, dispatch) => {
   const skillsReq = [formData.skill];
   const languages = [formData.language];
   formData.skillsReq = skillsReq;
   formData.languages = languages;
   try {
     const { data } = await api.postJob(formData);
+    if(!data?.error)
+      dispatch({type: 'AUTH', data});
     return data;
   } catch (error) {
     return error?.response?.data;

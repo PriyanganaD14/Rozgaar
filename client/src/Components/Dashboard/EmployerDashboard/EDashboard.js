@@ -4,7 +4,7 @@ import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
 import PieChart from './PieChart'
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 import {
@@ -18,8 +18,9 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { empAppn, extractEmpPosts } from '../../../actions/application'; 
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -185,19 +186,28 @@ const EDashboard = () =>
                   <Row> 
                   {jobs.map((job) => (
               <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12" key={job._id}>
-                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}} onClick={() => {history.push(`/employer/Application/${job?.id}`) }}>
+                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}}>
+                  <Link style={{position: "absolute", marginLeft: "450px"}} to={{
+                    pathname: '/employer/postJob',
+                    job
+                  }}>
+                    <MoreVertIcon/>
+                  </Link>
                   <CardTitle tag="h5">Title: {job?.title.toUpperCase()} </CardTitle>
                       <CardTitle tag="h6">Vacancy: {job?.vacancy}</CardTitle>
                            <CardText>
-                           Adddress: {` `}
-                           {job?.location?.city}, 
-                           {` `}
-                           {job?.location?.state}
+                            Adddress: {` `}
+                            {job?.location?.city}, 
+                            {` `}
+                            {job?.location?.state}
                            </CardText>
                            <CardText>whoCanApply: {job?.whoCanApply}</CardText>
                            <CardText>Highest Qualification: {job?.highestQual}</CardText>
                            <CardText>Salary: {job?.salary}</CardText>
                            <CardText>Date Posted: {job?.dateOfPost.substring(10,0)}</CardText>
+                           <Button variant="contained" size="large" color="secondary" style={{width: "250px", alignSelf: "center" }} onClick={() => {history.push(`/employer/Application/${job?.id}`) }}>
+                            View Applications
+                          </Button>
                   </Card>
               </Col>
               ))}

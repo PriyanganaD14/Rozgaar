@@ -1,6 +1,5 @@
-import { Button, Dialog, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
-import MoodBadIcon from '@material-ui/icons/MoodBad';
 import CloseIcon from '@material-ui/icons/Close'
 
 import { useHistory } from 'react-router-dom';
