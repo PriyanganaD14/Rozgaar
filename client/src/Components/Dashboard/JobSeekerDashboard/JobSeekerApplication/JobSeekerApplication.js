@@ -375,12 +375,12 @@ export default function JobSeekerApplication() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      <FormControlLabel
+      control={<Switch checked={dense} onChange={handleChangeDense} />}
+      label="Dense padding"
+    />
       </div>
         )}
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
       <Footer/>
     </div>
   );
