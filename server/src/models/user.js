@@ -125,36 +125,29 @@ userSchema.methods.genToken = async function () {
 
 // use to find the user using email & password
 userSchema.statics.findByCredentials = async (email, password) => {
-  try {
-    var user = await User.findOne({ email });
-    if (!user) {
-      throw new Error("Account not exist with this email.");
-    }
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      throw new Error("Invalid credentials.");
-    }
-    return user;
-  } catch (error) {
-    return error
+  const user = await User.findOne({ email });
+  console.log('user', user);
+  if (!user) {
+    throw new Error("Account not exist with this email.");
   }
+  const isPasswordMatch = await bcrypt.compare(password, user.password);
+  if (!isPasswordMatch) {
+    throw new Error("Invalid credentials.");
+  }
+  return user;
 };
 
 // use to save the user
 userSchema.statics.saveUser = async (body) => {
-  try {
-    let user = await User.findOne({ email: body?.email });
-    if (user) {
-      throw new Error("Account already exist with this email.");
-    }   
-    if(body?.password !== body?.confirmPassword) {
-      throw new Error("Passwords don't match.");
-    }
-    user = await User.create({name: body?.name, email: body?.email, password: body?.password, userType: body?.userType});
-    return user;
-  } catch (error) {
-    return error;
+  let user = await User.findOne({ email: body?.email });
+  if (user) {
+    throw new Error("Account already exist with this email.");
+  }   
+  if(body?.password !== body?.confirmPassword) {
+    throw new Error("Passwords don't match.");
   }
+  user = await User.create({name: body?.name, email: body?.email, password: body?.password, userType: body?.userType});
+  return user;
 }
 
 // model middleware (run just before and after an event occur)
