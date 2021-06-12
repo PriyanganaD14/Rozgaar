@@ -24,6 +24,9 @@ import SignIn from '../auth/SignIn';
 import SignUp from '../auth/SignUp';
 import ResetPassword from '../auth/ResetPassword';
 
+import Sad from '../Actions/Sad';
+import Popup from '../Popup';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 800,
@@ -41,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const [openPopup,setOpenPopup] = useState(false);
+  const [title, setTitle] = useState("");
+  const [render, setRender] = useState(<br />)
+  const [error, setError] = useState("");
 
   const handleClick1 = (event) => {
     setAnchorEl(event.currentTarget);
@@ -71,7 +79,13 @@ const Navbar = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')));
-  },[location]);
+    if(error.length) {
+      setTitle(error);
+      setOpenPopup(true);
+      setRender(<Sad />)
+      setError("");
+    }
+  },[location, error]);
 
 
   const [open, setOpen] = React.useState(false);
@@ -183,6 +197,7 @@ const Navbar = () => {
                   setOpen={setOpen}
                   setOpen1={setOpen1} //from signin -> signup button
                   setIsForgetClicked={setIsForgetClicked}
+                  setError={setError}
                 />
               </Card>
             </Fade>
@@ -208,7 +223,7 @@ const Navbar = () => {
                 </Grid>
                 <SignUp
                   setOpen={setOpen}
-                 setOpen1={setOpen1} //from signup -> sigin 
+                  setOpen1={setOpen1} //from signup -> sigin 
                 />
               </Card>
             </Fade>
@@ -235,7 +250,14 @@ const Navbar = () => {
               </Card>
             </Fade>
           </Modal>
-        </div>
+          </div>
+          <Popup 
+            openPopup={openPopup} 
+            setOpenPopup={setOpenPopup} 
+            title={title} 
+            render={render}
+            path="/"
+          />
       </>
     )
 

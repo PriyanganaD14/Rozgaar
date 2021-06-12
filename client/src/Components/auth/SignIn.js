@@ -15,9 +15,6 @@ import { useHistory } from "react-router-dom";
 
 import { signin } from "../../actions/auth";
 
-import Sad from '../Actions/Sad';
-import Popup from '../Popup';
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(1),
@@ -51,9 +48,6 @@ export default function SignIn(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [openPopup,setOpenPopup] = useState(false);
-  const [title, setTitle] = useState("");
-  const [render, setRender] = useState(<br />)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -71,13 +65,10 @@ export default function SignIn(props) {
     e.preventDefault();
     // dispatch(signin({ email, password }, history));
     const data = await signin({ email, password }, dispatch);
-    console.log(data);
-    if(data?.error) {
-      setOpenPopup(true);
-      setTitle(data.error);
-      setRender(<Sad />)
-    }
+    if(data?.error)
+      props.setError(data.error)
     setOpen(false);
+    history.push('/');
   };
   const googleSuccess = async (res) => {
     console.log(res);
@@ -100,13 +91,6 @@ export default function SignIn(props) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Popup 
-        openPopup={openPopup} 
-        setOpenPopup={setOpenPopup} 
-        title={title} 
-        render={render}
-        path="/"
-      />
       <Typography variant="h4" className={classes.welcomeBack}>
         Welcome Back
       </Typography>

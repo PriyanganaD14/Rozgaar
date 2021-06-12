@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import "./ApplyJob.css"
 
 import 'date-fns';
@@ -12,16 +12,17 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import {applyJob} from '../../../../actions/job.js'
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const ApplyJob = (props) =>
 {
-  const user = JSON.parse(localStorage.getItem('profile'));
   const [message, setMessage] = useState("");
   const history = useHistory();
   
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
 
   const initialState = {
     name: "",
@@ -33,7 +34,7 @@ const ApplyJob = (props) =>
     state :"",
     pincode : "",
     skill : "",
-    jobSeekerId: user?.result?._id,
+    jobSeekerId: auth?.result?._id,
     jobPostId : props.jobPostId,
     dob :"", 
     read : false,
@@ -68,16 +69,12 @@ const ApplyJob = (props) =>
     setFormData({...formData, [e.target.name] : e.target[e.target.value].label })
   }
 
-  // redux uses
-  const auth = useSelector(state => state.auth);
-  const dispatch = useDispatch();
-
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const data = await applyJob(formData, dispatch);
     console.log(data);
-    if(data.error) {
-      return setMessage(data.error)
+    if(data?.error) {
+      return setMessage(data?.error)
     }
     setMessage("Applied successfully!");
     setFormData(initialState);
@@ -121,19 +118,19 @@ const ApplyJob = (props) =>
         </div>
 
         <div className="col-md-4 mb-3">
-          <label for="validationCustomUsername">Contact</label>
+          <label for="validationCustomauthname">Contact</label>
           <div className="input-group">
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroupPrepend">+91</span>
             </div>
             <input type="text" className="form-control" 
-            id="validationCustomUsername" placeholder="Phone number"
+            id="validationCustomauthname" placeholder="Phone number"
             name = "contact"
             onChange = {handleChange}
             aria-describedby="inputGroupPrepend" required/>
             
             <div className="invalid-feedback">
-              Please choose a username.
+              Please choose a authname.
             </div>
           </div>
         </div>
