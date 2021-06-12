@@ -1,19 +1,13 @@
-import { Button, Dialog, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
-import MoodBadIcon from '@material-ui/icons/MoodBad';
 import CloseIcon from '@material-ui/icons/Close'
+
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   dialogPaper: {
     height: '300px',
     width: '800px',
-  },
-  icon: {
-    width: '10vh',
-    height: '10vh',
-    verticalAlign: 'middle'
-  },
-  PaperProps: {
   },
 }))
 
@@ -23,8 +17,12 @@ const Popup = (props) => {
   const classes = useStyles();
   const { title, openPopup, setOpenPopup } = props;
 
+  const history = useHistory();
+
   const handleClose = () => {
     setOpenPopup(false)
+    if(props?.path)
+      history.push(props?.path)
   }
 
   return (
@@ -36,7 +34,7 @@ const Popup = (props) => {
       >
         <DialogTitle>
           <paper style={{display: 'flex'}}>
-            <MoodBadIcon className={classes.icon} style={{flexGrow: '1', marginTop: '10px', postion: 'absolute' }}/>
+            {props.render}
             <Button onClick={handleClose} style={{ width: '15px', height: '30px', marginRight: '-15px', padding: '0'}}>{<CloseIcon />}</Button>
           </paper>
           <Typography variant="h3" style={{textAlign: "center", marginTop: '70px'}}>{title}</Typography>

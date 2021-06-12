@@ -125,34 +125,36 @@ userSchema.methods.genToken = async function () {
 
 // use to find the user using email & password
 userSchema.statics.findByCredentials = async (email, password) => {
-  var user = await User.findOne({ email });
-
-  if (!user) {
-    throw new Error("Account not exist with this email.");
+  try {
+    var user = await User.findOne({ email });
+    if (!user) {
+      throw new Error("Account not exist with this email.");
+    }
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      throw new Error("Invalid credentials.");
+    }
+    return user;
+  } catch (error) {
+    return error
   }
-
-  const isPasswordMatch = await bcrypt.compare(password, user.password);
-  if (!isPasswordMatch) {
-    throw new Error("Invalid credentials.");
-  }
-
-  return user;
 };
 
 // use to save the user
 userSchema.statics.saveUser = async (body) => {
-  let user = await User.findOne({ email: body?.email });
-
-  if (user) {
-    throw new Error("Account already exist with this email.");
+  try {
+    let user = await User.findOne({ email: body?.email });
+    if (user) {
+      throw new Error("Account already exist with this email.");
+    }   
+    if(body?.password !== body?.confirmPassword) {
+      throw new Error("Passwords don't match.");
+    }
+    user = await User.create({name: body?.name, email: body?.email, password: body?.password, userType: body?.userType});
+    return user;
+  } catch (error) {
+    return error;
   }
-    
-  if(body?.password !== body?.confirmPassword) {
-    throw new Error("Passwords don't match.");
-  }
-  user = await User.create({name: body?.name, email: body?.email, password: body?.password, userType: body?.userType});
-
-  return user;
 }
 
 // model middleware (run just before and after an event occur)
@@ -160,11 +162,9 @@ userSchema.statics.saveUser = async (body) => {
 // run before saving document
 userSchema.pre("save", async function (next) {
   const user = this;
-
   if(user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 12);
   }
-
   // this indicates the end of middleware, if something went wrong function runs forever
   next();
 })
@@ -240,29 +240,19 @@ userSchema.methods.whatToReturn = async function () {
 
 }; 
 
-userSchema.methods.extDetailsEMP = async function({jobPostId}) {
-   const user = this; 
-
-   user.jobsPosted.push(jobPostId); 
-
-   //find all the applications on current jobId 
-   const Appn = await Application.find({jobPostId:jobPostId});
-   
-   user.totalAppn+=Appn.length; 
-
-   if(Appn){
-     for(const ele in Appn){
-      user.newAppn.push(Appn[ele]._id);
-       
-        if(Appn[ele].status=='pending')
-        user.appnPending++; 
-        else if(Appn[ele].status=='approved') 
-        user.appnApproved++; 
-     }
-   } 
-
-   return user;
-
+userSchema.methods.extDetailsEMP = async function(jobPostId,appnId) {
+  const user = this; 
+  // jab naya job post kiya jayega 
+  if(jobPostId) {
+    user?.jobsPosted.push(jobPostId);
+  }
+  // jab koi applicant job apply karega
+  else if(appnId) {
+    user?.newAppn.push(appnId);
+    user.totalAppn++; 
+    user.appnPending++; 
+  }
+  return user;
 }
 
 userSchema.methods.extDetailsJS = async  function ({appnId,contact,skills,languages,dob,photo}){
@@ -270,8 +260,7 @@ userSchema.methods.extDetailsJS = async  function ({appnId,contact,skills,langua
    
    user.jobsApplied.push(appnId);
    user.totalJobApplied++; 
-   user.appnPending++; 
-   user.contact =contact;
+   user.totalJobPending++; 
 
    const set = new Set(user.skills); 
 

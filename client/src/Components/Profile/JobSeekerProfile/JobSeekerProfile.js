@@ -1,6 +1,7 @@
 
 import React,{useEffect,useState} from 'react';
 import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //import profilepicture from '.../Assets/ProfilePicture.jpg';
 import profilepicture from './ProfilePicture.jpg';
 import {
@@ -10,8 +11,6 @@ import {
 import './JobSeekerProfile.css';
 import {getProfile} from '../../../actions/auth.js'
 import Footer from '../../Footer/Footer';
-
-
 
 const Profile = () => {
 
@@ -68,18 +67,24 @@ const Profile = () => {
     
     
    
+    
+    const params = useParams(); 
+
     return (
         <div style={{marginTop: "-70px"}}>
             <div class="row ml-3 mr-3">
                 <div className="col-lg-3">
-                 <Card style={{backgroundColor:"#eee", border:"none"}}>
-                    <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
-                    <CardBody className="middle">
-                    <CardTitle tag="h5">{name}</CardTitle>
-                    <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
-                    <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
-                    </CardBody>
-                 </Card>
+                <Card style={{backgroundColor:"#eee", border:"none"}}>
+        <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
+        <CardBody className="middle">
+          <CardTitle tag="h5">Rohan Roy</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">Driver</CardSubtitle>
+          {!params.applicantId ?
+              <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
+            : null
+           }
+          </CardBody>
+      </Card>
                 </div>
 
                 <div className="col-lg-9">

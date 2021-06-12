@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'); 
+const JobPost = require('../job/jobPost');
 
 const applicationSchema = mongoose.Schema({
   // applicant personal details
@@ -78,16 +79,15 @@ const applicationSchema = mongoose.Schema({
 })
 
 applicationSchema.statics.saveApplication = async ({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages}) => {
-
-  let applicationInfo = await Application.findOne({ jobSeekerId, jobPostId });
-  if(applicationInfo)
-    throw new Error("You already applied for this job.");
-
-  applicationInfo = await Application.create({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages});
-  applicationInfo.save();
   try {
+    let applicationInfo = await Application.findOne({ jobSeekerId, jobPostId });
+    if(applicationInfo)
+      throw new Error("You already applied for this job.");
+
+    applicationInfo = await Application.create({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages});
+    applicationInfo.save();
     const result = await Application
-      .findOne({_id: applicationInfo._id})
+      .findById(applicationInfo._id)
       .populate('location')
       .populate('skills')
       .populate('jobSeekerId')
@@ -99,25 +99,35 @@ applicationSchema.statics.saveApplication = async ({name, jobSeekerId, jobPostId
 };
 
 
-applicationSchema.statics.returnSeekerdetails = async (jobPostId) => {
-  const details = await Application
-    .find({jobPostId})
-    .populate('location')
-    .populate('skills')
-  const result = [];
-  for(const ele in details) {
-    const { jobSeekerId, name,  contact,  dob, experience, currentStatus,  photo,  languages, status } = details[ele];
-    const location = {
-      locality: details[ele].location.locality,
-      city: details[ele].location.city,
-      district: details[ele].location.district,
-      state: details[ele].location.state,
-      pincode: details[ele].location.pincode
+applicationSchema.statics.returnSeekerdetails = async (jobId) => {
+  try {
+    const details = await Application
+      .find({jobPostId:jobId})
+      .populate('location')
+      .populate('skills')
+
+      const findJobPost = await JobPost.findById(jobId).populate('jobTypeId')
+      
+      const jobType = findJobPost.jobTypeId.jobTitle; 
+      const salary = findJobPost.salary;
+      
+      const result = [];
+    for(const ele in details) {
+      const { jobPostId,  jobSeekerId, name,  contact,  dob, experience, currentStatus,  photo,  languages, status,createdAt } = details[ele];
+      const location = {
+        locality: details[ele].location.locality,
+        city: details[ele].location.city,
+        district: details[ele].location.district,
+        state: details[ele].location.state,
+        pincode: details[ele].location.pincode
+      }
+      const skills = details[ele].skills.map(skill => skill.skillName);
+      result.push({ jobSeekerId, jobPostId, jobType,salary, name, contact, dob,location, experience, currentStatus, skills, photo, languages, status,createdAt });
     }
-    const skills = details[ele].skills.map(skill => skill.skillName);
-    result.push({ jobSeekerId, jobPostId, name, contact, dob,location, experience, currentStatus, skills, photo, languages, status });
+    return result;
+  } catch (error) {
+    return error;
   }
-  return result;
 }
 
 const Application = mongoose.model('Application', applicationSchema)

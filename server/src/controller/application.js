@@ -7,12 +7,16 @@ const seekerAppn = async (req, res) => {
   try {
     const { userId } = body;
 
-    const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
-      path: "jobPostId",
-      populate: {
-        path: "jobTypeId",
-      },
-    });
+    try {
+      const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
+        path: "jobPostId",
+        populate: {
+          path: "jobTypeId",
+        },
+      });
+    } catch (error) {
+      return error
+    }
 
     const result = [];
 
@@ -67,13 +71,12 @@ const extractEmpPosts = async (req, res) => {
     const totalJobPost = await JobPost.find({ postedBy: userId })
       .populate("jobTypeId")
       .populate("locationId")
-      .populate("skillsReq");
+      .populate("skillsReq")
 
     const result = [];
 
     for (const ele in totalJobPost) {
       const temp = totalJobPost[ele];
-
       const id = temp._id;
       const title = temp.jobTypeId.jobTitle;
       const dateOfPost = temp.createdAt;
@@ -85,7 +88,9 @@ const extractEmpPosts = async (req, res) => {
       const highestQual = temp.highestQual;
       const jobDescription = temp.jobDescription;
       const loc = temp.locationId;
-
+      const skillName = temp.skillsReq[0].skillName;
+      const jobTitle = temp.jobTypeId.jobTitle
+      console.log(skillName);
       const location = {
         locality: loc.locality,
         state: loc.state,
@@ -106,6 +111,8 @@ const extractEmpPosts = async (req, res) => {
         languages,
         highestQual,
         jobDescription,
+        skillName,
+        jobTitle
       });
     }
 
@@ -124,18 +131,19 @@ const extractEmpPosts = async (req, res) => {
   }
 };
 
-//url : http://localhost:7866/api/empAppn?jobPostId=value
+//url : http://localhost:7866/api/empAppn/jobPostId
 const empAppn = async (req, res) => {
-  const body = req?.body;
-  const jobPostId = req?.query?.jobPostId;
+  const body = req?.body; 
+  const jobPostId = req?.params?.jobPostId;
+ 
   let result = [];
   try {
      // for knowing seeker details for a particular job post
     if(jobPostId) {
       result = await Application.returnSeekerdetails(jobPostId);
     } else {
-      const { userId } = body;
-      const totalJobPost = await JobPost.find({ postedBy: userId });
+      const { empId } = body;
+      const totalJobPost = await JobPost.find({ postedBy: empId });
       for (const ele in totalJobPost) {
          const res = await Application.returnSeekerdetails(totalJobPost[ele]._id);
          for (const t in res) result.push(res[t]);

@@ -27,7 +27,7 @@ const UpdatePassword = ({ history }) => {
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Enter the email associated with your account.
+          Please Type and Confirm the new password.
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField variant="outlined" margin="normal" required fullWidth value={newPassword} onChange={(e) => setNewPassword(e.target.value)} id="newPassword" label="New Password" name="newPassword" autoComplete="email" autoFocus

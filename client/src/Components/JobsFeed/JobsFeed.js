@@ -9,13 +9,14 @@ import { getJobs, getAllJobs } from '../../actions/job';
 import Footer from "../Footer/Footer";
 
 import Popup from '../../Components/Popup';
+import Sad from '../Actions/Sad'
 
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const JobsFeed = () => {
+const JobsFeed = (props) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const [job, setJob] = useState("");
   const [location, setLocation] = useState("");
@@ -25,6 +26,8 @@ const JobsFeed = () => {
   const [goodTogo, setGoodToGo] = useState(false);
   const [openPopup,setOpenPopup] = useState(false);
   const [clicked, setClicked] = useState(false);
+
+  console.log(props.location?.data);
 
   const dispatch = useDispatch();
 
@@ -42,24 +45,24 @@ const JobsFeed = () => {
   }
 
   const validateLocation = (checklocation) =>{ 
-        if(!checklocation.includes(",")){
-          setLocationError("please enter a valid Location");
-          setGoodToGo(false);
-        }else{
-          setLocationError("");
-          setGoodToGo(true);
-        }
-};
+    if(!checklocation.includes(",")){
+      setLocationError("please enter a valid Location");
+      setGoodToGo(false);
+    }else{
+      setLocationError("");
+      setGoodToGo(true);
+    }
+  };
 
   const handleChange = ({ target: { name, value } }) =>{
-      //console.log(name,value); 
-      if(name === 'job'){
-        setJob(value);
-      }
-      if(name === 'location'){
-        validateLocation(value); 
-        setLocation(value);
-      } 
+    //console.log(name,value); 
+    if(name === 'job'){
+      setJob(value);
+    }
+    if(name === 'location'){
+      validateLocation(value); 
+      setLocation(value);
+    } 
   };
 
   const handleSubmit = async (e) => {
@@ -87,7 +90,6 @@ const JobsFeed = () => {
     dispatch({ type: "FETCH_JOB", data})  
     
   }
-  
   return (
     <div>
     <div className="container" style={{ marginTop: "-70px" }}>
@@ -107,7 +109,8 @@ const JobsFeed = () => {
                   id="jobcategory"
                   placeholder="Job-Category"
                   required
-                  //value={job}
+                  defaultValue={!props.location?.data ? "" : props.location?.data?.job}
+                  // value={!props.location?.data ? "" : props.location?.data?.job}
                   //onChange={(e) => setJob(e.target.value)}
                   onChange={handleChange}
                 />
@@ -140,7 +143,8 @@ const JobsFeed = () => {
                   id="location"
                   placeholder="City, State e.g. Kolkata, West Bengal" 
                   required
-                  //value={location}
+                  defaultValue={!props.location?.data ? "" : props.location?.data?.location}
+                  // value={!props.location?.data ? "" : props.location?.data?.location}
                   //onChange={(e) => setLocation(e.target.value)}
                   onChange={handleChange}
                 />
@@ -201,6 +205,7 @@ const JobsFeed = () => {
                         openPopup={openPopup} 
                         setOpenPopup={setOpenPopup} 
                         title={!user ? "You are not logged in" : user.result.userType && "Cant apply... you are logged in as Emp."} 
+                        render={<Sad />}
                       />
                   </Card>
                 </Col>

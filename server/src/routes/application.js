@@ -3,8 +3,10 @@ const { seekerAppn,empAppn, extractEmpPosts } = require("../controller/applicati
 
 const router = express.Router(); 
 
-router.post('/seekerAppn', seekerAppn); 
+router.post('/seekerAppn', seekerAppn);  
+router.post('/empAppn/:jobPostId' , empAppn); 
 router.post('/empAppn', empAppn); 
 router.post('/extractEmpPosts', extractEmpPosts);
+
 
 module.exports = router

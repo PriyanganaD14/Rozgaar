@@ -4,6 +4,7 @@ export const getJobs = async (job, location) => {
   const jobType = job.toLowerCase();
   const city = location.split(',')[0].trim().toLowerCase();
   const state = location.split(',')[1].trim().toLowerCase();
+  console.log(job, city, state)
   try {
     const { data } = await api.getJobs({jobType, city, state});
     return data;
@@ -21,22 +22,26 @@ export const getAllJobs = async () => {
   }
 }
 
-export const postJob = async (formData) => {
+export const postJob = async (formData, dispatch) => {
   const skillsReq = [formData.skill];
   const languages = [formData.language];
   formData.skillsReq = skillsReq;
   formData.languages = languages;
   try {
     const { data } = await api.postJob(formData);
+    if(!data?.error)
+      dispatch({type: 'UPDATE', data});
     return data;
   } catch (error) {
     return error?.response?.data;
   }
 }
 
-export const applyJob = async (formData)=>{
+export const applyJob = async (formData, dispatch)=>{
   try{
     const { data }= await api.applyJob(modifyFormData(formData));
+    if(!data?.error)
+      dispatch({ type: 'UPDATE', data});
     return data;
   }catch(error){
     return error?.response?.data;

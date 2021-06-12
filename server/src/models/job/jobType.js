@@ -10,18 +10,16 @@ const jobTypeSchema = mongoose.Schema({
 
 
 jobTypeSchema.statics.returnId = async (jobTitle) => {
-  
-  const isJobType = await JobType.findOne({jobTitle});
-  
-   
-  if(isJobType)
-  return isJobType._id; 
-  
-  const newJobType = await JobType.create({jobTitle}); 
-  //console.log(newJobType);
-  newJobType.save(); 
-  
-  return newJobType._id;
+  try {
+    const isJobType = await JobType.findOne({jobTitle});
+    if(isJobType)
+      return isJobType._id; 
+    const newJobType = await JobType.create({jobTitle}); 
+    newJobType.save(); 
+    return newJobType._id;
+  } catch (error) {
+    return error
+  }
 };
 
 const JobType = mongoose.model("JobType", jobTypeSchema);

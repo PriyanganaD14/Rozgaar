@@ -67,11 +67,23 @@ export const postJob = async (formData) => {
 }
 
 export const applyJob = async(formData) => {
-  const result = await api.post('/job/applyJob', formData);
+  const result = await api.post(`/job/applyJob`, formData);
   return result;
 }
 
 export const fetchAppn = async(formData) => {
-  const result = await api.post('/api/seekerAppn', formData);
+  const result = await api.post(`/api/seekerAppn`, formData);
   return result;
+} 
+
+
+export const empAppn = async (empId, jobPostId) => {
+  // /api/empAppn?jobPostId=value
+   if(!jobPostId){
+     const result = await api.post(`api/empAppn` , {empId}); 
+     return result;
+   }
+  
+   const result = await api.post(`/api/empAppn/${jobPostId}` , {empId});  
+   return result;
 }

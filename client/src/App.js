@@ -51,8 +51,9 @@ const App = () => {
         <Route export path="/OurTeam" component={OurTeam}/>
         <Route excat path="/updatePassword/:token" component={UpdatePassword} />
         <Route exact path="/jobSeeker/Application" component={JobSeekerApplication}/>
+        <Route exact path="/employer/Application/:jobPostId" component={EmployerApplication}/>
         <Route exact path="/employer/Application" component={EmployerApplication}/>
-      
+        <Route exact path="/applicant/:applicantId" component={JobSeekerProfile}/> 
        </Switch>
       
     

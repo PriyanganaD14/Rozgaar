@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./ApplyJob.css"
 
 import 'date-fns';
@@ -12,6 +12,7 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import {applyJob} from '../../../../actions/job.js'
 import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const ApplyJob = (props) =>
@@ -67,9 +68,13 @@ const ApplyJob = (props) =>
     setFormData({...formData, [e.target.name] : e.target[e.target.value].label })
   }
 
+  // redux uses
+  const auth = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    const data = await applyJob(formData);
+    const data = await applyJob(formData, dispatch);
     console.log(data);
     if(data.error) {
       return setMessage(data.error)

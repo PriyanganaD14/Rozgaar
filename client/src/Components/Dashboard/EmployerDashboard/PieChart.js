@@ -1,31 +1,27 @@
-import React from "react"
-import ReactSvgPieChart from "react-svg-piechart"
- 
-const data = [
-//   {title: "Data 1", value: 100, color: "#22594e"},
-//   {title: "Data 2", value: 60, color: "#2f7d6d"},
-//   {title: "Data 3", value: 30, color: "#3da18d"},
-//   {title: "Data 4", value: 20, color: "#69c2b0"},
-//   {title: "Data 5", value: 10, color: "#a1d9ce"},
-  { title: 'Applications', value: 18, color: '#000080' },
-  { title: 'Selected', value: 10, color: '#008000' },
-  { title: 'On Hold', value: 10, color: '#FFFF00' },
-  { title: 'Rejected', value: 62, color: '#FF0000' },
-]
- 
-const MyCompo = () => (
-  <ReactSvgPieChart
-    data={data}
-    // If you need expand on hover (or touch) effect
-    expandOnHover
-    // If you need custom behavior when sector is hovered (or touched)
-    onSectorHover={(d, i, e) => {
-      if (d) {
-        console.log("Mouse enter - Index:", i, "Data:", d, "Event:", e)
-      } else {
-        console.log("Mouse leave - Index:", i, "Event:", e)
-      }
-    }}
-  />
-)
-export default MyCompo
+import React from "react";
+import ReactSvgPieChart from "react-svg-piechart";
+
+const PieChart = ({ pending, approved, rejected }) => {
+  const data = [
+    { title: `Selected ${approved}`, value: approved, color: "#008000" },
+    { title: `On Hold ${pending}`, value: pending, color: "#FFFF00" },
+    { title: `Rejected ${rejected}`, value: rejected, color: "#FF0000" },
+  ];
+  console.log({ pending, approved, rejected });
+  return (
+    <ReactSvgPieChart
+      data={data}
+      // If you need expand on hover (or touch) effect
+      expandOnHover
+      // If you need custom behavior when sector is hovered (or touched)
+      onSectorHover={(d, i, e) => {
+        if (d) {
+          console.log("Mouse enter - Index:", i, "Data:", d, "Event:", e);
+        } else {
+          console.log("Mouse leave - Index:", i, "Event:", e);
+        }
+      }}
+    />
+  );
+};
+export default PieChart;
