@@ -64,7 +64,7 @@ const applyJob = async (req, res) => {
     const findUser = await User.findById(jobSeekerId);
     
     const appnId = applicationInfo._id;
-    console.log("contact:"+contact);
+    console.log("dob:"+dob);
     const user = await findUser.extDetailsJS({appnId,contact,skills,languages,dob,photo});
     user.save();
 

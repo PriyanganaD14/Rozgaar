@@ -48,14 +48,13 @@ const Profile = () => {
     //     lang+= temp+",";
     // })
     
-    // const skill =[];
-    // skill = user?.result?.skills
+   
    // const name = user.profile;
    // console.log(user?.result?.profile);
     function getAge(dateString) {
         var today = new Date();
         var birthDate = new Date(dateString);
-        console.log(birthDate);
+        console.log("birthDate" +birthDate);
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
