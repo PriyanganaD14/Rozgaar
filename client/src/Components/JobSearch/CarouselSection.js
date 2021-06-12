@@ -10,7 +10,7 @@ const CarouselSection = ()=>{
   return (
     <div className="rvws">
     <div><h4 className="rvw">Success Stories</h4></div>
-    <div id="carouselExampleIndicators" className="carousel slide slider" data-ride="carousel">
+    <div id="carouselExampleIndicators" className="carousel slide slider karma" data-ride="carousel">
 <ol className="carousel-indicators">
 <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
