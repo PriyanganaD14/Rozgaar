@@ -94,7 +94,7 @@ const Profile = () => {
                                 <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
                                     <Card body className="sz hvr">
                                         <CardTitle tag="h5">User ID</CardTitle>
-                                        <CardText style={{ textAlign: "center" }}>1234</CardText>
+                                        <CardText style={{ textAlign: "center" }}>{userId}</CardText>
                                     </Card>
                                 </Col>
                                 <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
@@ -125,7 +125,7 @@ const Profile = () => {
                                 <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
                                     <Card body className="sz hvr">
                                         <CardTitle tag="h5">Experience</CardTitle>
-                                        <CardText style={{ textAlign: "center" }}>4 years</CardText>
+                                        <CardText style={{ textAlign: "center" }}>NA</CardText>
                                     </Card>
                                 </Col>
                             </Row>
