@@ -71,7 +71,7 @@ const extractEmpPosts = async (req, res) => {
     const totalJobPost = await JobPost.find({ postedBy: userId })
       .populate("jobTypeId")
       .populate("locationId")
-      .populate("skillsReq");
+      .populate("skillsReq")
 
     const result = [];
 

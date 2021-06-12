@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PostJob.css";
 
 import { postJob } from '../../../../actions/job';
@@ -47,7 +47,7 @@ const PostJob = (props) => {
     jobDescription:""
   }
   const [formData, setFormData] = useState(initialState);
-  useState(async () => {
+  useEffect(async () => {
     console.log(user?.result?._id);
     await setFormData({ ...formData, ["postedBy"]: user?.result?._id })
     if(props?.location?.job)
@@ -87,7 +87,7 @@ const PostJob = (props) => {
                 <select
                   type="select"
                   className="custom-select mr-sm-2"
-                  name="jobType"
+                  name="title"
                   id="exampleJobType"
                   onChange={handleChange1}
                   defaultValue={formData.title}

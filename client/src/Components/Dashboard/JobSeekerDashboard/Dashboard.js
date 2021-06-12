@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Footer from '../../Footer/Footer';
 import { empAppn } from '../../../api';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { fetchAppn } from '../../../actions/application';
 
@@ -25,7 +24,6 @@ const max5Appn = (data) => {
 
 const Dashboard = () =>
 {
-   
   const user = JSON.parse(localStorage.getItem('profile')); 
   const [state,setState]=useState(false);
   const [appns, setAppns] = useState([]);

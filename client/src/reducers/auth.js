@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from "../constants/actionTypes";
+import { AUTH, LOGOUT, UPDATE } from "../constants/actionTypes";
 
 let initialState = null;
 
@@ -9,7 +9,9 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH:
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
-      return { ...state, ...action.data };
+      return { ...state, ...action?.data };
+    case UPDATE:
+      return { ...state, ...action?.data };
     case LOGOUT:
       localStorage.clear();
       return { ...null };

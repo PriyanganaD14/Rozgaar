@@ -52,46 +52,26 @@ const jobPostSchema = mongoose.Schema({
 })
 
 jobPostSchema.statics.saveJob = async ({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual}) => {
-      
-     const newJob = await JobPost.create({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillsReq:skillSetIds,jobDescription,highestQual});
-
-     newJob.save(); 
-     
-     const newLocation = await Location.findOne({_id :locationId});
- 
-    //  const newLocation = {
-    //      locality: check.locality, 
-    //      city: check.city, 
-    //      district: check.district, 
-    //      state:  check.state,
-    //      pincode: check.pincode
-    //  }; 
-     
-      
-     const newSkill = [];
-
-     for (const element in skillSetIds){
-      const skill = await Skill.findOne({_id:skillSetIds[element]}); 
-        
-      newSkill.push(skill);
-     }
-
-     const newJobType = await JobType.findOne({_id: jobTypeId}); 
-    //  const newJobType = extractJobType.jobTitle; 
-    
-     const postedByUser = await User.findOne({_id:postedBy}); 
-      // const postedByUser = extractUser.name;
-      
-     return {newJobType,newLocation,newSkill,whoCanApply,languages,vacancyCnt,salary,postedByUser,jobDescription,highestQual};
+     try {
+      const newJob = await JobPost.create({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillsReq:skillSetIds,jobDescription,highestQual});      
+      newJob.save(); 
+      return newJob;
+    } catch (error) {
+      return error
+    }
 };
 
 jobPostSchema.statics.findByCredentials = async (jobTypeId, locationId) => {
   console.log(jobTypeId, locationId)
-  const findExactJob = await JobPost.find({jobTypeId,locationId})
-    .populate('locationId')
-    .populate('skillsReq')
-    .populate('jobTypeId')
-  return findExactJob;
+  try {
+    const findExactJob = await JobPost.find({jobTypeId,locationId})
+      .populate('locationId')
+      .populate('skillsReq')
+      .populate('jobTypeId')
+    return findExactJob;
+  } catch (error) {
+    return error
+  }
 };
 
 const JobPost = mongoose.model("JobPost", jobPostSchema);

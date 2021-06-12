@@ -30,16 +30,18 @@ export const postJob = async (formData, dispatch) => {
   try {
     const { data } = await api.postJob(formData);
     if(!data?.error)
-      dispatch({type: 'AUTH', data});
+      dispatch({type: 'UPDATE', data});
     return data;
   } catch (error) {
     return error?.response?.data;
   }
 }
 
-export const applyJob = async (formData)=>{
+export const applyJob = async (formData, dispatch)=>{
   try{
     const { data }= await api.applyJob(modifyFormData(formData));
+    if(!data?.error)
+      dispatch({ type: 'UPDATE', data});
     return data;
   }catch(error){
     return error?.response?.data;
