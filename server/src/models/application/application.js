@@ -87,7 +87,7 @@ applicationSchema.statics.saveApplication = async ({name, jobSeekerId, jobPostId
     applicationInfo = await Application.create({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills, currentStatus, photo, languages});
     applicationInfo.save();
     const result = await Application
-      .findOne({_id: applicationInfo._id})
+      .findById(applicationInfo._id)
       .populate('location')
       .populate('skills')
       .populate('jobSeekerId')

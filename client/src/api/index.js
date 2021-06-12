@@ -5,7 +5,6 @@ const api = axios.create({ baseURL: "http://localhost:7866" });
 export const signin = async (formData) => {
   try {
     const res = await api.post(`/user/signin`, formData);
-    console.log(res);
     return res;
   } catch (err) {
     console.log(err);

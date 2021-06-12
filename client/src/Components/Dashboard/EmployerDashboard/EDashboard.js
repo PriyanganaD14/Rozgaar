@@ -4,7 +4,7 @@ import './EDash.css';
 import EDash from  "./EDash"
 import { useState } from "react"; 
 import PieChart from './PieChart'
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 import {
@@ -18,10 +18,9 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { empAppn, extractEmpPosts } from '../../../actions/application'; 
-import { CircularProgress, Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +50,7 @@ const max5Appn = (data) => {
 
 const EDashboard = () =>
 { 
-  const user = JSON.parse(localStorage.getItem('profile')); 
+  // const user = JSON.parse(localStorage.getItem('profile')); 
   const [jobs, setJobs] = useState([]); 
   const [state,setState]=useState(false);
   const [error, setError] = useState(""); 
@@ -61,12 +60,15 @@ const EDashboard = () =>
   const [appns, setAppns] = useState([]);
   const [newAppnErr, setNewAppnErr] = useState("");
 
-  console.log(user?.result?._id); 
-
+  
+  // redux uses
+  const auth = useSelector(state => state.auth);
+  
   useEffect(() => {    
+    console.log(auth);
     const dummy = async () => {
-      // await setJobs(await extractEmpPosts(user?.result?._id));
-      const data = await empAppn(user?.result?._id, null);
+      // await setJobs(await extractEmpPosts(auth?.result._id));
+      const data = await empAppn(auth?.result._id, null);
       if(data.error) {
         setNewAppnErr(data.error);
         return;
@@ -76,11 +78,11 @@ const EDashboard = () =>
       setAppns(result);
     }
     dummy();
-  }, [])
+  }, [auth])
   
   const handleSubmit = async (e) => {
     e.preventDefault(); 
-    const userId = user?.result?._id;
+    const userId = auth?.result._id;
     
     const data = await extractEmpPosts(userId);
  
@@ -115,7 +117,7 @@ const EDashboard = () =>
       <div className="col">
       <div  className="eone" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle0">
-      <i className="far" id="eikons">{user?.result?.jobsPosted.length}</i>
+      <i className="far" id="eikons">{auth?.result?.jobsPosted?.length}</i>
       </div>
         <p className="etxt">Total Job Posted</p>
     </div>
@@ -123,7 +125,7 @@ const EDashboard = () =>
       <div className="col">
       <div className="etwo" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle1">
-      <i className="far" id="eikons">{user?.result?.appnPending}</i>
+      <i className="far" id="eikons">{auth?.result.appnPending}</i>
       </div>
         <p className="etxt">Applications Pending</p>
     </div>
@@ -131,7 +133,7 @@ const EDashboard = () =>
       <div className="col">
       <div className="ethree" id="ecrd" style={{width:250,height:150}}>
       <div className="ecrcle2">
-      <i className="far" id="eikons">{user?.result?.appnApproved}</i>
+      <i className="far" id="eikons">{auth?.result.appnApproved}</i>
       </div>
         <p className="etxt">Applications Approved</p>
     </div>
@@ -158,9 +160,9 @@ const EDashboard = () =>
 
       <div className="col-md-4" id="ebeftapp">
       <PieChart
-        pending={user?.result?.appnPending} 
-        approved={user?.result?.appnApproved} 
-        rejected={(user?.result?.jobsPosted.length - user?.result?.appnPending - user?.result?.appnApproved)}
+        pending={auth?.result?.appnPending} 
+        approved={auth?.result?.appnApproved} 
+        rejected={(auth?.result?.totalAppn - auth?.result?.appnPending - auth?.result?.appnApproved)}
       />
       </div>
     </div>
@@ -186,28 +188,19 @@ const EDashboard = () =>
                   <Row> 
                   {jobs.map((job) => (
               <Col className="col-lg-6 col-md-6 col-sm-12 col-xs-12" key={job._id}>
-                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}}>
-                  <Link style={{position: "absolute", marginLeft: "450px"}} to={{
-                    pathname: '/employer/postJob',
-                    job
-                  }}>
-                    <MoreVertIcon/>
-                  </Link>
+                  <Card body className="mb-4 mt-4 cr sz hvr" style={{ textAlign: "center"}} onClick={() => {history.push(`/employer/Application/${job?.id}`) }}>
                   <CardTitle tag="h5">Title: {job?.title.toUpperCase()} </CardTitle>
                       <CardTitle tag="h6">Vacancy: {job?.vacancy}</CardTitle>
                            <CardText>
-                            Adddress: {` `}
-                            {job?.location?.city}, 
-                            {` `}
-                            {job?.location?.state}
+                           Adddress: {` `}
+                           {job?.location?.city}, 
+                           {` `}
+                           {job?.location?.state}
                            </CardText>
                            <CardText>whoCanApply: {job?.whoCanApply}</CardText>
                            <CardText>Highest Qualification: {job?.highestQual}</CardText>
                            <CardText>Salary: {job?.salary}</CardText>
                            <CardText>Date Posted: {job?.dateOfPost.substring(10,0)}</CardText>
-                           <Button variant="contained" size="large" color="secondary" style={{width: "250px", alignSelf: "center" }} onClick={() => {history.push(`/employer/Application/${job?.id}`) }}>
-                            View Applications
-                          </Button>
                   </Card>
               </Col>
               ))}

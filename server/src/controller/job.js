@@ -18,7 +18,7 @@ const defaultRoute = async (req, res) => {
 
 const createJob = async (req, res) => {
   const body = req?.body;
-  console.log(formData);
+  console.log(body);
   try {
     const {locality,whoCanApply,vacancyCnt,salary,postedBy,jobDescription,languages,city,district,state,pincode,title,skillsReq,highestQual} = body; 
     
@@ -29,17 +29,20 @@ const createJob = async (req, res) => {
     
     const skillSetIds = await SkillSet.returnIds(skillsReq); 
   
+    
+    const findUser = await User.findById(postedBy); 
+    console.log(findUser);
     const job = await JobPost.saveJob({jobTypeId,whoCanApply,languages,vacancyCnt,salary,locationId,postedBy,skillSetIds,jobDescription,highestQual});
-    
-    const findUser = User.findById({_id: postedBy}); 
-    
+    console.log(job);
+
     const jobId = job._id; 
+    console.log(jobId);
 
-    const user = findUser.extDetailsEMP(jobId, null);
+    const user = await findUser.extDetailsEMP(jobId, null);
     user.save(); 
-
+    console.log(user);
     const result = await user.whatToReturn();
-
+    console.log(result);
     return res.status(200).json(result);
 
   } catch (error) {
@@ -58,20 +61,20 @@ const applyJob = async (req, res) => {
     const skills_ = await SkillSet.returnIds(skills);
     const applicationInfo = await Application.saveApplication({name, jobSeekerId, jobPostId, contact, dob, location, qualification, experience, skills: skills_, currentStatus, photo, languages});
     
-    const findUser = await User.findById({_id: jobSeekerId});
+    const findUser = await User.findById(jobSeekerId);
     
     const appnId = applicationInfo._id;
     const user = await findUser.extDetailsJS({appnId,skills,languages,dob,photo});
     user.save();
 
-    const job = await JobPost.findById({_id: jobPostId}); 
+    const job = await JobPost.findById(jobPostId); 
     console.log('job = ' , job); 
 
-    const findEMP = await User.findById({_id: job.postedBy});
+    const findEMP = await User.findById(job.postedBy);
     console.log('findEMP = ' , findEMP); 
     
     // pushing application id to emp 
-    const employer = await findEMP.extDetailsEMP(jobPostId , appnId);
+    const employer = await findEMP.extDetailsEMP(null , appnId);
     console.log('employer = ' , employer);
     
     employer.save();

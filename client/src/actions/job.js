@@ -29,17 +29,21 @@ export const postJob = async (formData, dispatch) => {
   formData.languages = languages;
   try {
     const { data } = await api.postJob(formData);
+    console.log(data);
     if(!data?.error)
-      dispatch({type: 'AUTH', data});
+      dispatch({type: 'UPDATE', data});
     return data;
   } catch (error) {
     return error?.response?.data;
   }
 }
 
-export const applyJob = async (formData)=>{
+export const applyJob = async (formData, dispatch)=>{
   try{
     const { data }= await api.applyJob(modifyFormData(formData));
+    console.log(data?.result);
+    if(!data?.error)
+      dispatch({ type: 'UPDATE', data: data?.result });
     return data;
   }catch(error){
     return error?.response?.data;
