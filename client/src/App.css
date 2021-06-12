@@ -105,6 +105,7 @@ code {
     margin-left: 30px;
     margin-right: 30px;
     width: 300px;
+    min-width: 250px;
     border-radius:7px;
     background-color: #ade6e6;
 }
@@ -117,8 +118,8 @@ code {
 .slider
 {
 text-align: center;
-    padding-left:35px;
-    padding-right:35px;
+    padding-left:5px;
+    padding-right:5px;
 }
 .rvws
 {
@@ -132,7 +133,7 @@ text-align: center;
     .rvws
     {
         width:300px;
-        margin-left: -110px;
+        margin-left: -120px;
     }
     
 }
@@ -141,16 +142,20 @@ text-align: center;
 {
     #setcrds
     {
- margin-left: px;
+ margin-left:0px;
     }
     #ssec
     {
         margin-left: 10px;
         margin-right: 10px;
     }
+    .rvws
+    {
+        margin-left: -110px;
+    }
     
 }
-@media screen and (max-width: 768px)
+@media screen and (max-width: 767px)
 {
     #setcrds
     {
@@ -161,7 +166,9 @@ text-align: center;
         width: 100%;
         margin-top: 20px;
         margin-bottom: 20px;
-        margin-left:10px;
+        margin-left: 20px;
+        padding: 0px;
+      
     }
     #ssec
     {
@@ -180,3 +187,90 @@ text-align: center;
     color:rgb(62, 62, 128);
 }
 
+@media screen and (max-width: 575px)
+{
+    #setcrds
+    {
+ margin-left: 95px;
+    }
+    .rvws
+    {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        padding: 0px;
+      
+    }
+    #ssec
+    {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+    
+}
+
+@media screen and (max-width: 500px)
+{
+    #setcrds
+    {
+ margin-left:30px;
+    }
+    .rvws
+    {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        padding: 0px;
+      
+    }
+}
+@media screen and (max-width: 400px)
+{
+    #setcrds
+    {
+ margin-left:10px;
+    }
+    .rvws
+    {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        padding: 0px;
+      
+    }
+}
+@media screen and (max-width: 360px)
+{
+    #setcrds
+    {
+ margin-left:-10px;
+    }
+    .rvws
+    {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 15px;
+        padding: 0px;
+      
+    }
+}
+@media screen and (max-width: 320px)
+{
+    #setcrds
+    {
+ margin-left:-20px;
+    }
+    .rvws
+    {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 5px;
+        padding: 0px;
+      
+    }
+}
