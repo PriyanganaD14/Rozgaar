@@ -26,7 +26,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img3} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img3} alt="card image"/></p>
                                     <h4 className="card-title">Priyangana Das</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -74,7 +74,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img2} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img2} alt="card image"/></p>
                                     <h4 className="card-title">Saurav Kumar</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -122,7 +122,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img1} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img1} alt="card image"/></p>
                                     <h4 className="card-title">Sunny Kumar</h4>
                                     <p className="card-text">Frontend Developers</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -170,7 +170,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img5} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img5} alt="card image"/></p>
                                     <h4 className="card-title">Ayush Raj</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -218,7 +218,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img4} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img4} alt="card image"/></p>
                                     <h4 className="card-title">Abhishek Ranjan Singh</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
@@ -266,7 +266,7 @@ const OurTeam =()=>{
                         <div className="frontside">
                             <div className="card">
                                 <div className="card-body text-center">
-                                    <p><image className=" img-fluid" src={img6} alt="card image"/></p>
+                                    <p><img className=" img-fluid" src={img6} alt="card image"/></p>
                                     <h4 className="card-title">Abhishek Kumar</h4>
                                     <p className="card-text">Backend Developer</p>
                                     <a href="https://www.fiverr.com/share/qb8D02" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
