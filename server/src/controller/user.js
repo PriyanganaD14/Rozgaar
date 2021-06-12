@@ -141,7 +141,7 @@ const getProfile = async(req, res) => {
         .findOne({jobSeekerId: userId}) 
         .populate('location');
      
-     console.log(JS); 
+    // console.log(JS); 
 
       const profile = {
         name: user.name, 
@@ -153,6 +153,7 @@ const getProfile = async(req, res) => {
         currSalary: user.currSalary, 
         photo: user.photo,
       };
+
      
       let address = {}; 
       
@@ -166,7 +167,6 @@ const getProfile = async(req, res) => {
         pincode: JS.location.pincode,
         }
       }
-      
       res.status(200).json({result:{profile,address}})
 
     }catch(err){
