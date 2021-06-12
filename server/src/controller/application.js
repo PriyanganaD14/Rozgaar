@@ -6,20 +6,13 @@ const seekerAppn = async (req, res) => {
   console.log(body);
   try {
     const { userId } = body;
-
-    try {
       const totalAppn = await Application.find({ jobSeekerId: userId }).populate({
         path: "jobPostId",
         populate: {
           path: "jobTypeId",
         },
       });
-    } catch (error) {
-      return error
-    }
-
     const result = [];
-
     for (const ele in totalAppn) {
       const vv = totalAppn[ele];
       const appnId = vv._id;

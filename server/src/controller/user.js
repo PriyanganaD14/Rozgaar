@@ -19,11 +19,10 @@ const signin = async (req, res) => {
   try {
     let user = await User.findByCredentials(body?.email, body?.password);
     const token = await user.genToken();
-    //user = await User.findOne({ email: body?.email }).select("-password");
     user = await user.whatToReturn();
-      
     res.status(200).json({ result: user, token });
   } catch (e) {
+    console.log(e);
     res
       .status(500)
       .json({ message: "Something went wrong.", error: e?.message });
