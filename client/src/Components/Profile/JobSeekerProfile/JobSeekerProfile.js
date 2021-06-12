@@ -1,6 +1,5 @@
 
 import React,{useEffect,useState} from 'react';
-import { Link } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 //import profilepicture from '.../Assets/ProfilePicture.jpg';
 import profilepicture from './ProfilePicture.jpg';
@@ -77,8 +76,8 @@ const Profile = () => {
                 <Card style={{backgroundColor:"#eee", border:"none"}}>
         <CardImg className="mid" src={profilepicture} alt="Profile picture" style={{ width: "250px", height: "250px", borderRadius: "180px"}} />
         <CardBody className="middle">
-          <CardTitle tag="h5">Rohan Roy</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Driver</CardSubtitle>
+          <CardTitle tag="h5">{name}</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">{skill}</CardSubtitle>
           {!params.applicantId ?
               <Link to="/Profile/ProfileUpdate" class="btn btn-primary btn-lg" role="button" aria-pressed="true"><b>Edit Profile</b></Link>
             : null
@@ -101,13 +100,13 @@ const Profile = () => {
                                 <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
                                     <Card body className="sz hvr">
                                         <CardTitle tag="h5">Expected Salary</CardTitle>
-                                        <CardText style={{ textAlign: "center" }}>$18k - $25k</CardText>
+                                        <CardText style={{ textAlign: "center" }}>NA</CardText>
                                     </Card>
                                 </Col>
                                 <Col className="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-3">
                                     <Card body className="sz hvr">
                                         <CardTitle tag="h5">Rating</CardTitle>
-                                        <CardText style={{ textAlign: "center" }}>4.9/5</CardText>
+                                        <CardText style={{ textAlign: "center" }}>NA</CardText>
                                     </Card>
                                 </Col>
                             

@@ -154,6 +154,7 @@ const getProfile = async(req, res) => {
         photo: user.photo,
       };
 
+      console.log("pp "+profile?.dob);
      
       let address = {}; 
       

@@ -261,6 +261,7 @@ userSchema.methods.extDetailsJS = async  function ({appnId,contact,skills,langua
    user.jobsApplied.push(appnId);
    user.totalJobApplied++; 
    user.totalJobPending++; 
+   user.contact = contact;
 
    const set = new Set(user.skills); 
 
