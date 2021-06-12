@@ -248,12 +248,13 @@ userSchema.methods.extDetailsEMP = async function(jobPostId,appnId) {
   return user;
 }
 
-userSchema.methods.extDetailsJS = async  function ({appnId,skills,languages,dob,photo}){
+userSchema.methods.extDetailsJS = async  function ({appnId,contact,skills,languages,dob,photo}){
    const user = this; 
    
    user.jobsApplied.push(appnId);
    user.totalJobApplied++; 
    user.totalJobPending++; 
+   user.contact = contact;
 
    const set = new Set(user.skills); 
 

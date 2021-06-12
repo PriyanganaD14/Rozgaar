@@ -36,6 +36,11 @@ export const changePassword = async (newPassword, sentToken) => {
   }
 }
 
+export const getProfile = async(userId)=>{
+  const result = await api.post('user/getProfile',userId);
+  return result;
+}
+
 export const getJobs = async (formData) => {
   const result = await api.post(`/findJob`, formData);
   return result;

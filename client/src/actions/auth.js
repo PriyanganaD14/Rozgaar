@@ -53,3 +53,13 @@ export const changePassword = async (password, token) => {
     console.log(err);
   }
 }
+
+export const getProfile = async(userId)=>{
+  try{
+    const {data} = await api.getProfile({userId});
+    //console.log("returned \n:" +profile);
+    return data;
+  }catch(err){
+    console.log(err);
+  }
+}
